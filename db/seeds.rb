@@ -170,24 +170,24 @@ answers.each do |answer|
   ansi.save!
 end
 
-quest = Question.new(content: '')
+quest = Question.new(content: 'how come a ')
 quest.save!
-answers[0] = ['we live together', 1]
-answers[1] = ['we be friends', 2]
-answers[2] = ['this be love', 3]
-answers[3] = ['i cry', 4]
+answers[0] = ['bed has four legs but ony one foot', 1]
+answers[1] = ['baby doesn\'t drown in the womb', 2]
+answers[2] = ['snowman\'s never dressed for hanukkah', 3]
+answers[3] = ['website won\'t load', 4]
 
 answers.each do |answer|
   ansi = Answer.new(rank: answer[1], content: answer[0], question_id: quest)
   ansi.save!
 end
 
-quest = Question.new(content: '')
+quest = Question.new(content: 'help I\'m a p')
 quest.save!
-answers[0] = ['we live together', 1]
-answers[1] = ['we be friends', 2]
-answers[2] = ['this be love', 3]
-answers[3] = ['i cry', 4]
+answers[0] = ['-risoner in the library', 1]
+answers[1] = ['-risoner in a chinese bakery', 2]
+answers[2] = ['-arent', 3]
+answers[3] = ['-risoner in a toothpaste factory', 4]
 
 answers.each do |answer|
   ansi = Answer.new(rank: answer[1], content: answer[0], question_id: quest)
