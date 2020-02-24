@@ -21,10 +21,8 @@ class GamesController < ApplicationController
       @answers = Answer.where(question_id: @question.id).shuffle
 
     else
-
       @question = Question.find(@round.last.question_id)
       @answers = Answer.where(question_id: @question.id)
-
     end
   end
 
