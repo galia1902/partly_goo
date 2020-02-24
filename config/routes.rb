@@ -5,7 +5,7 @@ Rails.application.routes.draw do
 
   get 'pages/menu', to: 'pages#menu', as: :page_menu
   resources :games, only: %i[create] do
-    resources :round, only: %i[create]
+    resources :round, only: %i[create show]
   end
 
   get 'games/:id/score', to: 'games#score', as: :game_score
