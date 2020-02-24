@@ -5,17 +5,18 @@ class GamePolicy < ApplicationPolicy
       #   --> later, might want to exclude other users's games from scope.
       scope.all
     end
-
-    def create?
-      true
-    end
-
-    def score?
-      record.user == user
-    end
-
-    def game?
-      record.user == user
-    end
   end
+
+  def create?
+    true
+  end
+
+  def score?
+    record.user == user
+  end
+
+  def game?
+    record.user == user
+  end
+end
 end
