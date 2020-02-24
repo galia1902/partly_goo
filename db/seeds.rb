@@ -288,8 +288,49 @@ seed_users.each do |name|
                username: "#{name}",
                password: '111111')
 end
+puts 'Done with Users!'
 
-puts "Done with Users!
+
+####################
+#                  #
+#  Games / Rounds  #
+#                  #
+####################
+
+puts 'Creating empty games for users...'
+
+# Config options...
+allowed_game_types = ['Try Out']
+number_of_games = 15
+
+# Prep...
+all_users = User.all
+questions = Qustion.sample(number_of_games)
+
+p 'Creating empty games... '
+number_of_games.times do
+  seed_games << Game.create!(game_mode: allowed_game_types.sample,
+                             user_id: all_users.sample)
+end
+puts '... done!'
+p 'Creating rounds (with questions) for games...'
+
+seed_games.each do |game|
+  question = questions.pop
+  answer = question.answers.sample
+  duration = rand(95000) + 500 # ==> Random time from  .5 to 10 seconds,in ms
+  user = all_users.sample
+  Round.create!( game_id: game.id,
+                 question_id: question.id,
+                 answer_id: answer.id,
+                 duration: duration)
+end
+puts '... done!'
+
+
+
+
+
 
 
 
