@@ -1,2 +1,16 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+<div id="delayRedirect">
+<%= image_tag("splash-desktop_noText.png", id: 'loading-page-image')%>
+</div>
+
+<h1>menu</h1>
+
+
+
+<script>
+  let loader = document.getElementById('loading-page-image');
+  const handleLoader = () => {
+   loader.style.display = 'none';
+  }
+
+  setTimeout(handleLoader, 6000);
+</script>
