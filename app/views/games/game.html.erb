@@ -1,3 +1,22 @@
-<h1>Games#game</h1>
-<p>Find me in app/views/games/game.html.erb</p>
-<%= link_to "back to Home?", root_path %>
+<div class="d-flex container justify-content-center ">
+  <div class="row">
+    <div class="col" style="margin: 32px;">
+
+      <h1>Tryout</h1>
+
+
+      <h2><%= @question.content %></h2>
+
+
+      <%= button_to @answers[0].content, game_rounds_path(@game), params: {duration: 30, question_id: @question.id, answer_id: @answers[0].id } %>
+      <%= button_to @answers[1].content, game_rounds_path(@game), params: {duration: 30, question_id: @question.id, answer_id: @answers[1].id } %>
+      <%= button_to @answers[2].content, game_rounds_path(@game), params: {duration: 30, question_id: @question.id, answer_id: @answers[2].id } %>
+      <%= button_to @answers[3].content, game_rounds_path(@game), params: {duration: 30, question_id: @question.id, answer_id: @answers[3].id } %>
+
+      <!--  -->
+
+
+
+    </div>
+  </div>
+</div>
