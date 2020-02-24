@@ -198,9 +198,64 @@ puts "15 woop woop"
 
 
 
+quest = Question.new(content: '')
+quest.save!
+answers[0] = ['-risoner in the library', 1]
+answers[1] = ['-risoner in a chinese bakery', 2]
+answers[2] = ['-arent', 3]
+answers[3] = ['-risoner in a toothpaste factory', 4]
 
+answers.each do |answer|
+  ansi = Answer.new(rank: answer[1], content: answer[0], question_id: quest)
+  ansi.save!
+end
 
+quest = Question.new(content: '')
+quest.save!
+answers[0] = ['-risoner in the library', 1]
+answers[1] = ['-risoner in a chinese bakery', 2]
+answers[2] = ['-arent', 3]
+answers[3] = ['-risoner in a toothpaste factory', 4]
 
+answers.each do |answer|
+  ansi = Answer.new(rank: answer[1], content: answer[0], question_id: quest)
+  ansi.save!
+end
 
+quest = Question.new(content: '')
+quest.save!
+answers[0] = ['-risoner in the library', 1]
+answers[1] = ['-risoner in a chinese bakery', 2]
+answers[2] = ['-arent', 3]
+answers[3] = ['-risoner in a toothpaste factory', 4]
+
+answers.each do |answer|
+  ansi = Answer.new(rank: answer[1], content: answer[0], question_id: quest)
+  ansi.save!
+end
+
+quest = Question.new(content: '')
+quest.save!
+answers[0] = ['-risoner in the library', 1]
+answers[1] = ['-risoner in a chinese bakery', 2]
+answers[2] = ['-arent', 3]
+answers[3] = ['-risoner in a toothpaste factory', 4]
+
+answers.each do |answer|
+  ansi = Answer.new(rank: answer[1], content: answer[0], question_id: quest)
+  ansi.save!
+end
+
+quest = Question.new(content: '')
+quest.save!
+answers[0] = ['-risoner in the library', 1]
+answers[1] = ['-risoner in a chinese bakery', 2]
+answers[2] = ['-arent', 3]
+answers[3] = ['-risoner in a toothpaste factory', 4]
+
+answers.each do |answer|
+  ansi = Answer.new(rank: answer[1], content: answer[0], question_id: quest)
+  ansi.save!
+end
 
 
