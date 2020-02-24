@@ -17,7 +17,7 @@ class GamePolicy < ApplicationPolicy
 
   def game?
     # Can only create a round if mode == tryout || user = owner of current game
-    record.mode == 'Try Out' || user == record.game.user
+    record.mode == 'Try Out' || user == record.user
 
     # Anyone can create a round
     # true
