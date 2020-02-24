@@ -198,64 +198,63 @@ puts "15 woop woop"
 
 
 
-quest = Question.new(content: '')
+quest = Question.new(content: 'don\'t you hate it when a')
 quest.save!
-answers[0] = ['-risoner in the library', 1]
-answers[1] = ['-risoner in a chinese bakery', 2]
-answers[2] = ['-arent', 3]
-answers[3] = ['-risoner in a toothpaste factory', 4]
+answers[0] = ['sentence doesn\'t end the way you think it octopus', 1]
+answers[1] = ['llama named carl', 2]
+answers[2] = ['chinchilla eats the universe', 3]
+answers[3] = ['velociraptor throws', 4]
 
 answers.each do |answer|
   ansi = Answer.new(rank: answer[1], content: answer[0], question_id: quest)
   ansi.save!
 end
 
-quest = Question.new(content: '')
+quest = Question.new(content: 'is it normal to')
 quest.save!
-answers[0] = ['-risoner in the library', 1]
-answers[1] = ['-risoner in a chinese bakery', 2]
-answers[2] = ['-arent', 3]
-answers[3] = ['-risoner in a toothpaste factory', 4]
+answers[0] = ['cry everyday', 1]
+answers[1] = ['have suicidal thoughts as a teenager', 2]
+answers[2] = ['feel your heartbeat', 3]
+answers[3] = ['be sexually attracted to numbers', 4]
 
 answers.each do |answer|
   ansi = Answer.new(rank: answer[1], content: answer[0], question_id: quest)
   ansi.save!
 end
 
-quest = Question.new(content: '')
+quest = Question.new(content: 'my girlfriend')
 quest.save!
-answers[0] = ['-risoner in the library', 1]
-answers[1] = ['-risoner in a chinese bakery', 2]
-answers[2] = ['-arent', 3]
-answers[3] = ['-risoner in a toothpaste factory', 4]
+answers[0] = ['is a gal', 1]
+answers[1] = ['is alien', 2]
+answers[2] = ['is a gumiho', 3]
+answers[3] = ['is a big magnet', 4]
 
 answers.each do |answer|
   ansi = Answer.new(rank: answer[1], content: answer[0], question_id: quest)
   ansi.save!
 end
 
-quest = Question.new(content: '')
+quest = Question.new(content: 'dinosaurs were')
 quest.save!
-answers[0] = ['-risoner in the library', 1]
-answers[1] = ['-risoner in a chinese bakery', 2]
-answers[2] = ['-arent', 3]
-answers[3] = ['-risoner in a toothpaste factory', 4]
+answers[0] = ['made up by the cia to discourage time travel', 1]
+answers[1] = ['birds', 2]
+answers[2] = ['the dominant land animal of the mesozoic era', 3]
+answers[3] = ['definitely cold blooded', 4]
 
 answers.each do |answer|
   ansi = Answer.new(rank: answer[1], content: answer[0], question_id: quest)
   ansi.save!
 end
 
-quest = Question.new(content: '')
+quest = Question.new(content: 'is it bad')
 quest.save!
-answers[0] = ['-risoner in the library', 1]
-answers[1] = ['-risoner in a chinese bakery', 2]
-answers[2] = ['-arent', 3]
-answers[3] = ['-risoner in a toothpaste factory', 4]
+answers[0] = ['that i never made love', 1]
+answers[1] = ['to crack your neck', 2]
+answers[2] = ['to swallow gum', 3]
+answers[3] = ['to crack your back', 4]
 
 answers.each do |answer|
   ansi = Answer.new(rank: answer[1], content: answer[0], question_id: quest)
   ansi.save!
 end
-
-
+puts "20 Seeds"
