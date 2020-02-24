@@ -9,5 +9,5 @@ Rails.application.routes.draw do
   end
 
   get 'games/:id/score', to: 'games#score', as: :game_score
-  get 'games/:id/game', to: 'games#games', as: :game
+  get 'games/:id/game', to: 'games#game', as: :game
 end
