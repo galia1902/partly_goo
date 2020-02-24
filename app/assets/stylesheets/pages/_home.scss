@@ -87,5 +87,67 @@ visibility: hidden;
   margin-top: 40px;
 }
 
+$darkBg: #545252;
+@mixin splashElement {
+  background-color: none;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+@mixin size($w, $h) {
+  width: $w;
+  height: $h;
+}
+html,
+body {
+  margin: 0 auto;
+  padding: 0;
+  top: 0px;
+}
+.splash-container {
+  position: fixed;
+  background-color: $darkBg;
+  width: 100vw;
+  margin: 0 auto;
+  height: 100vh;
+  padding: 0;
+  .splash-logo {
+    position: absolute;
+    width: 30vw;
+    height: 30vh;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: none;
+    background-image: url(Logo.svg);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+  .ball1 {
+    @include splashElement;
+    @include size(35vw, 35vh);
+    top: 10vh;
+    left: -10vw;
+    position: absolute;
+    background-image: url(Ball4.png);
+  }
+  .ball2 {
+    @include splashElement;
+    @include size(10vw, 10vh);
+    top: 70vh;
+    left: 80vw;
+    position: absolute;
+    background-image: url(Ball2.png);
+  }
+  .ball3 {
+    @include splashElement;
+    @include size(15vw, 15vh);
+    top: 9vh;
+    left: 80vw;
+    position: absolute;
+    background-image: url(Ball1.png);
+  }
+}
 
 
