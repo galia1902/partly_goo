@@ -4,18 +4,30 @@
 
       <h1>Tryout</h1>
 
-
+      <% if @round.last.nil? %>
       <h2><%= @question.content %></h2>
 
 
-      <%= button_to @answers[0].content, game_rounds_path(@game), params: {duration: 30, question_id: @question.id, answer_id: @answers[0].id } %>
-      <%= button_to @answers[1].content, game_rounds_path(@game), params: {duration: 30, question_id: @question.id, answer_id: @answers[1].id } %>
-      <%= button_to @answers[2].content, game_rounds_path(@game), params: {duration: 30, question_id: @question.id, answer_id: @answers[2].id } %>
-      <%= button_to @answers[3].content, game_rounds_path(@game), params: {duration: 30, question_id: @question.id, answer_id: @answers[3].id } %>
+      <%= button_to @answers[0].content, game_rounds_path(@game), params: {round: {duration: 30, question_id: @question.id, answer_id: @answers[0].id }} %>
+      <%= button_to @answers[1].content, game_rounds_path(@game), params: {round: {duration: 30, question_id: @question.id, answer_id: @answers[1].id }} %>
+      <%= button_to @answers[2].content, game_rounds_path(@game), params: {round: {duration: 30, question_id: @question.id, answer_id: @answers[2].id }} %>
+      <%= button_to @answers[3].content, game_rounds_path(@game), params: {round: {duration: 30, question_id: @question.id, answer_id: @answers[3].id }} %>
 
-      <!--  -->
+      <% else %>
+
+      <h2><%= @question.content %></h2>
+
+      <p><%= @answers[0].content %></p>
+      <p><%= @answers[1].content %></p>
+      <p><%= @answers[2].content %></p>
+      <p><%= @answers[3].content %></p>
+
+      <%= link_to "Back to Menu", page_menu_path, class: 'btn btn-danger ' %>
+      <%= button_to "play again", games_path, class: 'btn btn-primary', params: {game: {game_mode: "Try Out"}}%>
 
 
+
+      <% end %>
 
     </div>
   </div>

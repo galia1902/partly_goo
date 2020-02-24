@@ -5,6 +5,7 @@ class GamesController < ApplicationController
     @game = Game.new(game_params)
     # no user yet (try out)
     if @game.game_mode == "Try Out"
+      @game.user = User.find(1)
       @game.save!
       redirect_to game_path(@game)
     end
@@ -21,6 +22,9 @@ class GamesController < ApplicationController
 
     else
 
+      @question = Question.find(@round.last.question_id)
+      @answers = Answer.where(question_id: @question.id)
+
     end
   end
 
@@ -31,7 +35,7 @@ class GamesController < ApplicationController
   end
 
   def game_params
-    params.require(:game).permit(:game_mode, :user_id)
+    params.require(:game).permit(:game_mode)
   end
 
   def rand_quest
