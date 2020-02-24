@@ -305,15 +305,16 @@ number_of_games = 15
 
 # Prep...
 all_users = User.all
-questions = Qustion.sample(number_of_games)
+questions = Question.all.sample(number_of_games)
+seed_games = []
 
 p 'Creating empty games... '
 number_of_games.times do
   seed_games << Game.create!(game_mode: allowed_game_types.sample,
-                             user_id: all_users.sample)
+                             user_id: all_users.sample.id)
 end
 puts '... done!'
-p 'Creating rounds (with questions) for games...'
+p 'Creating rounds for games, getting answers, and scoring them...'
 
 seed_games.each do |game|
   question = questions.pop
@@ -324,8 +325,12 @@ seed_games.each do |game|
                  question_id: question.id,
                  answer_id: answer.id,
                  duration: duration)
+  game.score = answer.rank == 1 ? 1 : 0
 end
-puts '... done!'
+puts '... done! Happy testing!'
+
+
+
 
 
 
