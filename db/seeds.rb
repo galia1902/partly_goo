@@ -6,6 +6,12 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+puts "Cleaning database..."
+User.destroy_all
+Question.destroy_all
+puts "Database cleaned! "
+puts "Making questions... "
+
 quest = Question.new(content: 'learn how to code')
 quest.save!
 answers = []
@@ -258,4 +264,34 @@ answers.each do |answer|
   ansi = Answer.new(rank: answer[1], content: answer[0], question_id: quest.id)
   ansi.save!
 end
-puts "20 Seeds"
+puts "20 Seeds - Questions done!"
+
+
+###########
+#         #
+#  Users  #
+#         #
+###########
+puts "Making users ... "
+
+seed_users = ['Lassie',
+              'Flipper',
+              'Secretariat',
+              'Billy',
+              'Brownie',
+              'Big_Bird',
+              'Willy',
+              'KingKong']
+
+seed_users.each do |name|
+  User.create!(email: "#{name}@partly.com",
+               username: "#{name}",
+               password: '111111')
+end
+
+puts "Done with Users!
+
+
+
+
+
