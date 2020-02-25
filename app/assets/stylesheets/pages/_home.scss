@@ -1,9 +1,12 @@
 // Specific CSS for your home-page
 $bg-gray: #545252;
 
-body{
-  background-color: $bg-gray;
-}
+// body {
+//   background-color: $bg-gray;
+//   margin: 0 auto;
+//   padding: 0;
+//   top: 0px;
+// }
 
 .menu_container{
   background: $bg-gray;
@@ -11,7 +14,7 @@ body{
   .menu-inner-container {
     background: inherit;
     width: 40%;
-    margin: 0 auto;y
+    margin: 0 auto;
     margin-top: 4rem;
   }
 }
@@ -101,11 +104,11 @@ $darkBg: #545252;
   height: $h;
 }
 
-html, body {
-  margin: 0 auto;
-  padding: 0;
-  top: 0px;
-}
+// html {
+//   margin: 0 auto;
+//   padding: 0;
+//   top: 0px;
+// }
 
 .splash-container {
   position: fixed;

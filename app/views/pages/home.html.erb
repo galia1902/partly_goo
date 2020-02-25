@@ -35,6 +35,15 @@
 
 
 <script>
+
+  // Script to during the make the Body element grey
+  let my_body = document.querySelector('body')
+  const changeBodyBackgroundColor = () => {
+    my_body.style.background = '#545252'
+  }
+  changeBodyBackgroundColor();
+
+  // Script to handle delay, switching from Splash screen to Menu screen
   let loader = document.getElementById('splash-container');
   const handleLoader = () => {
    loader.style.display = 'none';
