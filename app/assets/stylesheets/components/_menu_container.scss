@@ -1,0 +1,23 @@
+$bg-gray: #545252;
+
+.menu_container{
+  background: $bg-gray;
+  width: 100%;
+  .menu-inner-container {
+    background: inherit;
+    width: 40%;
+    margin: 0 auto;
+    margin-top: 4rem;
+  }
+}
+
+@media screen and (max-width : 720px) {
+  .menu_container .menu-inner-container {
+    width: 70%;
+    background: inherit;
+  }
+}
+
+.menu-options{
+  margin-top: 40px;
+}

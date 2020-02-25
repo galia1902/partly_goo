@@ -8,13 +8,13 @@
   </div>
 </div>
 
-<div class = "menu_container">
-  <div class = "menu-inner-container">
-    <div class = "menu-headline-container">
-      <div class = "menu-logo" style = "background-image = "">
+<div class="menu_container">
+  <div class="menu-inner-container">
+    <div class="menu-headline-container">
+      <div class="menu-logo" style="background-image">
 
       </div>
-      <div class = "menu-how-to-play-link">
+      <div class="menu-how-to-play-link">
         <div class="menu-how-to-play-link-icon">
          <%= image_tag("game_options_menu_symbol.png", id: 'game-options-menu-symbol')%>
          </div>
@@ -38,10 +38,19 @@
 
 
 <script>
+
+  // Script to during the make the Body element grey
+  let my_body = document.querySelector('body')
+  const changeBodyBackgroundColor = () => {
+    my_body.style.background = '#545252'
+  }
+  changeBodyBackgroundColor();
+
+  // Script to handle delay, switching from Splash screen to Menu screen
   let loader = document.getElementById('splash-container');
   const handleLoader = () => {
    loader.style.display = 'none';
-  }
+ }
 
-  setTimeout(handleLoader, 4000);
+ setTimeout(handleLoader, 4000);
 </script>
