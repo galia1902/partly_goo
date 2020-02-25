@@ -26,4 +26,3 @@ class GamePolicy < ApplicationPolicy
     # record.game.user == user
   end
 end
-end
