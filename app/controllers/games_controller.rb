@@ -16,6 +16,7 @@ class GamesController < ApplicationController
 
   def game
     @round = Round.where(game_id: @game.id)
+
     if @round[0].nil?
       @question = rand_quest
       @answers = Answer.where(question_id: @question.id).shuffle
@@ -30,6 +31,7 @@ class GamesController < ApplicationController
 
   def set_game
     @game = Game.find(params[:id])
+    authorize @game
   end
 
   def game_params
