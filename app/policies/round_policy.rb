@@ -7,7 +7,7 @@ class RoundPolicy < ApplicationPolicy
 
   def create?
     # Can only create a round if mode == tryout || user = owner of current game
-    record.game.mode == 'Try Out' || user == record.game.user
+    record.game.game_mode == 'Try Out' || user == record.game.user
 
     # Anyone can create a round
     # true
