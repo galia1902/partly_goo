@@ -3,6 +3,7 @@ class RoundsController < ApplicationController
     @round = Round.new(round_params)
     @game = Game.find(params[:game_id])
     @round.game = @game
+    authorize @round
     @round.save!
 
     redirect_to game_path(@game)
