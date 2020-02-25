@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
   get 'pages/menu', to: 'pages#menu', as: :page_menu
+  get 'pages/how_to_play', to: 'pages#how_to', as: :how_to_play
   resources :games, only: %i[create] do
     resources :rounds, only: %i[create]
   end
