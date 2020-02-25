@@ -1,44 +1,31 @@
 // Specific CSS for your home-page
 $bg-gray: #545252;
 
-body{
-  background-color: $bg-gray;
-}
+// body {
+//   background-color: $bg-gray;
+//   margin: 0 auto;
+//   padding: 0;
+//   top: 0px;
+// }
 
-.menu_container{
-  background: $bg-gray;
-  width: 100%;
-  .menu-inner-container {
-    background: inherit;
-    width:40%;
-    margin:0 auto;
-    margin-top: 4rem;
-  }
-}
 
-@media screen and (max-width : 720px) {
- .menu_container .menu-inner-container {
-    width: 70%;
-    background: inherit;
-  }
-}
-
-.menu-how-to-play-link{
-  display:flex;
+.menu-how-to-play-link {
+  display: flex;
   justify-content: center;
   margin-top: 15px;
 }
 
-.menu-how-to-play-link-text{
+.menu-how-to-play-link-text {
   color: white;
   margin-left: 7px;
   line-height: 28px;
   font-size: 18px
 }
 
-.menu-headline{
+.menu-headline {
   text-align: center;
 }
+
 
 .menu-logo{
   background: asset-url('PARTLY.svg');
@@ -49,42 +36,6 @@ body{
 }
 
 
-.menu-option{
-  width: 90%;
-  $height: 50px;
-  height: $height;
-  border-radius: 25px;
-  background:white;
-  line-height: $height;
-  text-align:center;
-  margin:14px auto;
-  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
-  color: #424242;
-
-  transition: all ease-in-out 250ms;
-
-&.hidden{
-visibility: hidden;
-}
-&:hover{
-  //transform: scale(1.05);
-  width: 100%;
-  background-color: #D6D6D6;
-    box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.25);
-  cursor: pointer;
-}
-&:active{
-  //transform: scale(.98);
-  width: 88%;
-  box-shadow: 0px 1px 0px rgba(0, 0, 0, 0.25);
-    transition: all ease-in-out 150ms;
-}
-}
-
-.menu-options{
-  margin-top: 40px;
-}
-
 
 $darkBg: #545252;
 @mixin splashElement {
@@ -93,16 +44,18 @@ $darkBg: #545252;
   background-repeat: no-repeat;
   background-position: center;
 }
+
 @mixin size($w, $h) {
   width: $w;
   height: $h;
 }
-html,
-body {
-  margin: 0 auto;
-  padding: 0;
-  top: 0px;
-}
+
+// html {
+//   margin: 0 auto;
+//   padding: 0;
+//   top: 0px;
+// }
+
 .splash-container {
   position: fixed;
   left: 0px;
@@ -125,6 +78,7 @@ body {
     background-repeat: no-repeat;
     background-position: center;
   }
+
   .ball1 {
     @include splashElement;
     @include size(35vw, 35vh);
@@ -133,6 +87,7 @@ body {
     position: absolute;
     background-image: asset-url('Ball4.png');
   }
+
   .ball2 {
     @include splashElement;
     @include size(10vw, 10vh);
@@ -141,6 +96,7 @@ body {
     position: absolute;
     background-image: asset-url('Ball2.png');
   }
+
   .ball3 {
     @include splashElement;
     @include size(15vw, 15vh);
