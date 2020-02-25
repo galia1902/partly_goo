@@ -41,7 +41,7 @@ body{
 }
 
 .menu-logo{
-  background: url(PARTLY.svg);
+  background: asset-url('PARTLY.svg');
   height: 40px;
   background-size: contain;
   background-repeat: no-repeat;
@@ -120,7 +120,7 @@ body {
     left: 50%;
     transform: translate(-50%, -50%);
     background-color: none;
-    background-image: url(Logo.svg);
+    background-image: asset-url('Logo.svg');
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
@@ -131,7 +131,7 @@ body {
     top: 10vh;
     left: -10vw;
     position: absolute;
-    background-image: url(Ball4.png);
+    background-image: asset-url('Ball4.png');
   }
   .ball2 {
     @include splashElement;
@@ -139,7 +139,7 @@ body {
     top: 70vh;
     left: 80vw;
     position: absolute;
-    background-image: url(Ball2.png);
+    background-image: asset-url('Ball2.png');
   }
   .ball3 {
     @include splashElement;
@@ -147,7 +147,7 @@ body {
     top: 9vh;
     left: 80vw;
     position: absolute;
-    background-image: url(Ball1.png);
+    background-image: asset-url('Ball1.png');
   }
 }
 
