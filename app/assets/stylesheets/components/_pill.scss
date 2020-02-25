@@ -31,3 +31,23 @@
     transition: all ease-in-out 150ms;
   }
 }
+
+.pill-red {
+  background-color: $goo-red;
+  color: $goo-white;
+}
+
+.pill-green {
+  background-color: $goo-green;
+  color: $goo-white;
+}
+
+.pill-blue {
+  background-color: $goo-blue;
+  color: $goo-white;
+}
+
+.pill-yellow {
+  background-color: $goo-yellow;
+  color: $goo-white;
+}
