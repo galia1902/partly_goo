@@ -1,4 +1,16 @@
-.htp_container{
+
+.htp-background {
+  position: fixed;
+  left: 0px;
+  top: 0px;
+  background-color: $darkBg;
+  width: 100vw;
+  margin: 0 auto;
+  height: 100vh;
+  padding: 0;
+}
+
+.htp-container{
   background: $bg-gray;
   width: 100%;
   .htp-inner-container {
