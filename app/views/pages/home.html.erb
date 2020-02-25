@@ -23,7 +23,10 @@
     </div>
       <div class="menu-options">
        <div class="menu-option">quick play</div>
-       <div class="menu-option">Full game - "choose one"</div>
+       <div class="menu-option">
+       Full game - "choose one"
+       <%= button_to "Try out", games_path, params: {game: {game_mode: "Try Out"}} %>
+       </div>
        <div class="menu-option">Full game - "sortable"</div>
        <div class="menu-option hidden">spacer</div>
        <div class="menu-option">Log in - Not yet built</div>
