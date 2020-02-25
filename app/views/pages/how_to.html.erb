@@ -13,10 +13,13 @@
       <p>Partly is a search-engine autocomplete based quiz</p>
       <%= image_tag("how_to_play.png", class: 'htp-pic')%>
       <p>Every question is a search query in th search-bar. The player has to guess which phrase is the first in the list of suggestions by auto complete.</p>
-    <div class="pill htp-pill">OK, got it!</div>
     </div>
+    <a href="/">
+    <div class="pill htp-pill">OK, got it!</div>
 
+    </a>
 
+  <%= link_to "OK, got it!", root_path, class: "pill htp-pill" %>
   </div>
 
 </div>
