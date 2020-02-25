@@ -1,4 +1,6 @@
 class GamesController < ApplicationController
+  skip_before_action :authenticate_user!, if: :tryout_game?
+
   before_action :set_game, only: [:score, :game]
 
   def create
@@ -48,5 +50,17 @@ class GamesController < ApplicationController
     count = Question.count
     random_offset = rand(count)
     return random_quest = Question.offset(random_offset).first
+  end
+
+  def tryout_game?
+    # 1. we are about to create a new game, with a mode of 'Try Out'
+    if params[:action] == 'create'
+      return true if params[:game][:game_mode] == 'Try Out'
+    else
+      # 2. there is already a game, which has a mode of 'Try Out'
+      game = Game.find(params[:id])
+      return true if !game.nil? && game.game_mode == 'Try Out'
+    end
+    false
   end
 end

@@ -17,12 +17,21 @@
       <div class="menu-how-to-play-link">
         <div class="menu-how-to-play-link-icon">
          <%= image_tag("game_options_menu_symbol.png", id: 'game-options-menu-symbol')%>
-       </div>
+         </div>
+        <div class="menu-how-to-play-link-text">How to play</div>
+      </div>
+    </div>
+      <div class="menu-options">
+       <div class="menu-option">quick play</div>
+       <div class="menu-option">
        <div class="menu-how-to-play-link-text">How to play</div>
      </div>
    </div>
    <div class="pillbox-add-top-margin ">
-     <div class="pill">quick play</div>
+     <div class="pill">
+       Full game - "choose one"
+       <%= button_to "Try out", games_path, params: {game: {game_mode: "Try Out"}} %>
+      </div>
      <div class="pill">Full game - "choose one"</div>
      <div class="pill">Full game - "sortable"</div>
      <div class="pill hidden">spacer</div>
