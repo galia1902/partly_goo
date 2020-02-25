@@ -8,23 +8,6 @@ $bg-gray: #545252;
 //   top: 0px;
 // }
 
-.menu_container{
-  background: $bg-gray;
-  width: 100%;
-  .menu-inner-container {
-    background: inherit;
-    width: 40%;
-    margin: 0 auto;
-    margin-top: 4rem;
-  }
-}
-
-@media screen and (max-width : 720px) {
-  .menu_container .menu-inner-container {
-    width: 70%;
-    background: inherit;
-  }
-}
 
 .menu-how-to-play-link {
   display: flex;
@@ -51,44 +34,6 @@ $bg-gray: #545252;
   background-position: center;
 }
 
-
-.menu-option {
-  width: 90%;
-  $height: 50px;
-  height: $height;
-  border-radius: 25px;
-  background: white;
-  line-height: $height;
-  text-align: center;
-  margin: 14px auto;
-  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
-  color: #424242;
-
-  transition: all ease-in-out 250ms;
-
-  &.hidden {
-    visibility: hidden;
-  }
-
-  &:hover {
-  //transform: scale(1.05);
-  width: 100%;
-  background-color: #D6D6D6;
-  box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.25);
-  cursor: pointer;
-}
-
-&:active{
-    //transform: scale(.98);
-    width: 88%;
-    box-shadow: 0px 1px 0px rgba(0, 0, 0, 0.25);
-    transition: all ease-in-out 150ms;
-  }
-}
-
-.menu-options{
-  margin-top: 40px;
-}
 
 
 $darkBg: #545252;
