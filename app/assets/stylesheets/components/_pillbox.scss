@@ -1,9 +1,9 @@
 $bg-gray: #545252;
 
-.menu_container{
+.pillbox_outer{
   background: $bg-gray;
   width: 100%;
-  .menu-inner-container {
+  .pillbox_inner {
     background: inherit;
     width: 40%;
     margin: 0 auto;
@@ -12,12 +12,12 @@ $bg-gray: #545252;
 }
 
 @media screen and (max-width : 720px) {
-  .menu_container .menu-inner-container {
+  .pillbox_outer .pillbox_inner {
     width: 70%;
     background: inherit;
   }
 }
 
-.menu-options{
+.pillbox-add-top-margin {
   margin-top: 40px;
 }
