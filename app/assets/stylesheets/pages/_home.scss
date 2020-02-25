@@ -26,8 +26,9 @@ $bg-gray: #545252;
   text-align: center;
 }
 
-.menu-logo {
-  background: url(PARTLY.svg);
+
+.menu-logo{
+  background: asset-url('PARTLY.svg');
   height: 40px;
   background-size: contain;
   background-repeat: no-repeat;
@@ -72,7 +73,7 @@ $darkBg: #545252;
     left: 50%;
     transform: translate(-50%, -50%);
     background-color: none;
-    background-image: url(Logo.svg);
+    background-image: asset-url('Logo.svg');
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
@@ -84,7 +85,7 @@ $darkBg: #545252;
     top: 10vh;
     left: -10vw;
     position: absolute;
-    background-image: url(Ball4.png);
+    background-image: asset-url('Ball4.png');
   }
 
   .ball2 {
@@ -93,7 +94,7 @@ $darkBg: #545252;
     top: 70vh;
     left: 80vw;
     position: absolute;
-    background-image: url(Ball2.png);
+    background-image: asset-url('Ball2.png');
   }
 
   .ball3 {
@@ -102,7 +103,7 @@ $darkBg: #545252;
     top: 9vh;
     left: 80vw;
     position: absolute;
-    background-image: url(Ball1.png);
+    background-image: asset-url('Ball1.png');
   }
 }
 
