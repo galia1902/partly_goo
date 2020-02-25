@@ -30,8 +30,13 @@
      <div class="pill">Full game - "choose one"</div>
      <div class="pill">Full game - "sortable"</div>
      <div class="pill hidden">spacer</div>
-     <div class="pill">Log in - Not yet built</div>
-     <div class="pill">My state - Not yet built</div>
+     <% if user_signed_in? %>
+      <div class="pill"><%= link_to "Logout", destroy_user_session_path, method: :delete %></div>
+     <% else %>
+      <div class="pill"><%= link_to "Login", new_user_session_path %></div>
+      <div class="pill"><%= link_to "Sign up", new_user_registration_path %></div>
+      <div class="pill">My state - Not yet built</div>
+      <% end %>
    </div>
  </div>
 </div>
