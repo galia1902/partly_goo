@@ -6,15 +6,22 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+puts "Cleaning database..."
+User.destroy_all
+Question.destroy_all
+puts "Database cleaned! "
+puts "Making questions... "
+
 quest = Question.new(content: 'learn how to code')
 quest.save!
-answers[0] = ['for free', 1]
-answers[1] = ['online', 2]
-answers[2] = ['apps', 3]
-answers[3] = ['python', 4]
+answers = []
+answers << ['for free', 1]
+answers << ['online', 2]
+answers << ['apps', 3]
+answers << ['python', 4]
 
 answers.each do |answer|
-  ansi = Answer.new(rank: answer[1], content: answer[0], question_id: quest)
+  ansi = Answer.new(rank: answer[1], content: answer[0], question_id: quest.id)
   ansi.save!
 end
 
@@ -26,7 +33,7 @@ answers[2] = ['dyson', 3]
 answers[3] = ['orca', 4]
 
 answers.each do |answer|
-  ansi = Answer.new(rank: answer[1], content: answer[0], question_id: quest)
+  ansi = Answer.new(rank: answer[1], content: answer[0], question_id: quest.id)
   ansi.save!
 end
 
@@ -38,7 +45,7 @@ answers[2] = ['water', 3]
 answers[3] = ['crack', 4]
 
 answers.each do |answer|
-  ansi = Answer.new(rank: answer[1], content: answer[0], question_id: quest)
+  ansi = Answer.new(rank: answer[1], content: answer[0], question_id: quest.id)
   ansi.save!
 end
 
@@ -50,7 +57,7 @@ answers[2] = ['aloe plant', 3]
 answers[3] = ['steak medium while pregnant', 4]
 
 answers.each do |answer|
-  ansi = Answer.new(rank: answer[1], content: answer[0], question_id: quest)
+  ansi = Answer.new(rank: answer[1], content: answer[0], question_id: quest.id)
   ansi.save!
 end
 
@@ -62,7 +69,7 @@ answers[2] = ['pronounced oneteen', 3]
 answers[3] = ['pronounced onety one meme', 4]
 
 answers.each do |answer|
-  ansi = Answer.new(rank: answer[1], content: answer[0], question_id: quest)
+  ansi = Answer.new(rank: answer[1], content: answer[0], question_id: quest.id)
   ansi.save!
 end
 
@@ -78,7 +85,7 @@ answers[2] = ['this be love', 3]
 answers[3] = ['i cry', 4]
 
 answers.each do |answer|
-  ansi = Answer.new(rank: answer[1], content: answer[0], question_id: quest)
+  ansi = Answer.new(rank: answer[1], content: answer[0], question_id: quest.id)
   ansi.save!
 end
 
@@ -90,7 +97,7 @@ answers[2] = ['fart', 3]
 answers[3] = ['feel cold', 4]
 
 answers.each do |answer|
-  ansi = Answer.new(rank: answer[1], content: answer[0], question_id: quest)
+  ansi = Answer.new(rank: answer[1], content: answer[0], question_id: quest.id)
   ansi.save!
 end
 
@@ -102,7 +109,7 @@ answers[2] = ['couch', 3]
 answers[3] = ['piano', 4]
 
 answers.each do |answer|
-  ansi = Answer.new(rank: answer[1], content: answer[0], question_id: quest)
+  ansi = Answer.new(rank: answer[1], content: answer[0], question_id: quest.id)
   ansi.save!
 end
 
@@ -114,7 +121,7 @@ answers[2] = ['pee a little', 3]
 answers[3] = ['hear water', 4]
 
 answers.each do |answer|
-  ansi = Answer.new(rank: answer[1], content: answer[0], question_id: quest)
+  ansi = Answer.new(rank: answer[1], content: answer[0], question_id: quest.id)
   ansi.save!
 end
 
@@ -126,7 +133,7 @@ answers[2] = ['-fish dying', 3]
 answers[3] = ['-fish swimming sideways', 4]
 
 answers.each do |answer|
-  ansi = Answer.new(rank: answer[1], content: answer[0], question_id: quest)
+  ansi = Answer.new(rank: answer[1], content: answer[0], question_id: quest.id)
   ansi.save!
 end
 
@@ -142,7 +149,7 @@ answers[2] = ['supposed to do', 3]
 answers[3] = ['shirt', 4]
 
 answers.each do |answer|
-  ansi = Answer.new(rank: answer[1], content: answer[0], question_id: quest)
+  ansi = Answer.new(rank: answer[1], content: answer[0], question_id: quest.id)
   ansi.save!
 end
 
@@ -154,7 +161,7 @@ answers[2] = ['deleted', 3]
 answers[3] = ['not there', 4]
 
 answers.each do |answer|
-  ansi = Answer.new(rank: answer[1], content: answer[0], question_id: quest)
+  ansi = Answer.new(rank: answer[1], content: answer[0], question_id: quest.id)
   ansi.save!
 end
 
@@ -166,7 +173,7 @@ answers[2] = ['pdf', 3]
 answers[3] = ['catholicism', 4]
 
 answers.each do |answer|
-  ansi = Answer.new(rank: answer[1], content: answer[0], question_id: quest)
+  ansi = Answer.new(rank: answer[1], content: answer[0], question_id: quest.id)
   ansi.save!
 end
 
@@ -178,7 +185,7 @@ answers[2] = ['snowman\'s never dressed for hanukkah', 3]
 answers[3] = ['website won\'t load', 4]
 
 answers.each do |answer|
-  ansi = Answer.new(rank: answer[1], content: answer[0], question_id: quest)
+  ansi = Answer.new(rank: answer[1], content: answer[0], question_id: quest.id)
   ansi.save!
 end
 
@@ -190,7 +197,7 @@ answers[2] = ['-arent', 3]
 answers[3] = ['-risoner in a toothpaste factory', 4]
 
 answers.each do |answer|
-  ansi = Answer.new(rank: answer[1], content: answer[0], question_id: quest)
+  ansi = Answer.new(rank: answer[1], content: answer[0], question_id: quest.id)
   ansi.save!
 end
 
@@ -206,7 +213,7 @@ answers[2] = ['chinchilla eats the universe', 3]
 answers[3] = ['velociraptor throws', 4]
 
 answers.each do |answer|
-  ansi = Answer.new(rank: answer[1], content: answer[0], question_id: quest)
+  ansi = Answer.new(rank: answer[1], content: answer[0], question_id: quest.id)
   ansi.save!
 end
 
@@ -218,7 +225,7 @@ answers[2] = ['feel your heartbeat', 3]
 answers[3] = ['be sexually attracted to numbers', 4]
 
 answers.each do |answer|
-  ansi = Answer.new(rank: answer[1], content: answer[0], question_id: quest)
+  ansi = Answer.new(rank: answer[1], content: answer[0], question_id: quest.id)
   ansi.save!
 end
 
@@ -230,7 +237,7 @@ answers[2] = ['is a gumiho', 3]
 answers[3] = ['is a big magnet', 4]
 
 answers.each do |answer|
-  ansi = Answer.new(rank: answer[1], content: answer[0], question_id: quest)
+  ansi = Answer.new(rank: answer[1], content: answer[0], question_id: quest.id)
   ansi.save!
 end
 
@@ -242,7 +249,7 @@ answers[2] = ['the dominant land animal of the mesozoic era', 3]
 answers[3] = ['definitely cold blooded', 4]
 
 answers.each do |answer|
-  ansi = Answer.new(rank: answer[1], content: answer[0], question_id: quest)
+  ansi = Answer.new(rank: answer[1], content: answer[0], question_id: quest.id)
   ansi.save!
 end
 
@@ -254,7 +261,83 @@ answers[2] = ['to swallow gum', 3]
 answers[3] = ['to crack your back', 4]
 
 answers.each do |answer|
-  ansi = Answer.new(rank: answer[1], content: answer[0], question_id: quest)
+  ansi = Answer.new(rank: answer[1], content: answer[0], question_id: quest.id)
   ansi.save!
 end
-puts "20 Seeds"
+puts "20 Seeds - Questions done!"
+
+
+###########
+#         #
+#  Users  #
+#         #
+###########
+puts "Making users ... "
+
+seed_users = ['Lassie',
+              'Flipper',
+              'Secretariat',
+              'Billy',
+              'Brownie',
+              'Big_Bird',
+              'Willy',
+              'KingKong']
+
+seed_users.each do |name|
+  User.create!(email: "#{name}@partly.com",
+               username: "#{name}",
+               password: '111111')
+end
+puts 'Done with Users!'
+
+
+####################
+#                  #
+#  Games / Rounds  #
+#                  #
+####################
+
+puts 'Creating empty games for users...'
+
+# Config options...
+allowed_game_types = ['Try Out']
+number_of_games = 15
+
+# Prep...
+all_users = User.all
+questions = Question.all.sample(number_of_games)
+seed_games = []
+
+p 'Creating empty games... '
+number_of_games.times do
+  seed_games << Game.create!(game_mode: allowed_game_types.sample,
+                             user_id: all_users.sample.id)
+end
+puts '... done!'
+p 'Creating rounds for games, getting answers, and scoring them...'
+
+seed_games.each do |game|
+  question = questions.pop
+  answer = question.answers.sample
+  duration = rand(95000) + 500 # ==> Random time from  .5 to 10 seconds,in ms
+  user = all_users.sample
+  Round.create!( game_id: game.id,
+                 question_id: question.id,
+                 answer_id: answer.id,
+                 duration: duration)
+  game.score = answer.rank == 1 ? 1 : 0
+end
+puts '... done! Happy testing!'
+
+
+
+
+
+
+
+
+
+
+
+
+
