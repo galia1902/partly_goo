@@ -22,7 +22,7 @@
       <p><%= @answers[2].content %>    <%= @answers[2].rank %></p>
       <p><%= @answers[3].content %>    <%= @answers[3].rank %></p>
 
-      <%= link_to "Back to Menu", page_menu_path, class: 'btn btn-danger ' %>
+      <%= link_to "Back to Menu", root_path, class: 'btn btn-danger ' %>
       <%= button_to "play again", games_path, class: 'btn btn-primary', params: {game: {game_mode: "Try Out"}}%>
 
 
