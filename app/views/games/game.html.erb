@@ -17,10 +17,10 @@
 
       <h2><%= @question.content %></h2>
 
-      <p><%= @answers[0].content %></p>
-      <p><%= @answers[1].content %></p>
-      <p><%= @answers[2].content %></p>
-      <p><%= @answers[3].content %></p>
+      <p><%= @answers[0].content %>    <%= @answers[0].rank %></p>
+      <p><%= @answers[1].content %>    <%= @answers[1].rank %></p>
+      <p><%= @answers[2].content %>    <%= @answers[2].rank %></p>
+      <p><%= @answers[3].content %>    <%= @answers[3].rank %></p>
 
       <%= link_to "Back to Menu", page_menu_path, class: 'btn btn-danger ' %>
       <%= button_to "play again", games_path, class: 'btn btn-primary', params: {game: {game_mode: "Try Out"}}%>
