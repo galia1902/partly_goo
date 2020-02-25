@@ -1,2 +1,24 @@
-<h1>You're in the view for <strong>pages#menu!</strong></h1>
-<%= link_to "back to Home?", root_path %>
+
+<div id="delayRedirect">
+<%= image_tag("splash-desktop_noText.png", id: 'loading-page-image')%>
+</div>
+
+<div class="menu_container">
+  <div class="menu-inner-container">
+    <div class="menu-headline-container">
+      <div class="menu-headline"></div>
+      <div class="menu-options"></div>
+    </div>
+  </div>
+</div>
+
+
+
+<script>
+  let loader = document.getElementById('loading-page-image');
+  const handleLoader = () => {
+   loader.style.display = 'none';
+  }
+
+  setTimeout(handleLoader, 10000);
+</script>
