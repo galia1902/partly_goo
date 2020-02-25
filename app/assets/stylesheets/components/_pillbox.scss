@@ -1,0 +1,23 @@
+$bg-gray: #545252;
+
+.pillbox_outer{
+  background: $bg-gray;
+  width: 100%;
+  .pillbox_inner {
+    background: inherit;
+    width: 40%;
+    margin: 0 auto;
+    margin-top: 4rem;
+  }
+}
+
+@media screen and (max-width : 720px) {
+  .pillbox_outer .pillbox_inner {
+    width: 70%;
+    background: inherit;
+  }
+}
+
+.pillbox-add-top-margin {
+  margin-top: 40px;
+}
