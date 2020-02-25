@@ -25,5 +25,4 @@ class GamePolicy < ApplicationPolicy
     # only the owner of the current game can create a round
     # record.game.user == user
   end
-
 end

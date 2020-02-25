@@ -1,16 +1,44 @@
 <div id="delayRedirect">
-<%= image_tag("splash-desktop_noText.png", id: 'loading-page-image')%>
+
+  <div class="splash-container" id="splash-container">
+    <div class="splash-logo"></div>
+    <div class="ball1"></div>
+    <div class="ball2"></div>
+    <div class="ball3"></div>
+  </div>
 </div>
 
-<h1>menu</h1>
+<div class = "menu_container">
+  <div class = "menu-inner-container">
+    <div class = "menu-headline-container">
+      <div class = "menu-logo" style = "background-image = "">
+
+      </div>
+      <div class = "menu-how-to-play-link">
+        <div class="menu-how-to-play-link-icon">
+         <%= image_tag("game_options_menu_symbol.png", id: 'game-options-menu-symbol')%>
+         </div>
+        <div class="menu-how-to-play-link-text">How to play</div>
+      </div>
+    </div>
+      <div class="menu-options">
+       <div class="menu-option">quick play</div>
+       <div class="menu-option">Full game - "choose one"</div>
+       <div class="menu-option">Full game - "sortable"</div>
+       <div class="menu-option hidden">spacer</div>
+       <div class="menu-option">Log in - Not yet built</div>
+       <div class="menu-option">My state - Not yet built</div>
+      </div>
+  </div>
+</div>
 
 
 
 <script>
-  let loader = document.getElementById('loading-page-image');
+  let loader = document.getElementById('splash-container');
   const handleLoader = () => {
    loader.style.display = 'none';
   }
 
-  setTimeout(handleLoader, 6000);
+  setTimeout(handleLoader, 4000);
 </script>
