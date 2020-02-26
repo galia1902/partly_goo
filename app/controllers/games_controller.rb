@@ -9,7 +9,7 @@ class GamesController < ApplicationController
     authorize @game
     # no user yet (try out)
     if @game.game_mode == "Try Out"
-      @game.user = User.find(10)
+      @game.user = User.find_by(email: 'tryout_guy@partly.com')
       @game.save!
       redirect_to game_path(@game)
     end

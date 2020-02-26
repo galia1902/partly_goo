@@ -274,7 +274,8 @@ puts "20 Seeds - Questions done!"
 ###########
 puts "Making users ... "
 
-seed_users = ['Lassie',
+seed_users = ['tryout_guy',
+              'Lassie',
               'Flipper',
               'Secretariat',
               'Billy',
