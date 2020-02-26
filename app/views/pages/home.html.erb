@@ -28,6 +28,7 @@
      <div class="pill">
        Full game - "choose one"
        <%= button_to "Try out", games_path, params: {game: {game_mode: "Try Out"}} %>
+        <%= button_to "Try out", games_path, params: {game: {game_mode: "MCQ"}} %>
      </div>
      <div class="pill">Full game - "choose one"</div>
      <div class="pill">Full game - "sortable"</div>
@@ -55,10 +56,26 @@
   changeBodyBackgroundColor();
 
   // Script to handle delay, switching from Splash screen to Menu screen
-  let loader = document.getElementById('splash-container');
-  const handleLoader = () => {
+
+  const handleLoader = (loader) => {
    loader.style.display = 'none';
  }
 
- setTimeout(handleLoader, 4000);
+
+
+ let handleFirstSession = () => {
+  let loader = document.getElementById('splash-container');
+  let session = sessionStorage.getItem('visited');
+  let visited = session === null ? false : true;
+  if(visited){
+    loader.style.display = 'none';
+  }else{
+    sessionStorage.setItem('visited', true);
+    setTimeout(() => handleLoader(loader), 4000);
+  }
+ }
+
+ handleFirstSession();
+
+
 </script>
