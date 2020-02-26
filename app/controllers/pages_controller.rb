@@ -4,10 +4,11 @@ class PagesController < ApplicationController
   def home
   end
 
-  def menu
+  def how_to
   end
 
-  def how_to
+  def dashboard
+    @games = current_user.games
   end
 
 end
