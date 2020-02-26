@@ -4,8 +4,8 @@ Rails.application.routes.draw do
   # root "pages#home", page: "home"
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
-  get 'pages/menu', to: 'pages#menu', as: :page_menu
   get 'pages/how_to_play', to: 'pages#how_to', as: :how_to_play
+  get 'pages/dashboard', to: 'pages#dashboard', as: :dashboard
   resources :games, only: %i[create] do
     resources :rounds, only: %i[create]
   end
