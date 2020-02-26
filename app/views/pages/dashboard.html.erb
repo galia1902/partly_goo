@@ -1,7 +1,7 @@
 
-<div class = "htp-container">
+<div class = "dash-container">
 
-  <div class = "htp-inner-container">
+  <div class = "dash-inner-container">
     <div>
       <div class = "dash-headline-container ">
         <div class="dash-logo"></div>
@@ -12,7 +12,7 @@
     <div class="dash-options htp-text">
 
       <div class="d-flex justify-content-center">
-        <div class="dash-profile-container">
+        <div class="dash-profile-container" style=" border: 5px solid <%= @color %>; ">
           <div class="d-flex justify-content-between">
             <p>Username</p>
             <%= current_user.username %>
@@ -20,24 +20,36 @@
           <div class="d-flex justify-content-between">
            <p>Games played</p>
            <%= current_user.games.count %>
-          </div>
-        </div>
+         </div>
+       </div>
+     </div>
+
+     <div class="dash-games-headline">Your Games</div>
+
+     <div class="dash-games-container">
+      <% if @games[0].nil? %>
+      <div class="container d-flex align-items-center justify-content-center h-100">
+        <p>no games played yet</p>
+
       </div>
-
-      <div class="dash-games-headline">Your Games</div>
-
-    <div class="dash-games-container">
+      <% else %>
+      <% @games.each do |game| %>
+      <div style="color: <%= @color %>;" >
+        <%= link_to game.game_mode, game_score_path(game), class: 'pill dash-pill d-flex justify-content-center' %>
+      </div>
+      <% end %>
+      <% end %>
 
     </div>
 
-
-    </div>
-
-    <a href="/">
-      <div class="pill htp-pill">Back to Menu</div>
-    </a>
 
   </div>
+
+  <a href="/">
+    <div class="pill htp-pill">Back to Menu</div>
+  </a>
+
+</div>
 </div>
 
 

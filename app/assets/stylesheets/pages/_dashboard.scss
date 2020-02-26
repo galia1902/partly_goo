@@ -1,16 +1,33 @@
+.dash-container{
+  background: $bg-gray;
+  width: 100%;
+  .dash-inner-container {
+    background: inherit;
+    margin:0 auto;
+    width: 40%;
+  }
+}
+
+@media screen and (max-width : 720px) {
+  .dash-container .dash-inner-container {
+    width: 70%;
+    background: inherit;
+  }
+}
+
 .dash-profile-container {
   width: 100%;
-  padding: 24px;
+  padding: 16px;
   margin: 0 0 32px;
   background-color: #D0CFCF;
   border-radius: 5px;
   box-shadow: 0 0 15px rgba(0,0,0,0.2);
-  border: 2px solid $goo-green;
   color: black;
   p {
     margin: 0;
   }
 }
+
 
 .dash-headline {
   margin-top: 16px;
@@ -31,15 +48,24 @@
 }
 
 .dash-games-headline {
-
+  display: flex;
+  justify-content: start;
+  margin-bottom: 8px;
 }
 
 .dash-games-container {
+  overflow-y: scroll;
+  height: 50vh;
   width: 100%;
   padding: 24px;
   margin: 0 0 32px;
   border-radius: 5px;
   border: 2px solid $goo-white;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+
+  p {
+    margin: 0;
+  }
 }
 
 .dash-headline-container {
@@ -49,4 +75,9 @@
 
 .dash-options{
   margin-top: 24px;
+}
+
+.dash-pill {
+  margin-top: 0;
+  margin-bottom: 14px;
 }
