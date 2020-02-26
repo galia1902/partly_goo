@@ -12,10 +12,41 @@
   }
 }
 
+.dash-headline {
+  margin-top: 16px;
+  color: white;
+  line-height: 28px;
+  font-size: 24px;
+  display: flex;
+  justify-content: center;
+}
+
+.dash-logo{
+  background: asset-url('PARTLY.svg');
+  height: 32px;
+  width: 100%;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.dash-games-headline {
+
+}
+
 .dash-games-container {
   width: 100%;
   padding: 24px;
   margin: 0 0 32px;
   border-radius: 5px;
   border: 2px solid $goo-white;
+}
+
+.dash-headline-container {
+  margin-top: 15px;
+}
+
+
+.dash-options{
+  margin-top: 24px;
 }
