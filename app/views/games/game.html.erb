@@ -19,8 +19,8 @@
 
        <div class="pill hidden">spacer</div>
 
-       <%= link_to "Back to Menu", root_path, class: 'pill' %>
-       <%= link_to "play again", games_path, class: 'pill', params: {game: {game_mode: "Try Out"}}%>
+       <%= link_to "Back to Menu", root_path, class: 'pill mb-0 d-flex justify-content-center' %>
+       <%= button_to "play again", games_path, class: 'pill mb-0 d-flex justify-content-center' , params: {game: {game_mode: "Try Out"}}%>
 
       <% end %>
     </div>
