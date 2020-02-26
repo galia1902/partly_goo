@@ -15,32 +15,33 @@
 
       </div>
       <div class="menu-how-to-play-link">
-      <a href="/pages/how_to_play" class="menu-htp-link">
-        <div class="menu-how-to-play-link-icon">
-          <%= image_tag("game_options_menu_symbol.png", id: 'game-options-menu-symbol')%>
-        </div>
-        <div class="menu-how-to-play-link-text">How to play</div>
-      </a>
+        <a href="/pages/how_to_play" class="menu-htp-link">
+          <div class="menu-how-to-play-link-icon">
+            <%= image_tag("game_options_menu_symbol.png", id: 'game-options-menu-symbol')%>
+          </div>
+          <div class="menu-how-to-play-link-text">How to play</div>
+        </a>
       </div>
 
     </div>
     <div class="pillbox-add-top-margin ">
-     <div class="pill">
-       Full game - "choose one"
-       <%= button_to "Try out", games_path, params: {game: {game_mode: "Try Out"}} %>
-     </div>
-     <div class="pill">Full game - "choose one"</div>
-     <div class="pill">Full game - "sortable"</div>
-     <div class="pill hidden">spacer</div>
-     <% if user_signed_in? %>
+
+
+      <%= button_to "Try Out", games_path, params: {game: {game_mode: "Try Out"}}, class: 'pill mb-0 d-flex justify-content-center' %>
+      <%= button_to "5 Rounds", games_path, params: {game: {game_mode: "MCQ"}}, class: 'pill mb-0 d-flex justify-content-center' %>
+      <%= button_to "Sortable", games_path, params: {game: {game_mode: "Sortable"}}, class: 'pill mb-0 d-flex justify-content-center' %>
+
+      <div class="pill hidden">spacer</div>
+      <% if user_signed_in? %>
       <div class="pill"><%= link_to "Logout", destroy_user_session_path, method: :delete %></div>
-     <% else %>
+      <div class="pill">My stats - Not yet built</div>
+      <% else %>
       <div class="pill"><%= link_to "Login", new_user_session_path %></div>
       <div class="pill"><%= link_to "Sign up", new_user_registration_path %></div>
-      <div class="pill">My Stats</div>
+
       <% end %>
-   </div>
- </div>
+    </div>
+  </div>
 </div>
 
 
