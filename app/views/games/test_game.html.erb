@@ -1,30 +1,35 @@
-<div class="pillbox_outer">
-  <div class="pillbox_inner">
-    <div>
-      <div class="logo-40-px" style="background-image"></div>
+<div class="d-flex container justify-content-center ">
+  <div class="row">
+    <div class="col" style="margin: 32px;">
+
+      <h1>Tryout</h1>
+
+      <% if @round.last.nil? %>
+      <h2><%= @question.content %></h2>
+
+
+      <%= button_to @answers[0].content, game_rounds_path(@game), params: {round: {duration: 30, question_id: @question.id, answer_id: @answers[0].id }} %>
+      <%= button_to @answers[1].content, game_rounds_path(@game), params: {round: {duration: 30, question_id: @question.id, answer_id: @answers[1].id }} %>
+      <%= button_to @answers[2].content, game_rounds_path(@game), params: {round: {duration: 30, question_id: @question.id, answer_id: @answers[2].id }} %>
+      <%= button_to @answers[3].content, game_rounds_path(@game), params: {round: {duration: 30, question_id: @question.id, answer_id: @answers[3].id }} %>
+
+      <% else %>
+
+      <h2><%= @question.content %></h2>
+
+      <p><%= @answers[0].content %>    <%= @answers[0].rank %></p>
+      <p><%= @answers[1].content %>    <%= @answers[1].rank %></p>
+      <p><%= @answers[2].content %>    <%= @answers[2].rank %></p>
+      <p><%= @answers[3].content %>    <%= @answers[3].rank %></p>
+
+      <%= link_to "Back to Menu", root_path, class: 'btn btn-danger ' %>
+      <%= button_to "play again", games_path, class: 'btn btn-primary', params: {game: {game_mode: "Try Out"}}%>
+
+
+
+      <% end %>
+
     </div>
-    <div class="pillbox-add-top-margin ">
-     <div class="pill"><%= @question.content %></div>
-    </div>
-    <div class="pill hidden">spacer</div>
-
-    <% if @round.last.nil? %>
-
-     <div class="pill"><%= @answers[0].content %></div>
-     <div class="pill"><%= @answers[1].content %></div>
-     <div class="pill"><%= @answers[2].content %></div>
-     <div class="pill"><%= @answers[3].content %></div>
-
-    <% else %>
-
-     <div class="pill"><%= @answers[0].content %> || #<%= @answers[0].rank %></div>
-     <div class="pill"><%= @answers[1].content %> || #<%= @answers[1].rank %></div>
-     <div class="pill"><%= @answers[2].content %> || #<%= @answers[2].rank %></div>
-     <div class="pill"><%= @answers[3].content %> || #<%= @answers[3].rank %></div>
-     <div class="pill hidden">spacer</div>
-     <%= link_to "Back to Menu", root_path, class: 'pill' %>
-     <%= button_to "play again", games_path, class: 'pill', params: {game: {game_mode: "Try Out"}}%>
-     <% end %>
-   </div>
- </div>
+  </div>
 </div>
+
