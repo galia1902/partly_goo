@@ -10,7 +10,7 @@
 
 @media screen and (max-width : 720px) {
   .dash-container .dash-inner-container {
-    width: 70%;
+    width: 90%;
     background: inherit;
   }
 }
@@ -18,9 +18,9 @@
 .dash-profile-container {
   width: 100%;
   padding: 16px;
-  margin: 0 0 32px;
+  margin: 0 0 16px;
   background-color: #D0CFCF;
-  border-radius: 5px;
+  border-radius: 25px;
   box-shadow: 0 0 15px rgba(0,0,0,0.2);
   color: black;
   p {
@@ -59,7 +59,7 @@
   width: 100%;
   padding: 24px;
   margin: 0 0 32px;
-  border-radius: 5px;
+  border-radius: 25px;
   border: 2px solid $goo-white;
   box-shadow: 0 0 15px rgba(0,0,0,0.2);
 
@@ -80,4 +80,13 @@
 .dash-pill {
   margin-top: 0;
   margin-bottom: 14px;
+  color: white;
+}
+
+.dash-text {
+  color: white;
+  font-size: 16px;
+  margin-right: 10px;
+  margin-left: 10px;
+  text-align: center;
 }
