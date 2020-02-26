@@ -19,9 +19,16 @@
   width: 100%;
   .htp-inner-container {
     background: inherit;
-    width:40%;
     margin:0 auto;
+    width: 40%;
     margin-top: 4rem;
+  }
+}
+
+@media screen and (max-width : 720px) {
+  .htp-container .htp-inner-container {
+    width: 70%;
+    background: inherit;
   }
 }
 
