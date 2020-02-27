@@ -14,7 +14,6 @@
           <%= button_to @answers[3].content, game_rounds_path(@game), params: {round: {duration: 30, question_id: @question.id, answer_id: @answers[3].id }}, class: 'pill pill-yellow mb-0 d-flex justify-content-center' %>
 
        <% else %>
-
           <div class="pill pill-red"><%= @answers[0].content %> || #<%= @answers[0].rank %></div>
           <div class="pill pill-green"><%= @answers[1].content %> || #<%= @answers[1].rank %></div>
           <div class="pill pill-blue"><%= @answers[2].content %> || #<%= @answers[2].rank %></div>
