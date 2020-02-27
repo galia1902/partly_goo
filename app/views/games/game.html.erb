@@ -54,10 +54,11 @@
   };
 
   myResults.forEach((result) => {
-     let resultPosition = result.id[result.id.length - 1]
-     let resultAnswerRank = result.dataset.answerRank
-     console.log(`result.id[result.id.length - 1] = ${result.id[result.id.length - 1]}`);
-     console.log(`result.dataset.answerRank = ${result.dataset.answerRank}`);
+     // Code for debug:
+     // let resultPosition = result.id[result.id.length - 1]
+     // let resultAnswerRank = result.dataset.answerRank
+     // console.log(`result.id[result.id.length - 1] = ${result.id[result.id.length - 1]}`);
+     // console.log(`result.dataset.answerRank = ${result.dataset.answerRank}`);
      if (resultAnswerRank == 1) {
        addLeftCheckmarkToPill(result);
      }
