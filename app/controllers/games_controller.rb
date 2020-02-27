@@ -5,14 +5,18 @@ class GamesController < ApplicationController
 
   def create
      # creates a game with our tryout user and redirects to our game html
-    @game = Game.new(game_params)
-    authorize @game
+     @game = Game.new(game_params)
+     authorize @game
     # no user yet (try out)
     if @game.game_mode == "Try Out"
-      @game.user = User.find_by(email: 'tryout_guy@partly.com')
+      if user_signed_in?
+        @game.user = current_user
+      else
+        @game.user = User.find_by(email: 'tryout_guy@partly.com')
+      end
       @game.save!
       redirect_to game_path(@game)
-     elsif @game.game_mode == "MCQ"
+    elsif @game.game_mode == "MCQ"
       @game.user = current_user
       @game.save!
       redirect_to game_path(@game)
@@ -62,13 +66,13 @@ class GamesController < ApplicationController
   end
 
     # get random question
-  def rand_quest
-    count = Question.count
-    random_offset = rand(count)
-    return random_quest = Question.offset(random_offset).first
-  end
+    def rand_quest
+      count = Question.count
+      random_offset = rand(count)
+      return random_quest = Question.offset(random_offset).first
+    end
 
-  def tryout_game?
+    def tryout_game?
     # 1. we are about to create a new game, with a mode of 'Try Out'
     if params[:action] == 'create'
       return true if params[:game][:game_mode] == 'Try Out'
