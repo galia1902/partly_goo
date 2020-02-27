@@ -6,7 +6,7 @@
     <div class="pillbox-add-top-margin ">
      <div class="pill"><%= @question.content %></div>
       <div class="pill hidden">spacer</div>
-       <% if @round.last.nil? %>
+       <% if @round.last.nil? || @game.game_mode == "MCQ" && @game.rounds.count < 5 %>
 
           <%= button_to @answers[0].content, game_rounds_path(@game), params: {round: {duration: 30, question_id: @question.id, answer_id: @answers[0].id }}, class: 'pill pill-red mb-0 d-flex justify-content-center' %>
           <%= button_to @answers[1].content, game_rounds_path(@game), params: {round: {duration: 30, question_id: @question.id, answer_id: @answers[1].id }}, class: 'pill pill-green mb-0 d-flex justify-content-center' %>
