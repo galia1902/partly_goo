@@ -8,16 +8,16 @@
       <div class="pill hidden">spacer</div>
        <% if @round.last.nil? %>
 
-          <%= button_to @answers[0].content, game_rounds_path(@game), params: {round: {duration: 30, question_id: @question.id, answer_id: @answers[0].id }}, class: 'pill pill-red mb-0 d-flex justify-content-center' %>
-          <%= button_to @answers[1].content, game_rounds_path(@game), params: {round: {duration: 30, question_id: @question.id, answer_id: @answers[1].id }}, class: 'pill pill-green mb-0 d-flex justify-content-center' %>
-          <%= button_to @answers[2].content, game_rounds_path(@game), params: {round: {duration: 30, question_id: @question.id, answer_id: @answers[2].id }}, class: 'pill pill-blue mb-0 d-flex justify-content-center' %>
-          <%= button_to @answers[3].content, game_rounds_path(@game), params: {round: {duration: 30, question_id: @question.id, answer_id: @answers[3].id }}, class: 'pill pill-yellow mb-0 d-flex justify-content-center' %>
+          <%= button_to @answers[0].content, game_rounds_path(@game), params: {round: {duration: 30, question_id: @question.id, answer_id: @answers[0].id }}, class: 'pill pill-red mb-0 d-flex justify-content-center', id: 'option-1' %>
+          <%= button_to @answers[1].content, game_rounds_path(@game), params: {round: {duration: 30, question_id: @question.id, answer_id: @answers[1].id }}, class: 'pill pill-green mb-0 d-flex justify-content-center', id: 'option-2' %>
+          <%= button_to @answers[2].content, game_rounds_path(@game), params: {round: {duration: 30, question_id: @question.id, answer_id: @answers[2].id }}, class: 'pill pill-blue mb-0 d-flex justify-content-center', id: 'option-3' %>
+          <%= button_to @answers[3].content, game_rounds_path(@game), params: {round: {duration: 30, question_id: @question.id, answer_id: @answers[3].id }}, class: 'pill pill-yellow mb-0 d-flex justify-content-center', id: 'option-4' %>
 
        <% else %>
-          <div class="pill pill-red"><%= @answers[0].content %> || #<%= @answers[0].rank %></div>
-          <div class="pill pill-green"><%= @answers[1].content %> || #<%= @answers[1].rank %></div>
-          <div class="pill pill-blue"><%= @answers[2].content %> || #<%= @answers[2].rank %></div>
-          <div class="pill pill-yellow"><%= @answers[3].content %> || #<%= @answers[3].rank %></div>
+          <div id="result-1" class="pill pill-red"><%= @answers[0].content %> || #<%= @answers[0].rank %></div>
+          <div id="result-2" class="pill pill-green"><%= @answers[1].content %> || #<%= @answers[1].rank %></div>
+          <div id="result-3" class="pill pill-blue"><%= @answers[2].content %> || #<%= @answers[2].rank %></div>
+          <div id="result-4" class="pill pill-yellow"><%= @answers[3].content %> || #<%= @answers[3].rank %></div>
 
        <div class="pill hidden">spacer</div>
 
