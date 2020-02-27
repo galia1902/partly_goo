@@ -1,0 +1,92 @@
+.dash-container{
+  background: $bg-gray;
+  width: 100%;
+  .dash-inner-container {
+    background: inherit;
+    margin:0 auto;
+    width: 40%;
+  }
+}
+
+@media screen and (max-width : 720px) {
+  .dash-container .dash-inner-container {
+    width: 90%;
+    background: inherit;
+  }
+}
+
+.dash-profile-container {
+  width: 100%;
+  padding: 16px;
+  margin: 0 0 16px;
+  background-color: #D0CFCF;
+  border-radius: 25px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  color: black;
+  p {
+    margin: 0;
+  }
+}
+
+
+.dash-headline {
+  margin-top: 16px;
+  color: white;
+  line-height: 28px;
+  font-size: 24px;
+  display: flex;
+  justify-content: center;
+}
+
+.dash-logo{
+  background: asset-url('PARTLY.svg');
+  height: 32px;
+  width: 100%;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.dash-games-headline {
+  display: flex;
+  justify-content: start;
+  margin-bottom: 8px;
+}
+
+.dash-games-container {
+  overflow-y: scroll;
+  height: 50vh;
+  width: 100%;
+  padding: 24px;
+  margin: 0 0 32px;
+  border-radius: 25px;
+  border: 2px solid $goo-white;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+
+  p {
+    margin: 0;
+  }
+}
+
+.dash-headline-container {
+  margin-top: 15px;
+}
+
+
+.dash-options{
+  margin-top: 24px;
+}
+
+.dash-pill {
+  margin-top: 0;
+  margin-bottom: 14px;
+  color: white;
+}
+
+.dash-text {
+  color: white;
+  font-size: 16px;
+  margin-right: 10px;
+  margin-left: 10px;
+  text-align: center;
+}
