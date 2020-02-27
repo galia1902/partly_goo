@@ -1,34 +1,42 @@
-<div class="d-flex container justify-content-center ">
-  <div class="row">
-    <div class="col" style="margin: 32px;">
+<div class="pillbox_outer bg-light">
+  <div class="pillbox_inner bg-light">
+    <div>
+      <div class="logo-40-px" style="background-image"></div>
+    </div>
+    <div class="pillbox-add-top-margin ">
+     <div class="pill"><%= @question.content %></div>
+      <div class="pill hidden">spacer</div>
+       <% if @round.last.nil? %>
 
-      <h1>Tryout</h1>
+          <%= button_to @answers[0].content, game_rounds_path(@game), params: {round: {duration: 30, question_id: @question.id, answer_id: @answers[0].id }}, class: 'pill pill-red mb-0 d-flex justify-content-center' %>
+          <%= button_to @answers[1].content, game_rounds_path(@game), params: {round: {duration: 30, question_id: @question.id, answer_id: @answers[1].id }}, class: 'pill pill-green mb-0 d-flex justify-content-center' %>
+          <%= button_to @answers[2].content, game_rounds_path(@game), params: {round: {duration: 30, question_id: @question.id, answer_id: @answers[2].id }}, class: 'pill pill-blue mb-0 d-flex justify-content-center' %>
+          <%= button_to @answers[3].content, game_rounds_path(@game), params: {round: {duration: 30, question_id: @question.id, answer_id: @answers[3].id }}, class: 'pill pill-yellow mb-0 d-flex justify-content-center' %>
 
-      <% if @round.last.nil? %>
-      <h2><%= @question.content %></h2>
+       <% else %>
 
+          <div class="pill pill-red"><%= @answers[0].content %> || #<%= @answers[0].rank %></div>
+          <div class="pill pill-green"><%= @answers[1].content %> || #<%= @answers[1].rank %></div>
+          <div class="pill pill-blue"><%= @answers[2].content %> || #<%= @answers[2].rank %></div>
+          <div class="pill pill-yellow"><%= @answers[3].content %> || #<%= @answers[3].rank %></div>
 
-      <%= button_to @answers[0].content, game_rounds_path(@game), params: {round: {duration: 30, question_id: @question.id, answer_id: @answers[0].id }} %>
-      <%= button_to @answers[1].content, game_rounds_path(@game), params: {round: {duration: 30, question_id: @question.id, answer_id: @answers[1].id }} %>
-      <%= button_to @answers[2].content, game_rounds_path(@game), params: {round: {duration: 30, question_id: @question.id, answer_id: @answers[2].id }} %>
-      <%= button_to @answers[3].content, game_rounds_path(@game), params: {round: {duration: 30, question_id: @question.id, answer_id: @answers[3].id }} %>
+       <div class="pill hidden">spacer</div>
 
-      <% else %>
-
-      <h2><%= @question.content %></h2>
-
-      <p><%= @answers[0].content %>    <%= @answers[0].rank %></p>
-      <p><%= @answers[1].content %>    <%= @answers[1].rank %></p>
-      <p><%= @answers[2].content %>    <%= @answers[2].rank %></p>
-      <p><%= @answers[3].content %>    <%= @answers[3].rank %></p>
-
-      <%= link_to "Back to Menu", root_path, class: 'btn btn-danger ' %>
-      <%= button_to "play again", games_path, class: 'btn btn-primary', params: {game: {game_mode: "Try Out"}}%>
-
-
+       <%= link_to "Back to Menu", root_path, class: 'pill mb-0 d-flex justify-content-center' %>
+       <%= button_to "play again", games_path, class: 'pill mb-0 d-flex justify-content-center' , params: {game: {game_mode: "Try Out"}}%>
 
       <% end %>
-
     </div>
+   </div>
   </div>
-</div>
+
+<script>
+
+  // Script to during the make the Body element grey
+  let my_body = document.querySelector('body')
+  const changeBodyBackgroundColor = () => {
+    my_body.style.background = '#F8F9FA';
+  }
+  changeBodyBackgroundColor();
+
+</script>
