@@ -39,6 +39,7 @@ $bg-gray: #545252;
 
 $darkBg: #545252;
 @mixin splashElement {
+  z-index: 99;
   background-color: none;
   background-size: contain;
   background-repeat: no-repeat;

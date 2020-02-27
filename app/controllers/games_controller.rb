@@ -21,6 +21,7 @@ class GamesController < ApplicationController
   def game
     # looks for rounds with our game id
     @round = Round.where(game_id: @game.id)
+    # why do we check for presence here and why is round an array on the next line
 
     # if no round exists it will start a with a random question and the 4 possible answers but randomized
     if @round[0].nil?
