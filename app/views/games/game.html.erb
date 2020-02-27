@@ -1,5 +1,5 @@
 <div class="pillbox_outer bg-light">
-  <div class="pillbox_inner bg-light">
+  <div class="game_inner bg-light">
     <div>
       <div class="logo-40-px" style="background-image"></div>
     </div>
@@ -22,7 +22,7 @@
           <div class="pill hidden">spacer</div>
 
           <%= link_to "Back to Menu", root_path, class: 'pill mb-0 d-flex justify-content-center' %>
-          <%= button_to "play again", games_path, class: 'pill mb-0 d-flex justify-content-center' , params: {game: {game_mode: @game.game_mode}}%>
+          <%= button_to "play again", games_path, class: 'pill last-button d-flex justify-content-center' , params: {game: {game_mode: @game.game_mode}}%>
 
       <% end %>
     </div>
