@@ -1,5 +1,3 @@
-require 'pry-byebug'
-
 class RoundsController < ApplicationController
   skip_before_action :authenticate_user!, if: :tryout_game?
 

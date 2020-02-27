@@ -21,8 +21,8 @@
 
           <div class="pill hidden">spacer</div>
 
-          <%= link_to "Back to Menu", root_path, class: 'pill mb-0 d-flex justify-content-center' %>
-          <%= button_to "play again", games_path, class: 'pill last-button d-flex justify-content-center' , params: {game: {game_mode: @game.game_mode}}%>
+          <%= button_to "Play again", games_path, class: 'pill mb-0 d-flex justify-content-center' , params: {game: {game_mode: @game.game_mode}}%>
+          <%= link_to "Back to Menu", root_path, class: 'pill last-button d-flex justify-content-center' %>
 
       <% elsif  @game.game_mode == "MCQ" %>
           <!-- <div id="result-1" data-answer-rank="<%=@answers[0].rank%>" class="shown-result pill pill-red"><%= @answers[0].content %> || #<%= @answers[0].rank %></div>
@@ -50,17 +50,38 @@
 <script>
 
   // Script to during the make the Body element grey
-  let my_body = document.querySelector('body');
+  let myBody = document.querySelector('body');
   const changeBodyBackgroundColor = () => {
-    my_body.style.background = '#F8F9FA';
+    myBody.style.background = '#F8F9FA';
   }
   changeBodyBackgroundColor();
 
-  // Script to get a the DOM element w/ the answers
+  // Script to get a the DOM element w/ the options, and store in JS session
   // let my_options = document.querySelectorAll(".shown-option");
   // const bindStoreAnswerToOptions = (option) => {
   //    sessionStorage.setItem('chosen-answer', option.id);
   // }
+
+  // Script to get the DOM elements w/ the results
+  let myResults = document.querySelectorAll(".shown-result");
+
+  // if result is correct, add a checkmark to the left of the pill
+  const addLeftCheckmarkToPill = (pill) => {
+    const leftCheckmark = '<i class="fas fa-check pill-far-left"></i>';
+    pill.insertAdjacentHTML('afterbegin', leftCheckmark);
+  };
+
+  myResults.forEach((result) => {
+     // Code for debug:
+     let resultPosition = result.id[result.id.length - 1]
+     let resultAnswerRank = result.dataset.answerRank
+     // console.log(`result.id[result.id.length - 1] = ${result.id[result.id.length - 1]}`);
+     // console.log(`result.dataset.answerRank = ${result.dataset.answerRank}`);
+     if (resultAnswerRank == 1) {
+       addLeftCheckmarkToPill(result);
+     }
+
+  });
 
 
 
