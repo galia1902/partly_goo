@@ -1,0 +1,22 @@
+.last-button {
+  margin-bottom: 24px;
+}
+
+.pillbox_outer{
+  background: $bg-gray;
+  width: 100%;
+  .game_inner {
+    background: inherit;
+    width: 40%;
+    margin: 0 auto;
+    margin-top: 1rem;
+  }
+}
+
+@media screen and (max-width : 720px) {
+  .pillbox_outer .game_inner {
+    width: 70%;
+    background: inherit;
+  }
+}
+
