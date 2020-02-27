@@ -4,7 +4,7 @@
       <div class="logo-40-px" style="background-image"></div>
     </div>
     <div class="pillbox-add-top-margin ">
-     <div class="pill pill-align-left"><%= @question.content %></div>
+     <div class="pill-question pill-align-left"><%= @question.content %></div>
       <div class="pill hidden">spacer</div>
        <% if @rounds.last.nil? || @game.game_mode == "MCQ" && @game.rounds.count < 5 %>
 
