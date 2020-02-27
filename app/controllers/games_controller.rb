@@ -12,6 +12,10 @@ class GamesController < ApplicationController
       @game.user = User.find_by(email: 'tryout_guy@partly.com')
       @game.save!
       redirect_to game_path(@game)
+     elsif @game.game_mode == "MCQ"
+      @game.user = current_user
+      @game.save!
+      redirect_to game_path(@game)
     end
   end
 
@@ -24,15 +28,20 @@ class GamesController < ApplicationController
     # why do we check for presence here and why is round an array on the next line
 
     # if no round exists it will start a with a random question and the 4 possible answers but randomized
+    #check if there aree rounds
     if @round[0].nil?
       @question = rand_quest
       @answers = Answer.where(question_id: @question.id).shuffle
-
+    elsif @game.game_mode == "MCQ"
+      @question = rand_quest
+      @answers = Answer.where(question_id: @question.id).shuffle
+      @game = Game.find(@game.id)
       # if round exists (question already answered) render the page with the answered question and the answers in the right order
     else
       @question = Question.find(@round.last.question_id)
       @answers = Answer.where(question_id: @question.id)
     end
+
   end
 
   private
