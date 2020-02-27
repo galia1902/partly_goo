@@ -21,16 +21,21 @@ class GamesController < ApplicationController
   def game
     # looks for rounds with our game id
     @round = Round.where(game_id: @game.id)
+    # raise
 
     # if no round exists it will start a with a random question and the 4 possible answers but randomized
     if @round[0].nil?
       @question = rand_quest
       @answers = Answer.where(question_id: @question.id).shuffle
+      session[:tryout_answers] = @answers
 
       # if round exists (question already answered) render the page with the answered question and the answers in the right order
     else
       @question = Question.find(@round.last.question_id)
-      @answers = Answer.where(question_id: @question.id)
+      @answers = []
+      session[:tryout_answers].each do |answer_data|
+        @answers << Answer.new(answer_data)
+      end
     end
   end
 
