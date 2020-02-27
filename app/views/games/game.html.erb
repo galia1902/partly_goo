@@ -25,15 +25,11 @@
           <%= button_to "play again", games_path, class: 'pill last-button d-flex justify-content-center' , params: {game: {game_mode: @game.game_mode}}%>
 
       <% elsif  @game.game_mode == "MCQ" %>
-          <!-- <div id="result-1" data-answer-rank="<%=@answers[0].rank%>" class="shown-result pill pill-red"><%= @answers[0].content %> || #<%= @answers[0].rank %></div>
-          <div id="result-2" data-answer-rank="<%=@answers[1].rank%>" class="shown-result pill pill-green"><%= @answers[1].content %> || #<%= @answers[1].rank %></div>
-          <div id="result-3" data-answer-rank="<%=@answers[2].rank%>" class="shown-result pill pill-blue"><%= @answers[2].content %> || #<%= @answers[2].rank %></div>
-          <div id="result-4" data-answer-rank="<%=@answers[3].rank%>" class="shown-result pill pill-yellow"><%= @answers[3].content %> || #<%= @answers[3].rank %></div> -->
           <% @rounds.each do |round|%>
           <% if round.answer.rank==1 %>
-          <div class="shown-result pill pill-red"><%= round.answer.content %> <%= round.answer.rank %><i class="fas fa-check pill-far-left"></i></div>
+          <div class="shown-result pill pill-blue"><%= round.answer.content %> <%= round.answer.rank %><i class="fas fa-check pill-far-left"></i></div>
           <% else %>
-          <div class="shown-result pill pill-blue"><%= round.answer.content %> <%= round.answer.rank %><i class="fas fa-times pill-far-left"></i></div>
+          <div class="shown-result pill pill-red"><%= round.answer.content %> <%= round.answer.rank %><i class="fas fa-times pill-far-left"></i></div>
           <% end %>
           <% end %>
 
