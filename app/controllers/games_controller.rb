@@ -27,9 +27,6 @@ class GamesController < ApplicationController
     end
   end
 
-  def score
-  end
-
   def game
     # looks for rounds with our game id
     @rounds = Round.where(game_id: @game.id)
@@ -54,19 +51,23 @@ class GamesController < ApplicationController
     end
   end
 
+  def score
+  end
+
   def slide
     @rounds = Round.where(game_id: @game.id)
-    if rounds[0].nil?
+    if @rounds[0].nil?
       @question = rand_quest
       @answers = Answer.where(question_id: @question.id).shuffle
       session[:tryout_answers] = @answers
-    elsif rounds.count == 3
-        redirect_to slide_score_path(@game) #placeholder for now
+    elsif @rounds.count == 3
+      redirect_to slide_score_path(@game) #placeholder for now
     else
       @question = Question.find(@rounds.last.question_id)
       @answers = []
       session[:tryout_answers].each do |answer_data|
         @answers << Answer.new(answer_data)
+      end
     end
   end
 
@@ -81,22 +82,22 @@ class GamesController < ApplicationController
     params.require(:game).permit(:game_mode)
   end
 
-    # get random question
-    def rand_quest
-      count = Question.count
-      random_offset = rand(count)
-      return random_quest = Question.offset(random_offset).first
-    end
+  # get random question
+  def rand_quest
+    count = Question.count
+    random_offset = rand(count)
+    return random_quest = Question.offset(random_offset).first
+  end
 
-    def tryout_game?
-    # 1. we are about to create a new game, with a mode of 'Try Out'
-    if params[:action] == 'create'
-      return true if params[:game][:game_mode] == 'Try Out'
-    else
-      # 2. there is already a game, which has a mode of 'Try Out'
-      game = Game.find(params[:id])
-      return true if !game.nil? && game.game_mode == 'Try Out'
-    end
+  def tryout_game?
+  # 1. we are about to create a new game, with a mode of 'Try Out'
+  if params[:action] == 'create'
+    return true if params[:game][:game_mode] == 'Try Out'
+  else
+    # 2. there is already a game, which has a mode of 'Try Out'
+    game = Game.find(params[:id])
+    return true if !game.nil? && game.game_mode == 'Try Out'
     false
   end
+end
 end
