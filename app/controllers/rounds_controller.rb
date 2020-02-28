@@ -11,6 +11,10 @@ class RoundsController < ApplicationController
     authorize @round
     @round.save!
     redirect_to game_path(@game)
+    answer_position = session[:tryout_answers].find_index do |answer_data|
+      answer_data[:id] == round_params[:answer_id]
+    end
+    raise
   end
 
   private

@@ -26,10 +26,10 @@
 
       <% elsif  @game.game_mode == "MCQ" %>
           <% @rounds.each do |round|%>
-          <% if round.answer.rank==1 %>
-          <div class="shown-result pill pill-blue"><%= round.answer.content %> <%= round.answer.rank %><i class="fas fa-check pill-far-left"></i></div>
+          <% if round.answer.rank == 1 %>
+          <div class="shown-result pill pill-<%=round.color%>"><%= round.answer.content %> <%= round.answer.rank %><i class="fas fa-check pill-far-left"></i></div>
           <% else %>
-          <div class="shown-result pill pill-red"><%= round.answer.content %> <%= round.answer.rank %><i class="fas fa-times pill-far-left"></i></div>
+          <div class="shown-result pill pill-<%=round.color%>"><%= round.answer.content %> <%= round.answer.rank %><i class="fas fa-times pill-far-left"></i></div>
           <% end %>
           <% end %>
 
