@@ -6,18 +6,62 @@
     <div class="pillbox-add-top-margin ">
      <div class="pill-question pill-align-left"><%= @question.content %></div>
       <div class="pill hidden">spacer</div>
-       <% if @rounds.last.nil? || @game.game_mode == "MCQ" && @game.rounds.count < 5 %>
 
-          <%= button_to @answers[0].content, game_rounds_path(@game), params: {round: {duration: 30, question_id: @question.id, answer_id: @answers[0].id }}, class: 'shown-option pill pill-align-right-btn pill-red mb-0 d-flex', id: 'option-1' %>
-          <%= button_to @answers[1].content, game_rounds_path(@game), params: {round: {duration: 30, question_id: @question.id, answer_id: @answers[1].id }}, class: 'shown-option pill pill-align-right-btn pill-green mb-0 d-flex', id: 'option-2' %>
-          <%= button_to @answers[2].content, game_rounds_path(@game), params: {round: {duration: 30, question_id: @question.id, answer_id: @answers[2].id }}, class: 'shown-option pill pill-align-right-btn pill-blue mb-0 d-flex', id: 'option-3' %>
-          <%= button_to @answers[3].content, game_rounds_path(@game), params: {round: {duration: 30, question_id: @question.id, answer_id: @answers[3].id }}, class: 'shown-option pill pill-align-right-btn pill-yellow mb-0 d-flex', id: 'option-4' %>
+      <!-- Set color order, and position counter, for us in rnder loops -->
+      <% color_order = ['red', 'green', 'blue', 'yellow'] %>
+      <% position_counter = 0 %>
 
+      <!-- If game isn't done yet, get a new answer from the user. -->
+      <% if @rounds.last.nil? || @game.game_mode == "MCQ" && @game.rounds.count < 5 %>
+        <% @answers.each do |answer| %>
+          <%= button_to answer.content,
+                        game_rounds_path(@game),
+                        params: {round: {duration: 30,
+                                         question_id: @question.id,
+                                         answer_id: answer.id }},
+                        class: "shown-option pill pill-align-right-btn pill-#{color_order[position_counter]} mb-0 d-flex",
+                        id: "option-#{position_counter}"%>
+          <%  position_counter += 1 %>
+          <% end %>
+
+       <!-- If we're done with one round, and the mode is 'Try Out', show the tryout score screen. -->
        <% elsif  @game.game_mode == "Try Out" %>
-          <div id="result-1" class="shown-result pill pill-red pill-align-right"><%= @answers[0].content %> || #<%= @answers[0].rank %></div>
-          <div id="result-2" class="shown-result pill pill-green pill-align-right"><%= @answers[1].content %> || #<%= @answers[1].rank %></div>
-          <div id="result-3" class="shown-result pill pill-blue pill-align-right"><%= @answers[2].content %> || #<%= @answers[2].rank %></div>
-          <div id="result-4" class="shown-result pill pill-yellow pill-align-right"><%= @answers[3].content %> || #<%= @answers[3].rank %></div>
+          <% @answers.each do |answer| %>
+            <% if answer.rank == 1 && answer.id == @rounds.last.answer.id%>  <!-- Rendering a correct, chosen result with a light blue border and a checkmark -->
+               <div class="pill pill-tryout-result d-flex align-items-center px-4 justify-content-between pill-<%=color_order[position_counter]%> "
+                    id="result-<%= position_counter + 1 %>"
+                    data-answer-rank="<%= answer.rank %>"
+                    ><i class="fas fa-check mb-0"></i><%= answer.content %>
+               </div>
+
+             <%elsif answer.rank == 1 %>  <!-- Rendering a correct, not-chosen result with a checkmark -->
+               <div class="pill pill-tryout-result d-flex align-items-center px-4 justify-content-between pill-<%=color_order[position_counter]%> "
+                    id="result-<%= position_counter + 1 %>"
+                    data-answer-rank="<%= answer.rank %>"
+                    ><i class="fas fa-check mb-0"></i><%= answer.content %>
+               </div>
+
+            <% elsif answer.id == @rounds.last.answer.id %>  <!-- Rendering a wrong, chosen result with an 'X', a light blue border, and a white overlay -->
+                <div class="pill pill-tryout-result pill-translucent-overlay d-flex align-items-center justify-content-between px-4 pill-<%=color_order[position_counter]%>"
+                     id="result-<%= position_counter + 1 %>"
+                     data-answer-rank="<%= answer.rank %>"
+                     ><i class="fas fa-times"></i><%= answer.content %>
+                </div>
+
+            <% else %>  <!-- Render all non chosen, non-right answer w/ a white overlay -->
+                <div class="pill pill-tryout-result pill-translucent-overlay justify-content-end px-4 pill-<%=color_order[position_counter]%> d-flex"
+                     id="result-<%= position_counter + 1 %>"
+                     data-answer-rank="<%= answer.rank %>"
+                     ><%= answer.content %>
+                </div>
+
+            <% end %>
+
+            <%  position_counter += 1 %>
+
+            <!-- Close the div! -->
+
+          <% end # end loop: render options %>
 
           <div class="pill hidden">spacer</div>
 
@@ -51,34 +95,6 @@
     myBody.style.background = '#F8F9FA';
   }
   changeBodyBackgroundColor();
-
-  // Script to get a the DOM element w/ the options, and store in JS session
-  // let my_options = document.querySelectorAll(".shown-option");
-  // const bindStoreAnswerToOptions = (option) => {
-  //    sessionStorage.setItem('chosen-answer', option.id);
-  // }
-
-  // Script to get the DOM elements w/ the results
-  let myResults = document.querySelectorAll(".shown-result");
-
-  // if result is correct, add a checkmark to the left of the pill
-  const addLeftCheckmarkToPill = (pill) => {
-    const leftCheckmark = '<i class="fas fa-check pill-far-left"></i>';
-    pill.insertAdjacentHTML('afterbegin', leftCheckmark);
-  };
-
-  myResults.forEach((result) => {
-     // Code for debug:
-     let resultPosition = result.id[result.id.length - 1]
-     let resultAnswerRank = result.dataset.answerRank
-     // console.log(`result.id[result.id.length - 1] = ${result.id[result.id.length - 1]}`);
-     // console.log(`result.dataset.answerRank = ${result.dataset.answerRank}`);
-     if (resultAnswerRank == 1) {
-       addLeftCheckmarkToPill(result);
-     }
-
-  });
-
 
 
 </script>

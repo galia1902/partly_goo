@@ -67,6 +67,7 @@ class GamesController < ApplicationController
       @answers = []
       session[:tryout_answers].each do |answer_data|
         @answers << Answer.new(answer_data)
+      end
     end
   end
 
