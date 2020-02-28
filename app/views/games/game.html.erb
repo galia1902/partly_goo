@@ -7,12 +7,14 @@
      <div class="pill-question pill-align-left"><%= @question.content %></div>
       <div class="pill hidden">spacer</div>
 
+      <!-- Set color order, and position counter, for us in rnder loops -->
       <% color_order = ['red', 'green', 'blue', 'yellow'] %>
       <% postion_counter = 0 %>
 
-
+      <!-- If game isn't done yet...  -->
       <% if @rounds.last.nil? || @game.game_mode == "MCQ" && @game.rounds.count < 5 %>
-        <!-- loop: render options -->
+
+        <!-- ... loop through availaibl options and render them w/ relevant metadata. -->
         <% @answers.each do |answer| %>
           <%= button_to answer.content,
                         game_rounds_path(@game),
@@ -24,13 +26,6 @@
           <%  position_counter += 1 %>
           <% end # end loop: render options %>
 
-
-
-
-         <!--  <%= button_to @answers[0].content, game_rounds_path(@game), params: {round: {duration: 30, question_id: @question.id, answer_id: @answers[0].id }}, class: 'shown-option pill pill-align-right-btn pill-red mb-0 d-flex', id: 'option-1' %>
-          <%= button_to @answers[1].content, game_rounds_path(@game), params: {round: {duration: 30, question_id: @question.id, answer_id: @answers[1].id }}, class: 'shown-option pill pill-align-right-btn pill-green mb-0 d-flex', id: 'option-2' %>
-          <%= button_to @answers[2].content, game_rounds_path(@game), params: {round: {duration: 30, question_id: @question.id, answer_id: @answers[2].id }}, class: 'shown-option pill pill-align-right-btn pill-blue mb-0 d-flex', id: 'option-3' %>
-          <%= button_to @answers[3].content, game_rounds_path(@game), params: {round: {duration: 30, question_id: @question.id, answer_id: @answers[3].id }}, class: 'shown-option pill pill-align-right-btn pill-yellow mb-0 d-flex', id: 'option-4' %> -->
 
        <% elsif  @game.game_mode == "Try Out" %>
 
