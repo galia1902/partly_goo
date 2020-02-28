@@ -61,7 +61,7 @@ class GamesController < ApplicationController
       @answers = Answer.where(question_id: @question.id).shuffle
       session[:tryout_answers] = @answers
     elsif rounds.count == 3
-        redirect_to slide_score_path(@game)
+        redirect_to slide_score_path(@game) #placeholder for now
     else
       @question = Question.find(@rounds.last.question_id)
       @answers = []
