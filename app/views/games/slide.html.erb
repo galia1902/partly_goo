@@ -6,29 +6,53 @@
       </a>
     </div>
     <div class="pillbox-add-top-margin ">
-     <div class="pill-question pill-align-left"><%= @question.content %></div>
-     <div class="pill hidden">spacer</div>
-     <% if @rounds.last.nil?  %>
+      <div class="pill-question pill-align-left"><%= @question.content %></div>
+      <div class="pill hidden">spacer</div>
+      <% if @rounds.last.nil?  %>
 
-     <%= button_to @answers[0].content, game_rounds_path(@game), params: {round: {duration: 30, question_id: @question.id, answer_id: @answers[0].id }}, class: 'shown-option pill pill-align-right-btn pill-red mb-0 d-flex', id: 'option-1' %>
-     <%= button_to @answers[1].content, game_rounds_path(@game), params: {round: {duration: 30, question_id: @question.id, answer_id: @answers[1].id }}, class: 'shown-option pill pill-align-right-btn pill-green mb-0 d-flex', id: 'option-2' %>
-     <%= button_to @answers[2].content, game_rounds_path(@game), params: {round: {duration: 30, question_id: @question.id, answer_id: @answers[2].id }}, class: 'shown-option pill pill-align-right-btn pill-blue mb-0 d-flex', id: 'option-3' %>
-     <%= button_to @answers[3].content, game_rounds_path(@game), params: {round: {duration: 30, question_id: @question.id, answer_id: @answers[3].id }}, class: 'shown-option pill pill-align-right-btn pill-yellow mb-0 d-flex', id: 'option-4' %>
+        <div class="pill-outer">
+          <h2>1</h2>
+          <div class="container-sortable">
+            <%= button_to @answers[0].content, game_rounds_path(@game), params: {round: {duration: 30, question_id: @question.id, answer_id: @answers[0].id }}, class: 'shown-option pill-sortable pill-align-right-half pill-red d-flex', id: 'option-1' %>
+          </div>
+        </div>
 
-     <% elsif  @game.game_mode == "Try Out" %>
-     <div id="result-1" class="shown-result pill pill-red pill-align-right"><%= @answers[0].content %> || #<%= @answers[0].rank %></div>
-     <div id="result-2" class="shown-result pill pill-green pill-align-right"><%= @answers[1].content %> || #<%= @answers[1].rank %></div>
-     <div id="result-3" class="shown-result pill pill-blue pill-align-right"><%= @answers[2].content %> || #<%= @answers[2].rank %></div>
-     <div id="result-4" class="shown-result pill pill-yellow pill-align-right"><%= @answers[3].content %> || #<%= @answers[3].rank %></div>
+        <div class="pill-outer">
+          <h2>2</h2>
+          <div class="container-sortable">
+            <%= button_to @answers[1].content, game_rounds_path(@game), params: {round: {duration: 30, question_id: @question.id, answer_id: @answers[1].id }}, class: 'shown-option pill-sortable pill-align-right-half pill-green d-flex', id: 'option-2' %>
+          </div>
+        </div>
 
-     <div class="pill hidden">spacer</div>
+        <div class="pill-outer">
+          <h2>3</h2>
+          <div class="container-sortable">
+            <%= button_to @answers[2].content, game_rounds_path(@game), params: {round: {duration: 30, question_id: @question.id, answer_id: @answers[2].id }}, class: 'shown-option pill-sortable pill-align-right-half pill-blue d-flex', id: 'option-3' %>
+          </div>
+        </div>
 
-     <%= button_to "Play again", games_path, class: 'pill mb-0 d-flex justify-content-center' , params: {game: {game_mode: @game.game_mode}}%>
-     <%= link_to "Back to Menu", root_path, class: 'pill last-button d-flex justify-content-center' %>
+        <div class="pill-outer">
+          <h2>4</h2>
+          <div class="container-sortable">
+            <%= button_to @answers[3].content, game_rounds_path(@game), params: {round: {duration: 30, question_id: @question.id, answer_id: @answers[3].id }}, class: 'shown-option pill-sortable pill-align-right-half pill-yellow d-flex', id: 'option-4' %>
+          </div>
+        </div>
 
-     <% end %>
-   </div>
- </div>
+
+    <% elsif  @game.game_mode == "Try Out" %>
+    <div id="result-1" class="shown-result pill pill-red pill-align-right"><%= @answers[0].content %> || #<%= @answers[0].rank %></div>
+    <div id="result-2" class="shown-result pill pill-green pill-align-right"><%= @answers[1].content %> || #<%= @answers[1].rank %></div>
+    <div id="result-3" class="shown-result pill pill-blue pill-align-right"><%= @answers[2].content %> || #<%= @answers[2].rank %></div>
+    <div id="result-4" class="shown-result pill pill-yellow pill-align-right"><%= @answers[3].content %> || #<%= @answers[3].rank %></div>
+
+    <div class="pill hidden">spacer</div>
+
+    <%= button_to "Play again", games_path, class: 'pill mb-0 d-flex justify-content-center' , params: {game: {game_mode: @game.game_mode}}%>
+    <%= link_to "Back to Menu", root_path, class: 'pill last-button d-flex justify-content-center' %>
+
+    <% end %>
+  </div>
+</div>
 </div>
 
 <script>
