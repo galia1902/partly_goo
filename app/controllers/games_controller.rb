@@ -1,7 +1,7 @@
 class GamesController < ApplicationController
   skip_before_action :authenticate_user!, if: :tryout_game?
 
-  before_action :set_game, only: [:score, :game]
+  before_action :set_game, only: [:score, :game, :slide]
 
   def create
      # creates a game with our tryout user and redirects to our game html
