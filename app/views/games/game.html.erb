@@ -6,18 +6,39 @@
     <div class="pillbox-add-top-margin ">
      <div class="pill-question pill-align-left"><%= @question.content %></div>
       <div class="pill hidden">spacer</div>
-       <% if @rounds.last.nil? || @game.game_mode == "MCQ" && @game.rounds.count < 5 %>
 
-          <%= button_to @answers[0].content, game_rounds_path(@game), params: {round: {duration: 30, question_id: @question.id, answer_id: @answers[0].id }}, class: 'shown-option pill pill-align-right-btn pill-red mb-0 d-flex', id: 'option-1' %>
+      <% color_order = ['red', 'green', 'blue', 'yellow'] %>
+      <% postion_counter = 0 %>
+
+
+      <% if @rounds.last.nil? || @game.game_mode == "MCQ" && @game.rounds.count < 5 %>
+        <!-- loop: render options -->
+        <% @answers.each do |answer| %>
+          <%= button_to answer.content,
+                        game_rounds_path(@game),
+                        params: {round: {duration: 30,
+                                         question_id: @question.id,
+                                         answer_id: answer.id }},
+                        class: "shown-option pill pill-align-right-btn pill-#{color_order[position_counter]} mb-0 d-flex",
+                        id: "option-#{position_counter}"%>
+          <%  position_counter += 1 %>
+          <% end # end loop: render options %>
+
+
+
+
+         <!--  <%= button_to @answers[0].content, game_rounds_path(@game), params: {round: {duration: 30, question_id: @question.id, answer_id: @answers[0].id }}, class: 'shown-option pill pill-align-right-btn pill-red mb-0 d-flex', id: 'option-1' %>
           <%= button_to @answers[1].content, game_rounds_path(@game), params: {round: {duration: 30, question_id: @question.id, answer_id: @answers[1].id }}, class: 'shown-option pill pill-align-right-btn pill-green mb-0 d-flex', id: 'option-2' %>
           <%= button_to @answers[2].content, game_rounds_path(@game), params: {round: {duration: 30, question_id: @question.id, answer_id: @answers[2].id }}, class: 'shown-option pill pill-align-right-btn pill-blue mb-0 d-flex', id: 'option-3' %>
-          <%= button_to @answers[3].content, game_rounds_path(@game), params: {round: {duration: 30, question_id: @question.id, answer_id: @answers[3].id }}, class: 'shown-option pill pill-align-right-btn pill-yellow mb-0 d-flex', id: 'option-4' %>
+          <%= button_to @answers[3].content, game_rounds_path(@game), params: {round: {duration: 30, question_id: @question.id, answer_id: @answers[3].id }}, class: 'shown-option pill pill-align-right-btn pill-yellow mb-0 d-flex', id: 'option-4' %> -->
 
        <% elsif  @game.game_mode == "Try Out" %>
-          <div id="result-1" class="shown-result pill pill-red pill-align-right"><%= @answers[0].content %> || #<%= @answers[0].rank %></div>
-          <div id="result-2" class="shown-result pill pill-green pill-align-right"><%= @answers[1].content %> || #<%= @answers[1].rank %></div>
-          <div id="result-3" class="shown-result pill pill-blue pill-align-right"><%= @answers[2].content %> || #<%= @answers[2].rank %></div>
-          <div id="result-4" class="shown-result pill pill-yellow pill-align-right"><%= @answers[3].content %> || #<%= @answers[3].rank %></div>
+
+          <div id="result-1" data-answer-rank="<%=@answers[0].rank%>" class="shown-result pill pill-red"><%= @answers[0].content %> || #<%= @answers[0].rank %></div>
+          <div id="result-2" data-answer-rank="<%=@answers[1].rank%>" class="shown-result pill pill-green"><%= @answers[1].content %> || #<%= @answers[1].rank %></div>
+          <div id="result-3" data-answer-rank="<%=@answers[2].rank%>" class="shown-result pill pill-blue"><%= @answers[2].content %> || #<%= @answers[2].rank %></div>
+          <div id="result-4" data-answer-rank="<%=@answers[3].rank%>" class="shown-result pill pill-yellow"><%= @answers[3].content %> || #<%= @answers[3].rank %></div>
+
 
           <div class="pill hidden">spacer</div>
 
