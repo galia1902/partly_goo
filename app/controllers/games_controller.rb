@@ -20,6 +20,10 @@ class GamesController < ApplicationController
       @game.user = current_user
       @game.save!
       redirect_to game_path(@game)
+    elsif @game.game_mode == "Sortable"
+      @game.user = current_user
+      @game.save!
+      redirect_to slide_path(@game)
     end
   end
 
@@ -51,6 +55,9 @@ class GamesController < ApplicationController
         @answers << Answer.new(answer_data)
       end
     end
+  end
+
+  def slide
 
   end
 
