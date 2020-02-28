@@ -20,6 +20,10 @@ class GamesController < ApplicationController
       @game.user = current_user
       @game.save!
       redirect_to game_path(@game)
+    elsif @game.game_mode == "Sortable"
+      @game.user = current_user
+      @game.save!
+      redirect_to slide_path(@game)
     end
   end
 
@@ -29,9 +33,6 @@ class GamesController < ApplicationController
   def game
     # looks for rounds with our game id
     @rounds = Round.where(game_id: @game.id)
-    # raise
-
-
     # if no round exists it will start a with a random question and the 4 possible answers but randomized
     #check if there aree rounds
     if @rounds[0].nil?
@@ -51,7 +52,22 @@ class GamesController < ApplicationController
         @answers << Answer.new(answer_data)
       end
     end
+  end
 
+  def slide
+    @rounds = Round.where(game_id: @game.id)
+    if rounds[0].nil?
+      @question = rand_quest
+      @answers = Answer.where(question_id: @question.id).shuffle
+      session[:tryout_answers] = @answers
+    elsif rounds.count == 3
+        redirect_to slide_score_path(@game) #placeholder for now
+    else
+      @question = Question.find(@rounds.last.question_id)
+      @answers = []
+      session[:tryout_answers].each do |answer_data|
+        @answers << Answer.new(answer_data)
+    end
   end
 
   private
