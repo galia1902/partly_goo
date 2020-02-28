@@ -9,12 +9,12 @@
 
       <!-- Set color order, and position counter, for us in rnder loops -->
       <% color_order = ['red', 'green', 'blue', 'yellow'] %>
-      <% postion_counter = 0 %>
+      <% position_counter = 0 %>
 
       <!-- If game isn't done yet...  -->
       <% if @rounds.last.nil? || @game.game_mode == "MCQ" && @game.rounds.count < 5 %>
 
-        <!-- ... loop through availaibl options and render them w/ relevant metadata. -->
+        <!-- ... loop through available *options* and render them w/ relevant metadata. -->
         <% @answers.each do |answer| %>
           <%= button_to answer.content,
                         game_rounds_path(@game),
@@ -26,14 +26,30 @@
           <%  position_counter += 1 %>
           <% end # end loop: render options %>
 
-
+       <!-- If game isn't done yet, and we're in 'try out' mode...  -->
        <% elsif  @game.game_mode == "Try Out" %>
 
-          <div id="result-1" data-answer-rank="<%=@answers[0].rank%>" class="shown-result pill pill-red"><%= @answers[0].content %> || #<%= @answers[0].rank %></div>
-          <div id="result-2" data-answer-rank="<%=@answers[1].rank%>" class="shown-result pill pill-green"><%= @answers[1].content %> || #<%= @answers[1].rank %></div>
-          <div id="result-3" data-answer-rank="<%=@answers[2].rank%>" class="shown-result pill pill-blue"><%= @answers[2].content %> || #<%= @answers[2].rank %></div>
-          <div id="result-4" data-answer-rank="<%=@answers[3].rank%>" class="shown-result pill pill-yellow"><%= @answers[3].content %> || #<%= @answers[3].rank %></div>
+          <!-- ... loop through *results*, with relevant cues about what the right answer was, and how you did.  -->
+          <% @answers.each do |answer| %>
+            <% if answer.rank == 1 %>
+               <div class="shown-result pill d-flex align-items-center px-4 justify-content-between pill-<%=color_order[position_counter]%> "
+                    id="result-<%= position_counter + 1 %>"
+                    data-answer-rank="<%= answer.rank %>"
+                    ><i class="fas fa-check mb-0"></i><%= answer.content %>
+               </div>
+            <% else %>
+            <!-- div with the content of the answer, properly styled -->
+                <div class="shown-result pill justify-content-end px-4 pill-<%=color_order[position_counter]%> d-flex"
+                     id="result-<%= position_counter + 1 %>"
+                     data-answer-rank="<%= answer.rank %>"
+                     ><%= answer.content %>
+            <% end %>
 
+            <%  position_counter += 1 %>
+
+            <!-- Close the div! -->
+            </div>
+          <% end # end loop: render options %>
 
           <div class="pill hidden">spacer</div>
 
@@ -67,34 +83,6 @@
     myBody.style.background = '#F8F9FA';
   }
   changeBodyBackgroundColor();
-
-  // Script to get a the DOM element w/ the options, and store in JS session
-  // let my_options = document.querySelectorAll(".shown-option");
-  // const bindStoreAnswerToOptions = (option) => {
-  //    sessionStorage.setItem('chosen-answer', option.id);
-  // }
-
-  // Script to get the DOM elements w/ the results
-  let myResults = document.querySelectorAll(".shown-result");
-
-  // if result is correct, add a checkmark to the left of the pill
-  const addLeftCheckmarkToPill = (pill) => {
-    const leftCheckmark = '<i class="fas fa-check pill-far-left"></i>';
-    pill.insertAdjacentHTML('afterbegin', leftCheckmark);
-  };
-
-  myResults.forEach((result) => {
-     // Code for debug:
-     let resultPosition = result.id[result.id.length - 1]
-     let resultAnswerRank = result.dataset.answerRank
-     // console.log(`result.id[result.id.length - 1] = ${result.id[result.id.length - 1]}`);
-     // console.log(`result.dataset.answerRank = ${result.dataset.answerRank}`);
-     if (resultAnswerRank == 1) {
-       addLeftCheckmarkToPill(result);
-     }
-
-  });
-
 
 
 </script>
