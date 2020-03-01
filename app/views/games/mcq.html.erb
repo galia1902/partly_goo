@@ -1,0 +1,99 @@
+<div class="pillbox_outer bg-light">
+  <div class="game_inner bg-light">
+    <div>
+      <div class="logo-40-px" style="background-image"></div>
+    </div>
+    <div class="pillbox-add-top-margin ">
+    <div class="pill-question pill-align-left"><%= @question.content %></div>
+    <div class="pill hidden">spacer</div>
+
+      <!-- Set color order, and position counter, for us in rnder loops -->
+      <% color_order = ['#E8453C', '#3AA757', '#4688F1', '#FABB2D'] %>
+      <% position_counter = 0 %>
+
+      <!-- If game isn't done yet, get a new answer from the user. -->
+      <% if  @game.rounds.count < 5 %>
+        <% @answers.each do |answer| %>
+
+          <!-- YANIV CHANGED BUTTON_TO => LINK_TO (MUST HANDLE ANSWER SUBMISSION) -->
+          <%= button_to answer.content,
+                        '#',
+                        params: {'round' => {'duration' =>  30,
+                                         'question_id' =>  @question.id,
+                                         'answer_id' =>  answer.id }},
+                        class: "mcq-answer shown-option pill pill-align-right-btn pill-#{color_order[position_counter]} mb-0 d-flex",
+                        id: "option-#{position_counter}",
+                        style: "background-color: #{color_order[position_counter]}"%>
+          <%  position_counter += 1 %>
+      <% end %>
+
+       <!-- If we're done with one round, and the mode is 'Try Out', show the tryout score screen. -->
+            <%  position_counter += 1 %>
+
+            <!-- Close the div! -->
+
+          <% end # end loop: render options %>
+
+
+          <div class="pill hidden">spacer</div>
+
+          <%= link_to "Back to Menu", root_path, class: 'pill mb-0 d-flex justify-content-center' %>
+          <%= button_to "Next", game_rounds_path(@game), class: 'pill last-button d-flex justify-content-center',   params: {round: {duration: 30, question_id: '', answer_id: '' }} %>
+    </div>
+   </div>
+  </div>
+
+
+  <script>
+
+    if(typeof(handleChosenAnswer) === 'undefined'){
+      let answer = document.querySelectorAll('.mcq-answer');
+
+
+      let changeChosenStyle = (an) => {
+        let newValue;
+        let color = an.style.backgroundColor;
+        let rgba = document.querySelector('.mcq-answer').style.backgroundColor.split(')');
+        let length = rgba.length - 1;
+        rgba[length] = '0.2)';
+        newValue = rgba.join();
+        an.style.border = `4px solid ${newValue}`
+      }
+
+      let handleChosen = (ans) => {
+        let lastButton = document.querySelector('.last-button');
+          answer.forEach((an) => {
+            if(an.id === ans.id){
+              let inputs = an.parentElement.querySelectorAll('[name*=round]');
+              inputs.forEach((input) => {
+                lastButton.parentElement.querySelector("[name=" + `"${input.name}"]`).value = input.value;
+              })
+              changeChosenStyle(an);
+
+            }else{
+              an.style.opacity = '.5';
+            }
+          })
+      }
+
+
+      let handleChosenAnswer = () => {
+        answer.forEach((ans) => {
+          ans.addEventListener('click', (event) => {
+            event.preventDefault();
+            let clicked = event.currentTarget;
+            handleChosen(clicked);
+          })
+        })
+      }
+
+      handleChosenAnswer();
+    }else{
+      handleChosenAnswer();
+    }
+
+
+  </script>
+
+
+
