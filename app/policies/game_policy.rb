@@ -30,7 +30,7 @@ class GamePolicy < ApplicationPolicy
     # record.game.user == user
   end
 
-  def show_mcq_round?
+  def mcq?
     record.user == user
   end
 
