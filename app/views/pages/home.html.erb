@@ -1,11 +1,13 @@
-<div id="delayRedirect">
-
-  <div class="splash-container" id="splash-container">
-    <div class="splash-logo"></div>
-    <div class="ball1"></div>
-    <div class="ball2"></div>
-    <div class="ball3"></div>
-  </div>
+<div id="delayRedirect fadeable">
+  <% if session[:first_visit] %>
+    <div class="splash-container fadeable" id="splash-container fadeable">
+      <div class="splash-logo fadeable"></div>
+      <div class="ball1 fadeable"></div>
+      <div class="ball2 fadeable"></div>
+      <div class="ball3 fadeable"></div>
+    </div>
+    <% session[:first_visit] = false %>
+  <% end %>
 </div>
 
 <div class="pillbox_outer">
@@ -24,11 +26,14 @@
     </div>
     <div class="pillbox-add-top-margin ">
 
-
-
+      <% if user_signed_in? %>
       <%= button_to "Try Out", games_path, params: {game: {game_mode: "Try Out"}}, class: 'pill mb-0 d-flex justify-content-center' %>
       <%= button_to "5 Rounds", games_path, params: {game: {game_mode: "MCQ"}}, class: 'pill mb-0 d-flex justify-content-center' %>
       <%= button_to "Sortable", games_path, params: {game: {game_mode: "Sortable"}}, class: 'pill mb-0 d-flex justify-content-center' %>
+      <% else %>
+      <%= button_to "Try Out", games_path, params: {game: {game_mode: "Try Out"}}, class: 'pill mb-0 d-flex justify-content-center' %>
+      <% end %>
+
 
       <div class="pill hidden">spacer</div>
       <% if user_signed_in? %>
@@ -55,26 +60,19 @@
   changeBodyBackgroundColor();
 
   // Script to handle delay, switching from Splash screen to Menu screen
-
-  const handleLoader = (loader) => {
-   loader.style.display = 'none';
- }
-
-
-
- let handleFirstSession = () => {
-  let loader = document.getElementById('splash-container');
-  let session = sessionStorage.getItem('visited');
-  let visited = session === null ? false : true;
-  if(visited){
-    loader.style.display = 'none';
-  }else{
-    sessionStorage.setItem('visited', true);
-    setTimeout(() => handleLoader(loader), 4000);
+  const slowfadeElement = (element) => {
+    element.classList.add("slow-fade");
   }
- }
 
- handleFirstSession();
+
+  const fadeFadeablesAfterDelay = () => {
+    let fadeables = document.querySelectorAll('.fadeable');
+    fadeables.forEach((fadeable) => {
+      setTimeout(() => slowfadeElement(fadeable), 10000);
+    });
+  };
+
+  const fadeFadeablesOnClick
 
 
 </script>

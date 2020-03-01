@@ -13,4 +13,5 @@ Rails.application.routes.draw do
   get 'games/:id/score', to: 'games#score', as: :game_score
   get 'games/:id/game', to: 'games#game', as: :game
   get 'games/:id/show_mcq_round', to: 'games#show_mcq_round', as: :show_mcq_round
+  get 'games/:id/slide', to: 'games#slide', as: :slide
 end

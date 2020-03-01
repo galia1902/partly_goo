@@ -34,9 +34,11 @@
       </div>
       <% else %>
       <% @games.each do |game| %>
-
-        <a class="pill dash-pill d-flex justify-content-center" href="/games/<%= game.id %>/score" style="background-color: <%= ["#4688F1","#E8453C","#FABB2D","#3AA757"].sample %>;"><%= game.game_mode %></a>
-
+        <% if game.game_mode == "MCQ" %>
+          <a class="pill dash-pill d-flex justify-content-center" href="/games/<%= game.id %>/score" style="background-color: <%= ["#4688F1","#E8453C","#FABB2D","#3AA757"].sample %>;"><%= game.game_mode %></a>
+        <% else %>
+          <a class="pill dash-pill d-flex justify-content-center" href="/games/<%= game.id %>/game" style="background-color: <%= ["#4688F1","#E8453C","#FABB2D","#3AA757"].sample %>;"><%= game.game_mode %></a>
+        <% end %>
       <% end %>
       <% end %>
 

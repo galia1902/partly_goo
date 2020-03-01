@@ -1,5 +1,3 @@
-require 'pry-byebug'
-
 class RoundsController < ApplicationController
   skip_before_action :authenticate_user!, if: :tryout_game?
 
@@ -10,11 +8,15 @@ class RoundsController < ApplicationController
     @round.game = @game
     authorize @round
     @round.save!
-    redirect_to game_path(@game)
     # answer_position = session[:tryout_answers].find_index do |answer_data|
     #   answer_data[:id] == round_params[:answer_id]
     # end
     # raise
+    if @game.game_mode == "Sortable"
+      redirect_to slide_path(@game)
+    else
+      redirect_to game_path(@game)
+    end
   end
 
   private
