@@ -3,7 +3,7 @@ class RoundsController < ApplicationController
 
   def create
     # binding.pry
-    byebug
+    # byebug
     @round = Round.new(round_params)
     @game = Game.find(params[:game_id])
     @round.game = @game

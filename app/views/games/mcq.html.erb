@@ -83,6 +83,15 @@
             event.preventDefault();
             let clicked = event.currentTarget;
             handleChosen(clicked);
+            let session = sessionStorage.getItem('chosen');
+            let chosen = session === null ? false : true;
+            if(chosen){
+             document.querySelectorAll('.mcq-answer').forEach(elem => {
+               elem.disabled = true;
+             });
+            }else{
+              sessionStorage.setItem('chosen', true);
+            }
           })
         })
       }
@@ -94,6 +103,10 @@
 
 
   </script>
+
+
+
+
 
 
 
