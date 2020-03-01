@@ -64,13 +64,14 @@
     element.classList.add("slow-fade");
   }
 
-
   const fadeFadeablesAfterDelay = () => {
     let fadeables = document.querySelectorAll('.fadeable');
     fadeables.forEach((fadeable) => {
-      setTimeout(() => slowfadeElement(fadeable), 10000);
+      setTimeout(() => slowfadeElement(fadeable), 1000);
     });
   };
+
+  fadeFadeablesAfterDelay();
 
 
 </script>
