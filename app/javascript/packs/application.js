@@ -1,2 +1,2 @@
 import "bootstrap";
-import { initSortable } from './plugins/init_sortable';
+import { initSortable } from '../plugins/init_sortable';

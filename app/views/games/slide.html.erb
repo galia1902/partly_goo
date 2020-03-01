@@ -10,33 +10,36 @@
       <div class="pill hidden">spacer</div>
       <% if @rounds.last.nil?  %>
 
+      <ul id="quest-sort">
+
       <div class="pill-outer">
         <h2>1</h2>
         <div class="container-sortable">
-          <div class="sort-option pill-sortable pill-align-sortable pill-red d-flex"><i class="fas fa-bars"></i> <%= @answers[0].content %></div>
+          <li class="sort-option pill-sortable pill-align-sortable pill-red d-flex"><i class="fas fa-bars"></i> <%= @answers[0].content %></li>
         </div>
       </div>
 
       <div class="pill-outer">
         <h2>2</h2>
         <div class="container-sortable">
-          <div class="sort-option pill-sortable pill-align-sortable pill-green d-flex"><i class="fas fa-bars"></i> <%= @answers[1].content %></div>
+          <li class="sort-option pill-sortable pill-align-sortable pill-green d-flex"><i class="fas fa-bars"></i> <%= @answers[1].content %></li>
         </div>
       </div>
 
       <div class="pill-outer">
         <h2>3</h2>
         <div class="container-sortable">
-          <div class="sort-option pill-sortable pill-align-sortable pill-blue d-flex"><i class="fas fa-bars"></i> <%= @answers[2].content %></div>
+          <li class="sort-option pill-sortable pill-align-sortable pill-blue d-flex"><i class="fas fa-bars"></i> <%= @answers[2].content %></li>
         </div>
       </div>
 
       <div class="pill-outer">
         <h2>4</h2>
         <div class="container-sortable">
-          <div class="sort-option pill-sortable pill-align-sortable pill-yellow d-flex"><i class="fas fa-bars"></i> <%= @answers[3].content %></div>
+          <li class="sort-option pill-sortable pill-align-sortable pill-yellow d-flex"><i class="fas fa-bars"></i> <%= @answers[3].content %></li>
         </div>
       </div>
+      </ul>
 
 
       <% elsif  @game.game_mode == "Try Out" %>
@@ -91,10 +94,6 @@
 
    });
 
-  const initSortable = () => {
-    const list = document.querySelector('.sort-option');
-    Sortable.create(list);
-  };
   initSortable();
 
 
