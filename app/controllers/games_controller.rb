@@ -84,9 +84,35 @@ class GamesController < ApplicationController
 
     # get random question
     def rand_quest
+      # Get initial question
       count = Question.count
       random_offset = rand(count)
-      return random_quest = Question.offset(random_offset).first
+      random_quest = Question.offset(random_offset).first
+
+      # Initialize storage for recent questions if not yet initialized
+      if session[:recent_questions].nil?
+        session[:recent_questions] = []
+      end
+
+      # Keep on getting questions until we find a 'new' one
+      while session[:recent_questions].include?(random_quest.id)
+        count = Question.count
+        random_offset = rand(count)
+        random_quest = Question.offset(random_offset).first
+      end
+
+      # Update list of old questions
+      session[:recent_questions] << random_quest.id
+      if session[:recent_questions].count > 30
+        session[:recent_questions].shift
+      end
+
+      # for debug...
+      puts "In 'games\#rand_quest.'"
+      puts "session[:recent_questions].last = #{session[:recent_questions].last}"
+      puts "session[:recent_questions].length = #{session[:recent_questions].count}"
+
+       return random_quest
     end
 
     def tryout_game?
