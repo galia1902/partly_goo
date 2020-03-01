@@ -2,6 +2,9 @@ class PagesController < ApplicationController
   skip_before_action :authenticate_user!, only: [:home, :how_to]
 
   def home
+     if session[:first_visit].nil?
+      session[:first_visit] = true
+    end
   end
 
   def how_to

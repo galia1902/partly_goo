@@ -1,11 +1,13 @@
-<div id="delayRedirect">
-
-  <div class="splash-container" id="splash-container">
-    <div class="splash-logo"></div>
-    <div class="ball1"></div>
-    <div class="ball2"></div>
-    <div class="ball3"></div>
-  </div>
+<div id="delayRedirect fadeable">
+  <% if session[:first_visit] %>
+    <div class="splash-container fadeable" id="splash-container fadeable">
+      <div class="splash-logo fadeable"></div>
+      <div class="ball1 fadeable"></div>
+      <div class="ball2 fadeable"></div>
+      <div class="ball3 fadeable"></div>
+    </div>
+    <% session[:first_visit] = false %>
+  <% end %>
 </div>
 
 <div class="pillbox_outer">
@@ -58,26 +60,19 @@
   changeBodyBackgroundColor();
 
   // Script to handle delay, switching from Splash screen to Menu screen
-
-  const handleLoader = (loader) => {
-   loader.style.display = 'none';
- }
-
-
-
- let handleFirstSession = () => {
-  let loader = document.getElementById('splash-container');
-  let session = sessionStorage.getItem('visited');
-  let visited = session === null ? false : true;
-  if(visited){
-    loader.style.display = 'none';
-  }else{
-    sessionStorage.setItem('visited', true);
-    setTimeout(() => handleLoader(loader), 4000);
+  const slowfadeElement = (element) => {
+    element.classList.add("slow-fade");
   }
- }
 
- handleFirstSession();
+
+  const fadeFadeablesAfterDelay = () => {
+    let fadeables = document.querySelectorAll('.fadeable');
+    fadeables.forEach((fadeable) => {
+      setTimeout(() => slowfadeElement(fadeable), 10000);
+    });
+  };
+
+  const fadeFadeablesOnClick
 
 
 </script>
