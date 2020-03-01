@@ -1,7 +1,7 @@
 class GamesController < ApplicationController
   skip_before_action :authenticate_user!, if: :tryout_game?
 
-  before_action :set_game, only: [:score, :game]
+  before_action :set_game, only: [:score, :game, :show_mcq_round ]
 
   def create
      # creates a game with our tryout user and redirects to our game html
@@ -15,7 +15,7 @@ class GamesController < ApplicationController
      elsif @game.game_mode == "MCQ"
       @game.user = current_user
       @game.save!
-      redirect_to game_path(@game)
+      redirect_to mcq_path(@game)
     end
   end
 
@@ -33,22 +33,43 @@ class GamesController < ApplicationController
       @answers = Answer.where(question_id: @question.id).shuffle
       session[:tryout_answers] = @answers
     elsif @game.game_mode == "MCQ"
-      redirect_to :action => 'mcq'
+      @game.user = current_user
+      @game.save!
+      redirect_to mcq_path(@game)
       # if round exists (question already answered) render the page with the answered question and the answers in the right order
     else
       @question = Question.find(@rounds.last.question_id)
       @answers = []
       session[:tryout_answers].each do |answer_data|
-        @answers << Answer.new(answer_data)
+      @answers << Answer.new(answer_data)
       end
     end
   end
 
-
-  def show_mcq_round
-    @question = rand_quest
-    @answers = Answer.where(question_id: @question.id).shuffle
-    @game = Game.find(@game.id)
+  def mcq
+    # looks for rounds with our game id
+    @rounds = Round.where(game_id: @game.id)
+    # raise
+    # if no round exists it will start a with a random question and the 4 possible answers but randomized
+    #check if there aree rounds
+    if @rounds[0].nil?
+      @question = rand_quest
+      @answers = Answer.where(question_id: @question.id).shuffle
+      session[:tryout_answers] = @answers
+    elsif @game.game_mode == "MCQ"
+      @game.user = current_user
+      @game.save!
+      @question = rand_quest
+      @answers = Answer.where(question_id: @question.id).shuffle
+      @game = Game.find(@game.id)
+      # if round exists (question already answered) render the page with the answered question and the answers in the right order
+    else
+      @question = Question.find(@rounds.last.question_id)
+      @answers = []
+      session[:tryout_answers].each do |answer_data|
+      @answers << Answer.new(answer_data)
+      end
+    end
   end
 
   private
