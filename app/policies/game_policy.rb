@@ -34,5 +34,8 @@ class GamePolicy < ApplicationPolicy
     record.user == user
   end
 
+  def mcq_score?
+    record.user == user
+  end
 
 end
