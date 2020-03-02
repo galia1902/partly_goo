@@ -17,7 +17,6 @@ class RoundsController < ApplicationController
     else
       redirect_to game_path(@game)
     end
-
   end
 
   private
@@ -28,7 +27,6 @@ class RoundsController < ApplicationController
 
   def tryout_game?
     game = Game.find(params[:game_id])
-    return true if game.game_mode == 'Try Out'
-    return false
+    game.game_mode == 'Try Out'
   end
 end

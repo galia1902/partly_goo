@@ -7,7 +7,7 @@
     <div class="pill-question pill-align-left"><%= @question.content %></div>
     <div class="pill hidden">spacer</div>
 
-      <!-- Set color order, and position counter, for us in rnder loops -->
+      <!-- Set color order, and position counter, for us in render loops -->
       <% color_order = ['#E8453C', '#3AA757', '#4688F1', '#FABB2D'] %>
       <% position_counter = 0 %>
 
@@ -25,24 +25,16 @@
                         id: "option-#{position_counter}",
                         style: "background-color: #{color_order[position_counter]}"%>
           <%  position_counter += 1 %>
-      <% end %>
-
-       <!-- If we're done with one round, and the mode is 'Try Out', show the tryout score screen. -->
-            <%  position_counter += 1 %>
-
-            <!-- Close the div! -->
-
-          <% end # end loop: render options %>
-
+          <% end %>
 
           <div class="pill hidden">spacer</div>
 
           <%= link_to "Back to Menu", root_path, class: 'pill mb-0 d-flex justify-content-center' %>
           <%= button_to "Next", game_rounds_path(@game), class: 'pill last-button d-flex justify-content-center',   params: {round: {duration: 30, question_id: '', answer_id: '' }} %>
+
     </div>
    </div>
   </div>
-
 
   <script>
 
