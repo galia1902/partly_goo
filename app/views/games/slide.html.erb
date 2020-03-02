@@ -1,0 +1,86 @@
+<div class="pillbox_outer back-opac">
+  <div class="game_inner">
+    <div>
+      <a href="/">
+        <div class="logo-40-px" style="background-image"></div>
+      </a>
+    </div>
+    <div class="pillbox-add-top-margin ">
+      <div class="pill-question pill-align-left"><%= @question.content %></div>
+      <div class="pill hidden">spacer</div>
+      <% if @rounds.last.nil?  %>
+
+      <div class="set-width">
+      <div class="go_back">
+        <div class="pill-outer">
+          <h2>1</h2>
+        </div>
+
+        <div class="pill-outer">
+          <h2>2</h2>
+        </div>
+
+        <div class="pill-outer">
+          <h2>3</h2>
+        </div>
+
+        <div class="pill-outer">
+          <h2>4</h2>
+        </div>
+      </div>
+
+
+      <ul id="quest-sort" class="container-sortable">
+        <li class="sort-option pill-sortable pill-align-sortable pill-red d-flex"><i class="fas fa-bars"></i> <%= @answers[0].content %></li>
+        <li class="sort-option pill-sortable pill-align-sortable pill-green d-flex"><i class="fas fa-bars"></i> <%= @answers[1].content %></li>
+        <li class="sort-option pill-sortable pill-align-sortable pill-blue d-flex"><i class="fas fa-bars"></i> <%= @answers[2].content %></li>
+        <li class="sort-option pill-sortable pill-align-sortable pill-yellow d-flex"><i class="fas fa-bars"></i> <%= @answers[3].content %></li>
+      </ul>
+      </div>
+
+      <% end %>
+
+    </div>
+  </div>
+</div>
+
+<script>
+
+  // Script to during the make the Body element grey
+  let myBody = document.querySelector('body');
+  const changeBodyBackgroundColor = () => {
+    myBody.style.background = '#F8F9FA';
+  }
+  changeBodyBackgroundColor();
+
+  // Script to get a the DOM element w/ the options, and store in JS session
+  // let my_options = document.querySelectorAll(".shown-option");
+  // const bindStoreAnswerToOptions = (option) => {
+  //    sessionStorage.setItem('chosen-answer', option.id);
+  // }
+
+  // Script to get the DOM elements w/ the results
+  let myResults = document.querySelectorAll(".shown-result");
+
+  // if result is correct, add a checkmark to the left of the pill
+  const addLeftCheckmarkToPill = (pill) => {
+    const leftCheckmark = '<i class="fas fa-check pill-far-left"></i>';
+    pill.insertAdjacentHTML('afterbegin', leftCheckmark);
+  };
+
+  myResults.forEach((result) => {
+     // Code for debug:
+     let resultPosition = result.id[result.id.length - 1]
+     let resultAnswerRank = result.dataset.answerRank
+     // console.log(`result.id[result.id.length - 1] = ${result.id[result.id.length - 1]}`);
+     // console.log(`result.dataset.answerRank = ${result.dataset.answerRank}`);
+     if (resultAnswerRank == 1) {
+       addLeftCheckmarkToPill(result);
+     }
+
+   });
+
+
+
+
+ </script>
