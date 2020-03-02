@@ -1,7 +1,7 @@
 class GamesController < ApplicationController
   skip_before_action :authenticate_user!, if: :tryout_game?
 
-  before_action :set_game, only: [:score, :game, :slide]
+  before_action :set_game, only: [:score, :game, :mcq, :mcq_score, :slide ]
 
   def create
      # creates a game with our tryout user and redirects to our game html
@@ -19,7 +19,7 @@ class GamesController < ApplicationController
     elsif @game.game_mode == "MCQ"
       @game.user = current_user
       @game.save!
-      redirect_to game_path(@game)
+      redirect_to mcq_path(@game)
     elsif @game.game_mode == "Sortable"
       @game.user = current_user
       @game.save!
@@ -36,22 +36,32 @@ class GamesController < ApplicationController
       @question = rand_quest
       @answers = Answer.where(question_id: @question.id).shuffle
       session[:tryout_answers] = @answers
-
-    elsif @game.game_mode == "MCQ"
-      @question = rand_quest
-      @answers = Answer.where(question_id: @question.id).shuffle
-      @game = Game.find(@game.id)
       # if round exists (question already answered) render the page with the answered question and the answers in the right order
     else
       @question = Question.find(@rounds.last.question_id)
       @answers = []
       session[:tryout_answers].each do |answer_data|
-        @answers << Answer.new(answer_data)
+      @answers << Answer.new(answer_data)
       end
     end
   end
 
-  def score
+  def mcq
+    # looks for rounds with our game id
+    @rounds = Round.where(game_id: @game.id)
+    # raise
+    # if no round exists it will start a with a random question and the 4 possible answers but randomized
+    #check if there aree rounds
+    if @rounds[0].nil? || @rounds.count < 5
+      @question = rand_quest
+      @answers = Answer.where(question_id: @question.id).shuffle
+    else
+      redirect_to mcq_score_path(@game)
+    end
+  end
+
+  def mcq_score
+    @rounds = Round.where(game_id: @game.id)
   end
 
   def slide
@@ -82,12 +92,38 @@ class GamesController < ApplicationController
     params.require(:game).permit(:game_mode)
   end
 
-  # get random question
-  def rand_quest
-    count = Question.count
-    random_offset = rand(count)
-    return random_quest = Question.offset(random_offset).first
-  end
+    # get random question
+    def rand_quest
+      # Get initial question
+      count = Question.count
+      random_offset = rand(count)
+      random_quest = Question.offset(random_offset).first
+
+      # Initialize storage for recent questions if not yet initialized
+      if session[:recent_questions].nil?
+        session[:recent_questions] = []
+      end
+
+      # Keep on getting questions until we find a 'new' one
+      while session[:recent_questions].include?(random_quest.id)
+        count = Question.count
+        random_offset = rand(count)
+        random_quest = Question.offset(random_offset).first
+      end
+
+      # Update list of old questions
+      session[:recent_questions] << random_quest.id
+      if session[:recent_questions].count > 30
+        session[:recent_questions].shift
+      end
+
+      # for debug...
+      puts "In 'games\#rand_quest.'"
+      puts "session[:recent_questions].last = #{session[:recent_questions].last}"
+      puts "session[:recent_questions].length = #{session[:recent_questions].count}"
+
+       return random_quest
+    end
 
   def tryout_game?
   # 1. we are about to create a new game, with a mode of 'Try Out'

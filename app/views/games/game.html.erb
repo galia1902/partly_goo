@@ -6,11 +6,9 @@
     <div class="pillbox-add-top-margin ">
      <div class="pill-question pill-align-left"><%= @question.content %></div>
       <div class="pill hidden">spacer</div>
-
       <!-- Set color order, and position counter, for us in rnder loops -->
       <% color_order = ['red', 'green', 'blue', 'yellow'] %>
       <% position_counter = 0 %>
-
       <!-- If game isn't done yet, get a new answer from the user. -->
       <% if @rounds.last.nil? || @game.game_mode == "MCQ" && @game.rounds.count < 5 %>
         <% @answers.each do |answer| %>
@@ -23,7 +21,6 @@
                         id: "option-#{position_counter}"%>
           <%  position_counter += 1 %>
           <% end %>
-
        <!-- If we're done with one round, and the mode is 'Try Out', show the tryout score screen. -->
        <% elsif  @game.game_mode == "Try Out" %>
           <% @answers.each do |answer| %>
@@ -54,39 +51,17 @@
                      data-answer-rank="<%= answer.rank %>"
                      ><%= answer.content %>
                 </div>
-
             <% end %>
-
             <%  position_counter += 1 %>
-
             <!-- Close the div! -->
-
           <% end # end loop: render options %>
-
           <div class="pill hidden">spacer</div>
-
           <%= button_to "Play again", games_path, class: 'pill mb-0 d-flex justify-content-center' , params: {game: {game_mode: @game.game_mode}}%>
           <%= link_to "Back to Menu", root_path, class: 'pill last-button d-flex justify-content-center' %>
-
-      <% elsif  @game.game_mode == "MCQ" %>
-          <% @rounds.each do |round|%>
-          <% if round.answer.rank==1 %>
-          <div class="shown-result pill pill-blue"><%= round.answer.content %> <%= round.answer.rank %><i class="fas fa-check pill-far-left"></i></div>
-          <% else %>
-          <div class="shown-result pill pill-red"><%= round.answer.content %> <%= round.answer.rank %><i class="fas fa-times pill-far-left"></i></div>
-          <% end %>
-          <% end %>
-
-          <div class="pill hidden">spacer</div>
-
-          <%= link_to "Back to Menu", root_path, class: 'pill mb-0 d-flex justify-content-center' %>
-          <%= button_to "play again", games_path, class: 'pill last-button d-flex justify-content-center' , params: {game: {game_mode: @game.game_mode}}%>
-
       <% end %>
     </div>
    </div>
   </div>
-
 <script>
 
   // Script to during the make the Body element grey

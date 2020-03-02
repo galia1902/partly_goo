@@ -6,11 +6,26 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+
+
+########################
+#                      #
+#  Database Cleaning   #
+#                      #
+########################
+
 puts "Cleaning database..."
 User.destroy_all
 Question.destroy_all
 puts "Database cleaned! "
-puts "Making questions... "
+
+########################
+#                      #
+#  'Manual' Questions  #
+#                      #
+########################
+
+puts "Making default 'seeded from humor sites' questions... "
 
 quest = Question.new(content: 'learn how to code')
 quest.save!
@@ -264,7 +279,180 @@ answers.each do |answer|
   ansi = Answer.new(rank: answer[1], content: answer[0], question_id: quest.id)
   ansi.save!
 end
-puts "20 Seeds - Questions done!"
+puts "20 Seeds - Done basic questions one!"
+
+
+#########################
+#                       #
+#  'Dynamic' Questions  #
+#                       #
+#########################
+
+puts 'Time to dynamically seed questions!'
+puts 'Preparing required libaries...'
+require 'nokogiri'
+require 'open-uri'
+# URL for getting the suggestions
+autocomplete_url = 'https://www.google.com/complete/search?output=toolbar&q='
+puts '...done!'
+
+#------------------#
+# Animal Questions #
+#------------------#
+
+used_questions = []
+
+puts 'Making animal-themed questions now... '
+
+# Animal Seed Data
+animals = ['dog', 'cat', 'elephant', 'bear',
+           'ostrich', 'alligator', 'crocodile',
+            'horse', 'zebra', 'crab', 'lion', 'fish' ]
+animals_plural = animals.map { |animal| animal.pluralize }
+animal_plural_appends = ['are', 'do', 'vs', 'have']
+
+# ----
+# 10 times with with prepends...
+# ----
+
+animal_prepends = ['baby', 'cute', 'flying']
+10.times do
+  # Build new search query, create question, and save it.
+  test_query = "#{animal_prepends.sample} #{animals.sample} "
+  while used_questions.include?("#{test_query}")
+    test_query = "#{question_words.sample} #{question_word_appends.sample} "
+  end
+  new_question = Question.new(content: "#{test_query}", category: "Animal")
+  new_question.save!
+
+  # get autocomplete results, parse them, and extract relevant data.
+  suggestions = open("#{autocomplete_url}#{test_query}").read
+  suggestions = Nokogiri::XML(suggestions)
+  suggestions = suggestions.root.xpath("CompleteSuggestion")[1..4]
+  suggestions = suggestions.map { |suggestion| suggestion.xpath('suggestion')[0]["data"] }
+
+  # Create new answers with the extracted data, and save them too.
+  suggestions.each_with_index do |suggestion, index|
+    my_rank = index + 1
+    suggestion = suggestion.delete_prefix(test_query)
+    Answer.create!(rank: my_rank, content: suggestion,
+                   question_id: new_question.id)
+  end
+end
+puts "... completed 10 animal prepend questions..."
+
+# ----
+# 10 times, singular with w/ appends
+# ----
+
+animal_appends = ['with', 'vs', 'in', 'wearing']
+10.times do
+  # Build new search query, create question, and save it.
+  test_query = "#{animals.sample} #{animal_appends.sample} "
+  while used_questions.include?("#{test_query}")
+    test_query = "#{question_words.sample} #{question_word_appends.sample} "
+  end
+  new_question = Question.new(content: "#{test_query}", category: "Animal")
+  new_question.save!
+
+  # get autocmplete results, parse them, and extract relevant data.
+  suggestions = open("#{autocomplete_url}#{test_query}").read
+  suggestions = Nokogiri::XML(suggestions)
+  suggestions = suggestions.root.xpath("CompleteSuggestion")[1..4]
+  suggestions = suggestions.map { |suggestion| suggestion.xpath('suggestion')[0]["data"] }
+
+  # Create new answers with the extracted data, and save them too.
+  suggestions.each_with_index do |suggestion, index|
+    my_rank = index + 1
+    suggestion = suggestion.delete_prefix(test_query)
+    Answer.create!(rank: my_rank, content: suggestion,
+                   question_id: new_question.id)
+  end
+end
+puts "... completed 10 animals singular w/ append questions..."
+
+# ----
+# 10 times, plural w/ appends
+# ----
+
+animal_plural_appends = ['are', 'do', 'vs', 'have']
+10.times do
+  # Build new search query, create question, and save it.
+  test_query = "#{animals_plural.sample} #{animal_plural_appends.sample} "
+  while used_questions.include?("#{test_query}")
+    test_query = "#{question_words.sample} #{question_word_appends.sample} "
+  end
+  new_question = Question.new(content: "#{test_query}", category: "Animal")
+  new_question.save!
+
+  # get autocmplete results, parse them, and extract relevant data.
+  suggestions = open("#{autocomplete_url}#{test_query}").read
+  suggestions = Nokogiri::XML(suggestions)
+  suggestions = suggestions.root.xpath("CompleteSuggestion")[1..4]
+  suggestions = suggestions.map { |suggestion| suggestion.xpath('suggestion')[0]["data"] }
+
+  # Create new answers with the extracted data, and save them too.
+  suggestions.each_with_index do |suggestion, index|
+    my_rank = index + 1
+    suggestion = suggestion.delete_prefix(test_query)
+    Answer.create!(rank: my_rank, content: suggestion,
+                   question_id: new_question.id)
+  end
+end
+puts "... completed 10 animals plural w/ append questions..."
+puts "done seeding animal questions!"
+
+
+#--------------------------------#
+# "General Knowledge"  Questions #
+#--------------------------------#
+
+# General Knowledge Seed Data
+question_words = ['how', 'what', 'where', 'why', 'when', 'who']
+question_word_appends = ['can', 'do', 'did', 'are', 'is', 'was',
+                       'do we', 'did we', 'are you', 'was i']
+
+15.times do
+  # Build new search query, create question, and save it.
+  test_query = "#{question_words.sample} #{question_word_appends.sample} "
+  while used_questions.include?("#{test_query}")
+    test_query = "#{question_words.sample} #{question_word_appends.sample} "
+  end
+  used_questions << test_query
+  new_question = Question.new(content: "#{test_query}", category: "Open-Ended")
+  new_question.save!
+
+  # get autocmplete results, parse them, and extract relevant data.
+  suggestions = open("#{autocomplete_url}#{test_query}").read
+  suggestions = Nokogiri::XML(suggestions)
+  suggestions = suggestions.root.xpath("CompleteSuggestion")[1..4]
+  suggestions = suggestions.map { |suggestion| suggestion.xpath('suggestion')[0]["data"] }
+
+  # Create new answers with the extracted data, and save them too.
+  suggestions.each_with_index do |suggestion, index|
+    my_rank = index + 1
+    suggestion = suggestion.delete_prefix(test_query)
+    Answer.create!(rank: my_rank, content: suggestion,
+                   question_id: new_question.id)
+  end
+end
+puts "... completed 15 general knowledge questions ..."
+puts "Done with ALL questions!"
+puts "#{Question.all.count} total questions!"
+puts "#{Answer.all.count} total answers! Yay!"
+
+
+# # Question Generation Loop
+# test_query = "#{animals.sample} #{animal_appends.sample} "
+# suggestions_xml = open("#{autocomplete_url}#{test_query}").read
+# parsed_xml = Nokogiri::XML(suggestions_xml)
+# complete_suggestions = parsed_xml.root.xpath("CompleteSuggestion")
+# complete_suggestions.each do |c_suggest|
+#   puts c_suggest.xpath('suggestion')[0]["data"]
+# end
+
+# p suggestions_xml
+# p parsed_xml
 
 
 ###########
@@ -272,6 +460,8 @@ puts "20 Seeds - Questions done!"
 #  Users  #
 #         #
 ###########
+
+
 puts "Making users ... "
 
 seed_users = ['tryout_guy',
@@ -290,6 +480,7 @@ seed_users.each do |name|
                password: '111111')
 end
 puts 'Done with Users!'
+
 
 
 ####################

@@ -62,17 +62,23 @@
   // Script to handle delay, switching from Splash screen to Menu screen
   const slowfadeElement = (element) => {
     element.classList.add("slow-fade");
-  }
+  };
 
+  const fadeables = document.querySelectorAll('.fadeable');
 
-  const fadeFadeablesAfterDelay = () => {
-    let fadeables = document.querySelectorAll('.fadeable');
-    fadeables.forEach((fadeable) => {
-      setTimeout(() => slowfadeElement(fadeable), 10000);
+  const fadeAfterDelay = (elements) => {
+    elements.forEach((element) => {
+      setTimeout(() => slowfadeElement(element), 2000);
     });
   };
 
-  const fadeFadeablesOnClick
+  const removeAfterDelay = (elements) => {
+    elements.forEach((element) => {
+      setTimeout(() => element.remove(), 4200);
+    });
+  };
 
+  fadeAfterDelay(fadeables);
+  removeAfterDelay(fadeables);
 
 </script>
