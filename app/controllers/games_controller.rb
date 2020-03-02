@@ -127,11 +127,12 @@ class GamesController < ApplicationController
 
   def tryout_game?
   # 1. we are about to create a new game, with a mode of 'Try Out'
-  if params[:action] == 'create'
-    return true if params[:game][:game_mode] == 'Try Out'
-  else
-    # 2. there is already a game, which has a mode of 'Try Out'
-    game = Game.find(params[:id])
-    return !game.nil? && game.game_mode == 'Try Out'
+    if params[:action] == 'create'
+      return true if params[:game][:game_mode] == 'Try Out'
+    else
+      # 2. there is already a game, which has a mode of 'Try Out'
+      game = Game.find(params[:id])
+      return !game.nil? && game.game_mode == 'Try Out'
+    end
   end
 end
