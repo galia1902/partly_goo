@@ -1,5 +1,5 @@
-<div class="pillbox_outer bg-light">
-  <div class="game_inner bg-light">
+<div class="pillbox_outer back-opac">
+  <div class="game_inner">
     <div>
       <a href="/">
         <div class="logo-40-px" style="background-image"></div>
@@ -10,50 +10,36 @@
       <div class="pill hidden">spacer</div>
       <% if @rounds.last.nil?  %>
 
-      <ul id="quest-sort">
+      <div class="set-width">
+      <div class="go_back">
+        <div class="pill-outer">
+          <h2>1</h2>
+        </div>
 
-      <div class="pill-outer">
-        <h2>1</h2>
-        <div class="container-sortable">
-          <li class="sort-option pill-sortable pill-align-sortable pill-red d-flex"><i class="fas fa-bars"></i> <%= @answers[0].content %></li>
+        <div class="pill-outer">
+          <h2>2</h2>
+        </div>
+
+        <div class="pill-outer">
+          <h2>3</h2>
+        </div>
+
+        <div class="pill-outer">
+          <h2>4</h2>
         </div>
       </div>
 
-      <div class="pill-outer">
-        <h2>2</h2>
-        <div class="container-sortable">
-          <li class="sort-option pill-sortable pill-align-sortable pill-green d-flex"><i class="fas fa-bars"></i> <%= @answers[1].content %></li>
-        </div>
-      </div>
 
-      <div class="pill-outer">
-        <h2>3</h2>
-        <div class="container-sortable">
-          <li class="sort-option pill-sortable pill-align-sortable pill-blue d-flex"><i class="fas fa-bars"></i> <%= @answers[2].content %></li>
-        </div>
-      </div>
-
-      <div class="pill-outer">
-        <h2>4</h2>
-        <div class="container-sortable">
-          <li class="sort-option pill-sortable pill-align-sortable pill-yellow d-flex"><i class="fas fa-bars"></i> <%= @answers[3].content %></li>
-        </div>
-      </div>
+      <ul id="quest-sort" class="container-sortable">
+        <li class="sort-option pill-sortable pill-align-sortable pill-red d-flex"><i class="fas fa-bars"></i> <%= @answers[0].content %></li>
+        <li class="sort-option pill-sortable pill-align-sortable pill-green d-flex"><i class="fas fa-bars"></i> <%= @answers[1].content %></li>
+        <li class="sort-option pill-sortable pill-align-sortable pill-blue d-flex"><i class="fas fa-bars"></i> <%= @answers[2].content %></li>
+        <li class="sort-option pill-sortable pill-align-sortable pill-yellow d-flex"><i class="fas fa-bars"></i> <%= @answers[3].content %></li>
       </ul>
-
-
-      <% elsif  @game.game_mode == "Try Out" %>
-      <div id="result-1" class="shown-result pill pill-red pill-align-right"><%= @answers[0].content %> || #<%= @answers[0].rank %></div>
-      <div id="result-2" class="shown-result pill pill-green pill-align-right"><%= @answers[1].content %> || #<%= @answers[1].rank %></div>
-      <div id="result-3" class="shown-result pill pill-blue pill-align-right"><%= @answers[2].content %> || #<%= @answers[2].rank %></div>
-      <div id="result-4" class="shown-result pill pill-yellow pill-align-right"><%= @answers[3].content %> || #<%= @answers[3].rank %></div>
-
-      <div class="pill hidden">spacer</div>
-
-      <%= button_to "Play again", games_path, class: 'pill mb-0 d-flex justify-content-center' , params: {game: {game_mode: @game.game_mode}}%>
-      <%= link_to "Back to Menu", root_path, class: 'pill last-button d-flex justify-content-center' %>
+      </div>
 
       <% end %>
+
     </div>
   </div>
 </div>
@@ -94,7 +80,7 @@
 
    });
 
-  initSortable();
 
 
-</script>
+
+ </script>
