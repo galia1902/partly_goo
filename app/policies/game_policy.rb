@@ -38,4 +38,8 @@ class GamePolicy < ApplicationPolicy
     record.user == user
   end
 
+  def slide?
+    user == record.user
+  end
+
 end
