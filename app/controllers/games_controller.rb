@@ -49,7 +49,7 @@ class GamesController < ApplicationController
   def mcq
     # looks for rounds with our game id
     @rounds = Round.where(game_id: @game.id)
-    # raise
+
     # if no round exists it will start a with a random question and the 4 possible answers but randomized
     #check if there aree rounds
     if @rounds[0].nil? || @rounds.count < 5
@@ -92,38 +92,38 @@ class GamesController < ApplicationController
     params.require(:game).permit(:game_mode)
   end
 
-    # get random question
-    def rand_quest
-      # Get initial question
+  # get random question
+  def rand_quest
+    # Get initial question
+    count = Question.count
+    random_offset = rand(count)
+    random_quest = Question.offset(random_offset).first
+
+    # Initialize storage for recent questions if not yet initialized
+    if session[:recent_questions].nil?
+      session[:recent_questions] = []
+    end
+
+    # Keep on getting questions until we find a 'new' one
+    while session[:recent_questions].include?(random_quest.id)
       count = Question.count
       random_offset = rand(count)
       random_quest = Question.offset(random_offset).first
-
-      # Initialize storage for recent questions if not yet initialized
-      if session[:recent_questions].nil?
-        session[:recent_questions] = []
-      end
-
-      # Keep on getting questions until we find a 'new' one
-      while session[:recent_questions].include?(random_quest.id)
-        count = Question.count
-        random_offset = rand(count)
-        random_quest = Question.offset(random_offset).first
-      end
-
-      # Update list of old questions
-      session[:recent_questions] << random_quest.id
-      if session[:recent_questions].count > 30
-        session[:recent_questions].shift
-      end
-
-      # for debug...
-      puts "In 'games\#rand_quest.'"
-      puts "session[:recent_questions].last = #{session[:recent_questions].last}"
-      puts "session[:recent_questions].length = #{session[:recent_questions].count}"
-
-       return random_quest
     end
+
+    # Update list of old questions
+    session[:recent_questions] << random_quest.id
+    if session[:recent_questions].count > 30
+      session[:recent_questions].shift
+    end
+
+    # for debug...
+    puts "In 'games\#rand_quest.'"
+    puts "session[:recent_questions].last = #{session[:recent_questions].last}"
+    puts "session[:recent_questions].length = #{session[:recent_questions].count}"
+
+     return random_quest
+  end
 
   def tryout_game?
   # 1. we are about to create a new game, with a mode of 'Try Out'
@@ -132,8 +132,6 @@ class GamesController < ApplicationController
   else
     # 2. there is already a game, which has a mode of 'Try Out'
     game = Game.find(params[:id])
-    return true if !game.nil? && game.game_mode == 'Try Out'
-    false
+    return !game.nil? && game.game_mode == 'Try Out'
   end
-end
 end
