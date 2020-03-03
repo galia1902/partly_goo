@@ -25,12 +25,12 @@
                         id: "option-#{position_counter}",
                         style: "background-color: #{color_order[position_counter]}"%>
           <%  position_counter += 1 %>
-          <% end %>
+        <% end %>
+      <% end %>
+      <div class="pill hidden">spacer</div>
 
-          <div class="pill hidden">spacer</div>
-
-          <%= link_to "Back to Menu", root_path, class: 'pill mb-0 d-flex justify-content-center' %>
-          <%= button_to "Next", game_rounds_path(@game), class: 'pill last-button d-flex justify-content-center',   params: {round: {duration: 30, question_id: '', answer_id: '' }} %>
+      <%= link_to "Back to Menu", root_path, class: 'pill mb-0 d-flex justify-content-center' %>
+      <%= button_to "Next", game_rounds_path(@game), class: 'pill last-button d-flex justify-content-center',   params: {round: {duration: 30, question_id: '', answer_id: '' }} %>
 
     </div>
    </div>
