@@ -22,10 +22,12 @@
         autofocus: true,
         input_html: { autocomplete: "email", class: "text-input", type:"text", value:"", placeholder:"E-mail" } %>
         </div>
+         <div class="query-block">
         <%= f.input :password,
         required: false,
-        input_html: { autocomplete: "current-password" } %>
+        input_html: { autocomplete: "current-password", class:"text-input", type: "password", value:"", placeholder:"Password" } %>
         <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
+       </div>
       </div>
 
       <div class="form-actions">
