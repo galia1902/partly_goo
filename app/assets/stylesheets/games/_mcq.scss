@@ -1,0 +1,19 @@
+
+.pillbox_outer{
+  background: $bg-gray;
+  width: 100%;
+  .mcq-inner {
+    background: inherit;
+    width: 40%;
+    margin: 0 auto;
+    margin-top: 4rem;
+  }
+}
+
+@media screen and (max-width : 720px) {
+  .pillbox_outer .mcq-inner {
+    width: 85%;
+    background: inherit;
+  }
+}
+
