@@ -37,7 +37,7 @@
       <div class = "user-buttons">
        <% if user_signed_in? %>
        <%= link_to "", destroy_user_session_path, method: :delete, class: 'logout-icon text-dark mb-0 d-flex justify-content-center' %>
-       <div class = "username-displayed"> Username </div>
+       <div class = "username-displayed"> <%= current_user.username %> </div>
        <%= link_to "", dashboard_path, class: 'my-stats-icon text-dark mb-0 d-flex justify-content-center' %>
        <% else %>
        <%= link_to "Login", user_session_path, class: 'text-dark pill mb-0 d-flex justify-content-center' %>
