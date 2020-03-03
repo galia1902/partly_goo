@@ -31,16 +31,16 @@ class GamesController < ApplicationController
     # looks for rounds with our game id
     @rounds = Round.where(game_id: @game.id)
     # if no round exists it will start a with a random question and the 4 possible answers but randomized
-    #check if there aree rounds
+    #check if there are rounds
     if @rounds[0].nil?
       @question = rand_quest
       @answers = Answer.where(question_id: @question.id).shuffle
-      session[:tryout_answers] = @answers
+      session[:round_ordered_answers] = @answers
       # if round exists (question already answered) render the page with the answered question and the answers in the right order
     else
       @question = Question.find(@rounds.last.question_id)
       @answers = []
-      session[:tryout_answers].each do |answer_data|
+      session[:round_ordered_answers].each do |answer_data|
       @answers << Answer.new(answer_data)
       end
     end
@@ -69,13 +69,13 @@ class GamesController < ApplicationController
     if @rounds[0].nil?
       @question = rand_quest
       @answers = Answer.where(question_id: @question.id).shuffle
-      session[:tryout_answers] = @answers
+      session[:round_ordered_answers] = @answers
     elsif @rounds.count == 3
       redirect_to slide_score_path(@game) #placeholder for now
     else
       @question = Question.find(@rounds.last.question_id)
       @answers = []
-      session[:tryout_answers].each do |answer_data|
+      session[:round_ordered_answers].each do |answer_data|
         @answers << Answer.new(answer_data)
       end
     end
@@ -116,13 +116,7 @@ class GamesController < ApplicationController
     if session[:recent_questions].count > 30
       session[:recent_questions].shift
     end
-
-    # for debug...
-    puts "In 'games\#rand_quest.'"
-    puts "session[:recent_questions].last = #{session[:recent_questions].last}"
-    puts "session[:recent_questions].length = #{session[:recent_questions].count}"
-
-     return random_quest
+    return random_quest
   end
 
   def tryout_game?

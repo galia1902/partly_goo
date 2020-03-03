@@ -8,13 +8,11 @@ class RoundsController < ApplicationController
     authorize @round
     @round.save!
 
-    answer_position = session[:tryout_answers].find_index do |answer_data|
-      answer_data[:id] == round_params[:answer_id]
-    end
-
     if @game.game_mode == "Sortable"
       redirect_to slide_path(@game)
-    else
+    elsif @game.game_mode == "MCQ"
+      redirect_to mcq_path(@game)
+    else # implies @game.game_mode == tryout
       redirect_to game_path(@game)
     end
   end
