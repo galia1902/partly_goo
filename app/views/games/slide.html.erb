@@ -54,7 +54,7 @@
     </div>
   </div>
 
-  <%= form_tag game_rounds_path(@game) do %>
+  <%= form_tag score_slide_game_path(@game) do %>
     <% @answers.each_with_index do |answer, index| %>
       <%= hidden_field_tag "answer_#{index + 1}", answer.id %>
     <% end %>

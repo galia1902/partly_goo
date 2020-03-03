@@ -35,4 +35,11 @@ class GamePolicy < ApplicationPolicy
     user == record.user
   end
 
+  def score_slide_game?
+    user == record.user
+  end
+
+  def show_slide_score?
+    user == record.user
+  end
 end

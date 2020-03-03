@@ -2,15 +2,15 @@ class RoundsController < ApplicationController
   skip_before_action :authenticate_user!, if: :tryout_game?
 
   def create
-    @round = Round.new(round_params)
+    # Note! We don't get here if game_mode == slide, b/c i went right to score! -Sean
+
+
     @game = Game.find(params[:game_id])
+    @round = Round.new(round_params)
     @round.game = @game
     authorize @round
-    @round.save!
 
-    if @game.game_mode == "Sortable"
-      redirect_to slide_path(@game)
-    elsif @game.game_mode == "MCQ"
+    if @game.game_mode == "MCQ"
       redirect_to mcq_path(@game)
     else # implies @game.game_mode == tryout
       redirect_to game_path(@game)
