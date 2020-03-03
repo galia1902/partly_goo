@@ -1,0 +1,36 @@
+.dash-back-btn-icon{
+  background-image: url('Arrow1.svg');
+  width: 64px;
+  height: 64px;
+  background-repeat:no-repeat;
+  background-position: center;
+  background-size: 19px;
+  display:block;
+  color:transparent;
+  transition: background-size 150ms ease-in-out;
+  &:hover{
+    background-size: 25px;
+  }
+}
+
+.dash-title{
+  height: 64px;
+  line-height: 64px;
+}
+
+.dash-header-placeholder{
+  width: 64px;
+  height: 64px;
+}
+
+.invisible{
+  display: none;
+}
+
+.dash-header {
+    background-color: $bg-gray;
+    display: flex;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 19px;
+   }

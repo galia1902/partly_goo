@@ -1,3 +1,13 @@
+ <div class="dash-header">
+    <div class="dash-back-btn">
+      <%= link_to "", root_path, class: 'dash-back-btn-icon' %>
+    </div>
+    <p class = "invisible"></p>
+    <p class = "dash-title"> Log in </p>
+    <div class="dash-header-placeholder"></div>
+  </div>
+
+
 <div class = "htp-container">
   <div class = "htp-inner-container text-white">
     <div class="form-container">
@@ -6,10 +16,12 @@
 
       <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
       <div class="form-inputs">
+        <div class="query-block">
         <%= f.input :email,
         required: false,
         autofocus: true,
-        input_html: { autocomplete: "email" } %>
+        input_html: { autocomplete: "email", class: "text-input", type:"text", value:"", placeholder:"E-mail" } %>
+        </div>
         <%= f.input :password,
         required: false,
         input_html: { autocomplete: "current-password" } %>
@@ -22,8 +34,6 @@
       <% end %>
 
       <%= render "devise/shared/links" %>
-      <%= link_to "Back to Menu", root_path, class: 'btn btn-form' %>
-
     </div>
   </div>
 </div>
