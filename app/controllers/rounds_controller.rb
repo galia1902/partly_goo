@@ -2,7 +2,6 @@ class RoundsController < ApplicationController
   skip_before_action :authenticate_user!, if: :tryout_game?
 
   def create
-    raise
     @round = Round.new(round_params)
     @game = Game.find(params[:game_id])
     @round.game = @game

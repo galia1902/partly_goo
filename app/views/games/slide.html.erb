@@ -61,12 +61,6 @@
     <%= submit_tag "Next", id: 'submit-button', class: 'pill d-flex justify-content-center' %>
   <% end %>
 
-  <%#= button_to "Next",
-                 game_rounds_path(@game),
-                 id: "submit-button",
-                 class: 'pill d-flex justify-content-center',
-                 params: {round: {duration: 30, question_id: '', submitted_order: '' }} %>
-
 </div>
 
 <script>
@@ -78,10 +72,9 @@
   }
   changeBodyBackgroundColor();
 
-  // Script making scoreButton capture current scores when clicked
+  // Script to get the current Sort
   const getCurrentSort = () => {
     let sorted = document.querySelectorAll(".sort-option")
-    console.log(sorted);
     return sorted;
   }
 
@@ -90,7 +83,6 @@
     scoreButton.addEventListener("click", (event) => {
       // event.preventDefault()
       let answersOrdered = getCurrentSort();
-
       let i = 0
       answersOrdered.forEach((answer) => {
         let value = answer.dataset.answerNumber
@@ -99,69 +91,11 @@
         i++
       })
       // DEBUG:
-      console.log('FORM INPUTS')
-      document.querySelectorAll('input[name*=answer]').forEach((input) => {
-        console.log(input.value)
-      })
-      // .....
-
-      // testAnswerOrder = "1450 1451 1452 1453"
-      // scoreButton.parentElement.querySelector("[name")
+      // console.log('FORM INPUTS')
+      // document.querySelectorAll('input[name*=answer]').forEach((input) => {
+      //   console.log(input.value)
+      // })
     })
   }
   bindGetSortToReveal()
-
-
-
-
-
-
-  // Script copied from game.html.erb --> use as model for getting data from elements
-  if(typeof(handleChosenAnswer) === 'undefined'){
-      let answer = document.querySelectorAll('.mcq-answer');
-
-      let handleChosen = (ans) => {
-        let lastButton = document.querySelector('.last-button');
-          answer.forEach((an) => {
-            if(an.id === ans.id){
-              let inputs = an.parentElement.querySelectorAll('[name*=round]');
-              inputs.forEach((input) => {
-                lastButton.parentElement.querySelector("[name=" + `"${input.name}"]`).value = input.value;
-              })
-              changeChosenStyle(an);
-
-            }else{
-              an.style.opacity = '.5';
-            }
-          })
-      }
-
-
-      let handleChosenAnswer = () => {
-        answer.forEach((ans) => {
-          ans.addEventListener('click', (event) => {
-            event.preventDefault();
-            let clicked = event.currentTarget;
-            handleChosen(clicked);
-            let session = sessionStorage.getItem('chosen');
-            let chosen = session === null ? false : true;
-            if(chosen){
-             document.querySelectorAll('.mcq-answer').forEach(elem => {
-               elem.disabled = true;
-             });
-            }else{
-              sessionStorage.setItem('chosen', true);
-            }
-          })
-        })
-      }
-
-      handleChosenAnswer();
-    }else{
-      handleChosenAnswer();
-    }
-
-
-
-
- </script>
+</script>
