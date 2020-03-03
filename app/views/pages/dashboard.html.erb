@@ -1,8 +1,12 @@
 
 <div class="dash-container">
   <div class="dash-header">
-    <p><% current_user.nil? ? "Not Logged In" : current_user.username.capitalize %></p>
-    <p> game history </p>
+    <div class="dash-back-btn">
+      <%= link_to "", root_path, class: 'dash-back-btn-icon' %>
+    </div>
+    <p class = "invisible"><% current_user.nil? ? "Not Logged In" : current_user.username.capitalize %></p>
+    <p class = "dash-title"> Game history </p>
+    <div class="dash-header-placeholder"></div>
   </div>
   <div class="dash-inner-container">
     <div>
@@ -27,20 +31,25 @@
 
 
 
-    <div class="dash-options dash-text">
+    <div class="dash-text">
 
       <div class="d-flex justify-content-center">
-        <div class="dash-profile-container" style=" border: 5px solid <%= @color %>; ">
-          <div class="d-flex justify-content-between">
-            <p>Username</p>
-            <%= current_user.username %>
-          </div>
-          <div class="d-flex justify-content-between">
-           <p>Games played</p>
-           <%= current_user.games.count %>
+        <div class="d-flex dash-profile-container">
+          <div class="justify-content-between">
+           <div class = "dash-stats number" > <%= current_user.games.count %> </div>
+           <p class= "dash-stats title">Games</p>
          </div>
+          <div class="justify-content-between">
+            <div class= "dash-stats number" > <%= @rounds.count %> </div>
+            <p class= "dash-stats title">Questions</p>
+          </div>
+          <div class="justify-content-between">
+            <div class= "dash-stats number" > 10PH </div>
+            <p class= "dash-stats title">Points</p>
+          </div>
        </div>
      </div>
+
 
      <!-- Games 'gallery'  -->
      <div class="dash-games-container">
@@ -52,22 +61,30 @@
       <% else %>
       <% @games.each do |game| %>
         <% if game.game_mode == "MCQ" %>
-          <a class="pill dash-pill d-flex justify-content-center" href="/games/<%= game.id %>/score" style="background-color: <%= ["#4688F1","#E8453C","#FABB2D","#3AA757"].sample %>;"><%= game.game_mode %></a>
+          <a class="pill dash-pill d-flex" href="/games/<%= game.id %>/score">
+            <div class= "dash-date" > <%= game.created_at.day %>\<%= game.created_at.month %>\<%= game.created_at.year %> </div>
+           <!--  <div class= "dash-date" >  </div>
+            <div class= "dash-date" > </div> -->
+            <div class= "dash-game-mode" > <%= game.game_mode %> </div>
+            <div class="shevron-right"> </div>
+          </a>
           <div class = "badge"> +2 </div>
         <% else %>
-          <a class="pill dash-pill d-flex justify-content-center" href="/games/<%= game.id %>/game" style="background-color: <%= ["#4688F1","#E8453C","#FABB2D","#3AA757"].sample %>;"><%= game.game_mode %></a>
+          <a class="pill dash-pill d-flex" href="/games/<%= game.id %>/game">
+            <div class= "dash-date" > <%= game.created_at.day %>\<%= game.created_at.month %>\<%= game.created_at.year %> </div>
+            <!-- <div class= "dash-date" > <%= game.created_at.day %>\ </div>
+            <div class= "dash-date" > <%= game.created_at.month %>\ </div>
+            <div class= "dash-date" > <%= game.created_at.year %> </div> -->
+            <div class= "dash-game-mode" > <%= game.game_mode %> </div>
+            <div class="shevron-right"> </div>
+          </a>
           <div class = "badge">+<%= game.score %> </div>
         <% end %>
       <% end %>
       <% end %>
 
     </div>
-
-
   </div>
-
-  <%= link_to "Back to Menu", root_path, class: 'text-dark pill d-flex justify-content-center' %>
-
 </div>
 </div>
 
