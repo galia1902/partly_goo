@@ -10,7 +10,9 @@ class RoundsController < ApplicationController
 
     if @game.game_mode == "Sortable"
       redirect_to slide_path(@game)
-    else
+    elsif @game.game_mode == "MCQ"
+      redirect_to mcq_path(@game)
+    else # implies @game.game_mode == tryout
       redirect_to game_path(@game)
     end
   end
