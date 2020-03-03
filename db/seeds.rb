@@ -69,7 +69,7 @@ quest.save!
 answers[0] = ['poop', 1]
 answers[1] = ['salt lamp', 2]
 answers[2] = ['aloe plant', 3]
-answers[3] = ['steak medium while pregnant', 4]
+answers[3] = ['steak medium while preg...', 4]
 
 answers.each do |answer|
   ansi = Answer.new(rank: answer[1], content: answer[0], question_id: quest.id)
@@ -159,7 +159,7 @@ puts "We're up to 10 now."
 quest = Question.new(content: 'what\'s a boyfriend')
 quest.save!
 answers[0] = ['jean', 1]
-answers[1] = ['and where can i download one', 2]
+answers[1] = ['and where can i download', 2]
 answers[2] = ['supposed to do', 3]
 answers[3] = ['shirt', 4]
 
@@ -194,9 +194,9 @@ end
 
 quest = Question.new(content: 'how come a ')
 quest.save!
-answers[0] = ['bed has four legs but ony one foot', 1]
-answers[1] = ['baby doesn\'t drown in the womb', 2]
-answers[2] = ['snowman\'s never dressed for hanukkah', 3]
+answers[0] = ['bed has four legs but ...', 1]
+answers[1] = ['baby doesn\'t drown in ..', 2]
+answers[2] = ['snowman\'s never dressed', 3]
 answers[3] = ['website won\'t load', 4]
 
 answers.each do |answer|
@@ -207,9 +207,9 @@ end
 quest = Question.new(content: 'help I\'m a p')
 quest.save!
 answers[0] = ['-risoner in the library', 1]
-answers[1] = ['-risoner in a chinese bakery', 2]
+answers[1] = ['-risoner in a chinese', 2]
 answers[2] = ['-arent', 3]
-answers[3] = ['-risoner in a toothpaste factory', 4]
+answers[3] = ['-risoner in a toothpaste', 4]
 
 answers.each do |answer|
   ansi = Answer.new(rank: answer[1], content: answer[0], question_id: quest.id)
@@ -222,9 +222,9 @@ puts "15 woop woop"
 
 quest = Question.new(content: 'don\'t you hate it when a')
 quest.save!
-answers[0] = ['sentence doesn\'t end the way you think it octopus', 1]
+answers[0] = ['sentence doesn\'t end ...', 1]
 answers[1] = ['llama named carl', 2]
-answers[2] = ['chinchilla eats the universe', 3]
+answers[2] = ['chinchilla eats the ...', 3]
 answers[3] = ['velociraptor throws', 4]
 
 answers.each do |answer|
@@ -235,9 +235,9 @@ end
 quest = Question.new(content: 'is it normal to')
 quest.save!
 answers[0] = ['cry everyday', 1]
-answers[1] = ['have suicidal thoughts as a teenager', 2]
+answers[1] = ['have suicidal thoughts', 2]
 answers[2] = ['feel your heartbeat', 3]
-answers[3] = ['be sexually attracted to numbers', 4]
+answers[3] = ['be attracted to numbers', 4]
 
 answers.each do |answer|
   ansi = Answer.new(rank: answer[1], content: answer[0], question_id: quest.id)
@@ -258,9 +258,9 @@ end
 
 quest = Question.new(content: 'dinosaurs were')
 quest.save!
-answers[0] = ['made up by the cia to discourage time travel', 1]
+answers[0] = ['made up by the cia', 1]
 answers[1] = ['birds', 2]
-answers[2] = ['the dominant land animal of the mesozoic era', 3]
+answers[2] = ['the dominant land animal', 3]
 answers[3] = ['definitely cold blooded', 4]
 
 answers.each do |answer|
@@ -335,6 +335,11 @@ animal_prepends = ['baby', 'cute', 'flying']
   suggestions.each_with_index do |suggestion, index|
     my_rank = index + 1
     suggestion = suggestion.delete_prefix(test_query)
+    if suggestion.length > 25
+      suggestion = suggestion[0, 22] + "..."
+    else
+      suggestion
+    end
     Answer.create!(rank: my_rank, content: suggestion,
                    question_id: new_question.id)
   end
@@ -365,6 +370,11 @@ animal_appends = ['with', 'vs', 'in', 'wearing']
   suggestions.each_with_index do |suggestion, index|
     my_rank = index + 1
     suggestion = suggestion.delete_prefix(test_query)
+    if suggestion.length > 25
+      suggestion = suggestion[0, 22] + "..."
+    else
+      suggestion
+    end
     Answer.create!(rank: my_rank, content: suggestion,
                    question_id: new_question.id)
   end
@@ -395,6 +405,11 @@ animal_plural_appends = ['are', 'do', 'vs', 'have']
   suggestions.each_with_index do |suggestion, index|
     my_rank = index + 1
     suggestion = suggestion.delete_prefix(test_query)
+    if suggestion.length > 25
+      suggestion = suggestion[0, 22] + "..."
+    else
+      suggestion
+    end
     Answer.create!(rank: my_rank, content: suggestion,
                    question_id: new_question.id)
   end
@@ -432,6 +447,11 @@ question_word_appends = ['can', 'do', 'did', 'are', 'is', 'was',
   suggestions.each_with_index do |suggestion, index|
     my_rank = index + 1
     suggestion = suggestion.delete_prefix(test_query)
+    if suggestion.length > 25
+      suggestion = suggestion[0, 22] + "..."
+    else
+      suggestion
+    end
     Answer.create!(rank: my_rank, content: suggestion,
                    question_id: new_question.id)
   end
