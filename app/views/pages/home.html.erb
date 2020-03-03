@@ -24,7 +24,7 @@
       </div>
 
     </div>
-    <div class="pillbox-add-top-margin ">
+    <div class="pillbox-add-top-margin-main-page ">
 
       <% if user_signed_in? %>
       <%= button_to "Try Out", games_path, params: {game: {game_mode: "Try Out"}}, class: 'pill mb-0 d-flex justify-content-center' %>
@@ -33,18 +33,17 @@
       <% else %>
       <%= button_to "Try Out", games_path, params: {game: {game_mode: "Try Out"}}, class: 'pill mb-0 d-flex justify-content-center' %>
       <% end %>
-
-
-      <div class="pill hidden">spacer</div>
-      <% if user_signed_in? %>
-      <%= link_to "My Stats", dashboard_path, class: 'text-dark pill mb-0 d-flex justify-content-center' %>
-      <%= link_to "Logout", destroy_user_session_path, method: :delete, class: 'text-dark pill mb-0 d-flex justify-content-center' %>
-      <% else %>
-      <%= link_to "Login", user_session_path, class: 'text-dark pill mb-0 d-flex justify-content-center' %>
-      <%= link_to "Sign up", new_user_registration_path, class: 'text-dark pill mb-0 d-flex justify-content-center' %>
-
-      <% end %>
     </div>
+      <div class = "user-buttons">
+       <% if user_signed_in? %>
+       <%= link_to "", destroy_user_session_path, method: :delete, class: 'logout-icon text-dark mb-0 d-flex justify-content-center' %>
+       <div class = "username-displayed"> Username </div>
+       <%= link_to "", dashboard_path, class: 'my-stats-icon text-dark mb-0 d-flex justify-content-center' %>
+       <% else %>
+       <%= link_to "Login", user_session_path, class: 'text-dark pill mb-0 d-flex justify-content-center' %>
+       <%= link_to "Sign up", new_user_registration_path, class: 'text-dark pill mb-0 d-flex justify-content-center' %>
+       <% end %>
+      </div>
   </div>
 </div>
 
