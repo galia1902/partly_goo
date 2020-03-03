@@ -1,7 +1,19 @@
 
 <div class="dash-container">
   <div class="dash-header">
-    <p><% current_user.nil? ? "Not Logged In" : current_user.username.capitalize %></p>
+
+    <% display_name = "" %>
+    <% if current_user.nil? %>
+      <% display_name = "<em>You arn't logged in!</em" %>
+    <% elsif current_user.username.nil?%>
+      <% display_name = current_user.email  %>
+    <% else %>
+      <% display_name = current_user.username %>
+    <% end %>
+
+
+    <% %>
+    <p><%= display_name %></p>
   </div>
   <div class="dash-inner-container">
     <div>
