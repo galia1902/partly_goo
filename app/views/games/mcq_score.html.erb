@@ -1,37 +1,51 @@
   <div class="pillbox_outer bg-light">
-  <div class="mcq-inner bg-light">
-    <div>
-      <div class="logo-40-px" style="background-image"></div>
-    </div>
-    <div class="pillbox-add-top-margin">
-    <div class="pill hidden">spacer</div>
-  <% sum = 0 %>
-  <% @rounds.each do |round|%>
-    <% if round.answer.rank == 1 %>
-
-      <div class="pill pill-tryout-result d-flex align-items-center px-4 justify-content-between pill-green">
-        <i class="fas fa-check mb-0"></i>
-        <%= round.answer.content %>
+    <div class="mcq-inner bg-light">
+      <div>
+        <div class="logo-40-px" style="background-image"></div>
       </div>
+      <div class="pillbox-add-top-margin">
+        <div class="pill hidden">spacer</div>
+        <% sum = 0 %>
+        <% @rounds.each do |round|%>
+        <% if round.answer.rank == 1 %>
 
-      <% sum += 1 %>
-      <% else %>
+        <div class="pill pill-tryout-result d-flex align-items-center px-4 justify-content-between pill-green">
+          <i class="fas fa-check mb-0"></i>
+          <%= round.answer.content %>
+        </div>
 
-      <div class="pill-result pill-tryout-result d-flex align-items-center px-4 justify-content-between pill-red">
-        <i class="fas fa-times mb-0"></i>
-        <%= round.answer.content %>
-      </div>
-    <% end %>
-  <% end %>
+        <% sum += 1 %>
+        <% else %>
+
+        <div class="pill-result pill-tryout-result d-flex align-items-center px-4 justify-content-between pill-red">
+          <i class="fas fa-times mb-0"></i>
+          <%= round.answer.content %>
+        </div>
+        <% end %>
+        <% end %>
 
 
 
-  <div class="pill hidden">spacer</div>
+        <div class="d-flex justify-content-center">
+          <div class="smiley-back">
+            <% if sum < 1 %>
+            <div class="smiley-sad"></div>
+            <% elsif sum < 2 %>
+            <div class="smiley-frown"></div>
+            <% elsif sum < 4 %>
+            <div class="smiley-meh"></div>
+            <% elsif sum < 5 %>
+            <div class="smiley-smile"></div>
+            <% else %>
+            <div class="smiley-happy"></div>
+            <% end %>
+          </div>
+        </div>
 
-  <%= link_to "Back to Menu", root_path, class: 'pill mb-0 d-flex justify-content-center' %>
-  <%= button_to "Play again", games_path, class: 'pill last-button d-flex justify-content-center' , params: {game: {game_mode: @game.game_mode}}%>
+        <%= link_to "Back to Menu", root_path, class: 'pill mb-0 d-flex justify-content-center' %>
+        <%= button_to "Play again", games_path, class: 'pill last-button d-flex justify-content-center' , params: {game: {game_mode: @game.game_mode}}%>
 
-  <script>
+        <script>
 
   // Script to during the make the Body element grey
   let myBody = document.querySelector('body');
@@ -42,4 +56,4 @@
 
 
 
-  </script>
+</script>

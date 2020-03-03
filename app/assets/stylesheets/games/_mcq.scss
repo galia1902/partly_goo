@@ -21,5 +21,70 @@
   display: flex;
   align-items: flex-end;
   justify-content: center;
-  height: 9rem;
+  height: 6rem;
 }
+
+.smiley-back {
+  height: 5rem;
+  width: 5rem;
+  background-color: rgb(245, 214, 74);
+  border-radius: 50%;
+  margin-bottom: 16px;
+  margin-top: 16px;
+}
+
+.smiley-happy {
+  height: 5rem;
+  width: 5rem;
+  background: asset-url('laugh-wink-solid.svg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  color: rgb(245, 214, 74);
+  opacity: 0.3;
+}
+
+.smiley-smile {
+  height: 5rem;
+  width: 5rem;
+  background: asset-url('smile-solid.svg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  color: rgb(245, 214, 74);
+  opacity: 0.3;
+}
+
+.smiley-meh {
+  height: 5rem;
+  width: 5rem;
+  background: asset-url('meh-solid.svg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  color: rgb(245, 214, 74);
+  opacity: 0.3;
+}
+
+.smiley-frown {
+  height: 5rem;
+  width: 5rem;
+  background: asset-url('frown-solid.svg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  color: rgb(245, 214, 74);
+  opacity: 0.3;
+}
+
+.smiley-sad {
+  height: 5rem;
+  width: 5rem;
+  background: asset-url('sad-tear-solid.svg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  color: rgb(245, 214, 74);
+  opacity: 0.3;
+}
+
