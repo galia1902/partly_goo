@@ -2,14 +2,30 @@
 <div class="dash-container">
   <div class="dash-header">
     <p><% current_user.nil? ? "Not Logged In" : current_user.username.capitalize %></p>
+    <p> game history </p>
   </div>
   <div class="dash-inner-container">
     <div>
-      <div class="dash-headline-container ">
+     <!--  <div class="dash-headline-container ">
         <div class="dash-logo"></div>
         <div class="dash-headline">Dashboard</div>
-      </div>
+      </div> -->
     </div>
+
+    <div class="dash-username">
+    <% display_name = "" %>
+    <% if current_user.nil? %>
+      <% display_name = "<em>You arn't logged in!</em" %>
+    <% elsif current_user.username.nil?%>
+      <% display_name = current_user.email  %>
+    <% else %>
+      <% display_name = current_user.username %>
+    <% end %>
+    <% %>
+    <p><%= display_name %></p>
+  </div>
+
+
 
     <div class="dash-options dash-text">
 
@@ -37,8 +53,10 @@
       <% @games.each do |game| %>
         <% if game.game_mode == "MCQ" %>
           <a class="pill dash-pill d-flex justify-content-center" href="/games/<%= game.id %>/score" style="background-color: <%= ["#4688F1","#E8453C","#FABB2D","#3AA757"].sample %>;"><%= game.game_mode %></a>
+          <div class = "badge"> +2 </div>
         <% else %>
           <a class="pill dash-pill d-flex justify-content-center" href="/games/<%= game.id %>/game" style="background-color: <%= ["#4688F1","#E8453C","#FABB2D","#3AA757"].sample %>;"><%= game.game_mode %></a>
+          <div class = "badge">+<%= game.score %> </div>
         <% end %>
       <% end %>
       <% end %>
