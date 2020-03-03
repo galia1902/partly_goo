@@ -37,10 +37,9 @@
         <% position_counter = 0 %>
 
         <!-- Loop through answers, rendering each element w/ the relevant id -->
-        <% @answers.each do |answer| %>
+        <% @answers.each_with_index do |answer, index| %>
           <% my_class =  "sort-option pill-sortable pill-align-sortable pill-#{color_order[position_counter]}"%>
-          <% my_id = "ans-id-#{answer.id}" %>
-          <li class="<%= my_class %>" id="<%= my_id %>">
+          <li class="<%= my_class %>" data-answer-number="<%= answer.id %>">
             <i class="fas fa-bars"></i>
             <%= answer.content %>
           </li>
@@ -55,9 +54,16 @@
     </div>
   </div>
 
-  <%= button_to "Next",
+  <%= form_tag game_rounds_path(@game) do %>
+    <% @answers.each_with_index do |answer, index| %>
+      <%= hidden_field_tag "answer_#{index + 1}", answer.id %>
+    <% end %>
+    <%= submit_tag "Next", id: 'submit-button', class: 'pill d-flex justify-content-center' %>
+  <% end %>
+
+  <%#= button_to "Next",
                  game_rounds_path(@game),
-                 id: "store-button"
+                 id: "submit-button",
                  class: 'pill d-flex justify-content-center',
                  params: {round: {duration: 30, question_id: '', submitted_order: '' }} %>
 
@@ -72,7 +78,43 @@
   }
   changeBodyBackgroundColor();
 
-  let scoreButton= document.
+  // Script making scoreButton capture current scores when clicked
+  const getCurrentSort = () => {
+    let sorted = document.querySelectorAll(".sort-option")
+    console.log(sorted);
+    return sorted;
+  }
+
+  const bindGetSortToReveal = () => {
+    let scoreButton = document.getElementById("submit-button")
+    scoreButton.addEventListener("click", (event) => {
+      // event.preventDefault()
+      let answersOrdered = getCurrentSort();
+
+      let i = 0
+      answersOrdered.forEach((answer) => {
+        let value = answer.dataset.answerNumber
+        let formInput = document.querySelector(`input[name="answer-${i + 1}"]`)
+        formInput.value = value
+        i++
+      })
+      // DEBUG:
+      console.log('FORM INPUTS')
+      document.querySelectorAll('input[name*=answer]').forEach((input) => {
+        console.log(input.value)
+      })
+      // .....
+
+      // testAnswerOrder = "1450 1451 1452 1453"
+      // scoreButton.parentElement.querySelector("[name")
+    })
+  }
+  bindGetSortToReveal()
+
+
+
+
+
 
   // Script copied from game.html.erb --> use as model for getting data from elements
   if(typeof(handleChosenAnswer) === 'undefined'){
