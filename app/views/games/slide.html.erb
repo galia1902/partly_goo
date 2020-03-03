@@ -11,34 +11,38 @@
       <% if @rounds.last.nil?  %>
 
       <div class="set-width">
-      <div class="go_back">
-        <div class="pill-outer">
-          <h2>1</h2>
+        <div class="go_back">
+          <div class="pill-outer">
+            <h2>1</h2>
+          </div>
+
+          <div class="pill-outer">
+            <h2>2</h2>
+          </div>
+
+          <div class="pill-outer">
+            <h2>3</h2>
+          </div>
+
+          <div class="pill-outer">
+            <h2>4</h2>
+          </div>
         </div>
 
-        <div class="pill-outer">
-          <h2>2</h2>
-        </div>
 
-        <div class="pill-outer">
-          <h2>3</h2>
-        </div>
-
-        <div class="pill-outer">
-          <h2>4</h2>
-        </div>
-      </div>
-
-
-      <ul id="quest-sort" class="container-sortable">
-        <li class="sort-option pill-sortable pill-align-sortable pill-red"><i class="fas fa-bars"></i><%= @answers[0].content %></li>
-        <li class="sort-option pill-sortable pill-align-sortable pill-green"><i class="fas fa-bars"></i> <%= @answers[1].content %></li>
-        <li class="sort-option pill-sortable pill-align-sortable pill-blue"><i class="fas fa-bars"></i> <%= @answers[2].content %></li>
-        <li class="sort-option pill-sortable pill-align-sortable pill-yellow"><i class="fas fa-bars"></i> <%= @answers[3].content %></li>
-      </ul>
+        <ul id="quest-sort" class="container-sortable">
+          <li class="sort-option pill-sortable pill-align-sortable pill-red"><i class="fas fa-bars"></i><%= @answers[0].content %></li>
+          <li class="sort-option pill-sortable pill-align-sortable pill-green"><i class="fas fa-bars"></i> <%= @answers[1].content %></li>
+          <li class="sort-option pill-sortable pill-align-sortable pill-blue"><i class="fas fa-bars"></i> <%= @answers[2].content %></li>
+          <li class="sort-option pill-sortable pill-align-sortable pill-yellow"><i class="fas fa-bars"></i> <%= @answers[3].content %></li>
+        </ul>
       </div>
 
       <% end %>
+      <div class="see-score">
+        <%= link_to "Reveal Score", slide_score_path , id: 'sendBtn', class: 'text-dark pill mb-0 d-flex justify-content-center' %>
+
+      </div>
 
     </div>
   </div>
@@ -53,4 +57,16 @@
   }
   changeBodyBackgroundColor();
 
- </script>
+  // 1. Get button that should listen for clcik
+const sendBtn = document.getElementById("sendBtn");
+// 2. Create an event listener
+sendBtn.addEventListener('click', () => {
+//3. Get all lis
+//4. Store them
+const list = document.querySelectorAll('li').innerText
+<% @list %> = list;
+<% sessions[:list] %> = list;
+})
+
+
+</script>
