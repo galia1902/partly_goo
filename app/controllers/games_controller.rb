@@ -101,9 +101,10 @@ class GamesController < ApplicationController
 
   def show_slide_score
     @answers = session[:sorted_answers]
-    @answers.map do |answer_data|
+    @answers.map! do |answer_data|
       answer = Answer.new(answer_data)
     end
+    @question = @answers[0].question
   end
 
   private

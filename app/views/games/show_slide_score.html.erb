@@ -1,4 +1,52 @@
-<h1> you're in games_controller#show_slide_score !</h1>
-<h1> @answers below... </h1>
+<div class="pillbox_outer back-opac">
+  <div class="game_inner">
+    <div>
+      <a href="/">
+        <div class="logo-40-px" style="background-image"></div>
+      </a>
+    </div>
+    <div class="pillbox-add-top-margin ">
+      <div class="pill-question pill-align-left"><%= @question.content %></div>
+      <div class="pill hidden">spacer</div>
 
-<%= @answers %>
+
+      <div class="set-width">
+        <div class="go_back">
+          <% color_order = ['red', 'green', 'blue', 'yellow'] %>
+
+          <% @answers.each_with_index do |answer, index| %>
+            <div class="pill-outer">
+              <h2 style="color: <%= answer.rank == index + 1 ? "#3BA758" : "#E8463C" %>;">
+                  <%= answer.rank %>
+              </h2>
+            </div>
+          <% end %>
+        </div>
+
+
+      <ul id="quest-sort" class="container-sortable">
+
+        <!-- Initialize counter to cycle through colors   -->
+        <% color_order = ['red', 'green', 'blue', 'yellow'] %>
+        <% position_counter = 0 %>
+
+        <!-- Loop through answers, rendering each element w/ the relevant id -->
+        <% @answers.each_with_index do |answer, index| %>
+
+          <% my_class =  "sort-option pill-sortable pill-align-sortable pill-blue"%>
+          <li class="<%= my_class %>" data-answer-number="<%= answer.id %>">
+            <i class="<%= answer.rank == index + 1 ? "fas fa-check" : "fas fa-times" %>"></i>
+            <%= answer.content %>
+          </li>
+          <% position_counter += 1 %>
+          <% end %>
+      </ul>
+
+      </div>
+
+
+
+    </div>
+  </div>
+
+</div>
