@@ -1,11 +1,40 @@
 .dash-container{
-  background: $bg-gray;
+  background: $goo-bg-light;
   width: 100%;
   .dash-inner-container {
     background: inherit;
     margin:0 auto;
     width: 40%;
   }
+}
+
+.dash-header {
+  background-color: $bg-gray;
+  display: flex;
+  height: 64px;
+  width: 100%;
+
+  p {
+    color: $goo-white;
+    font-size: 16px;
+
+  }
+}
+
+.dash-username{
+  background-color: #F8F9FA;
+  display: flex;
+  height: 64px;
+  width: 100%;
+  p {
+    color: #4B4B4B;
+    font-size: 35px;
+    margin: 0 auto;
+  }
+}
+
+.dash-header h1 {
+
 }
 
 @media screen and (max-width : 720px) {
