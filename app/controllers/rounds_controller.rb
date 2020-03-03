@@ -3,12 +3,12 @@ class RoundsController < ApplicationController
 
   def create
     # Note! We don't get here if game_mode == slide, b/c i went right to score! -Sean
-
-
     @game = Game.find(params[:game_id])
     @round = Round.new(round_params)
     @round.game = @game
     authorize @round
+    @round.save!
+
 
     if @game.game_mode == "MCQ"
       redirect_to mcq_path(@game)
