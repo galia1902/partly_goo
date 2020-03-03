@@ -11,37 +11,56 @@
       <% if @rounds.last.nil?  %>
 
       <div class="set-width">
-      <div class="go_back">
-        <div class="pill-outer">
-          <h2>1</h2>
-        </div>
+        <div class="go_back">
+          <div class="pill-outer">
+            <h2>1</h2>
+          </div>
 
-        <div class="pill-outer">
-          <h2>2</h2>
-        </div>
+          <div class="pill-outer">
+            <h2>2</h2>
+          </div>
 
-        <div class="pill-outer">
-          <h2>3</h2>
-        </div>
+          <div class="pill-outer">
+            <h2>3</h2>
+          </div>
 
-        <div class="pill-outer">
-          <h2>4</h2>
+          <div class="pill-outer">
+            <h2>4</h2>
+          </div>
         </div>
-      </div>
 
 
       <ul id="quest-sort" class="container-sortable">
-        <li class="sort-option pill-sortable pill-align-sortable pill-red"><i class="fas fa-bars"></i><%= @answers[0].content %></li>
-        <li class="sort-option pill-sortable pill-align-sortable pill-green"><i class="fas fa-bars"></i> <%= @answers[1].content %></li>
-        <li class="sort-option pill-sortable pill-align-sortable pill-blue"><i class="fas fa-bars"></i> <%= @answers[2].content %></li>
-        <li class="sort-option pill-sortable pill-align-sortable pill-yellow"><i class="fas fa-bars"></i> <%= @answers[3].content %></li>
+
+        <!-- Initialize counter to cycle through colors   -->
+        <% color_order = ['red', 'green', 'blue', 'yellow'] %>
+        <% position_counter = 0 %>
+
+        <!-- Loop through answers, rendering each element w/ the relevant id -->
+        <% @answers.each do |answer| %>
+          <% my_class =  "sort-option pill-sortable pill-align-sortable pill-#{color_order[position_counter]}"%>
+          <% my_id = "ans-id-#{answer.id}" %>
+          <li class="<%= my_class %>" id="<%= my_id %>">
+            <i class="fas fa-bars"></i>
+            <%= answer.content %>
+          </li>
+          <% position_counter += 1 %>
+          <% end %>
       </ul>
+
       </div>
 
       <% end %>
 
     </div>
   </div>
+
+  <%= button_to "Next",
+                 game_rounds_path(@game),
+                 id: "store-button"
+                 class: 'pill d-flex justify-content-center',
+                 params: {round: {duration: 30, question_id: '', submitted_order: '' }} %>
+
 </div>
 
 <script>
@@ -52,5 +71,55 @@
     myBody.style.background = '#F8F9FA';
   }
   changeBodyBackgroundColor();
+
+  let scoreButton= document.
+
+  // Script copied from game.html.erb --> use as model for getting data from elements
+  if(typeof(handleChosenAnswer) === 'undefined'){
+      let answer = document.querySelectorAll('.mcq-answer');
+
+      let handleChosen = (ans) => {
+        let lastButton = document.querySelector('.last-button');
+          answer.forEach((an) => {
+            if(an.id === ans.id){
+              let inputs = an.parentElement.querySelectorAll('[name*=round]');
+              inputs.forEach((input) => {
+                lastButton.parentElement.querySelector("[name=" + `"${input.name}"]`).value = input.value;
+              })
+              changeChosenStyle(an);
+
+            }else{
+              an.style.opacity = '.5';
+            }
+          })
+      }
+
+
+      let handleChosenAnswer = () => {
+        answer.forEach((ans) => {
+          ans.addEventListener('click', (event) => {
+            event.preventDefault();
+            let clicked = event.currentTarget;
+            handleChosen(clicked);
+            let session = sessionStorage.getItem('chosen');
+            let chosen = session === null ? false : true;
+            if(chosen){
+             document.querySelectorAll('.mcq-answer').forEach(elem => {
+               elem.disabled = true;
+             });
+            }else{
+              sessionStorage.setItem('chosen', true);
+            }
+          })
+        })
+      }
+
+      handleChosenAnswer();
+    }else{
+      handleChosenAnswer();
+    }
+
+
+
 
  </script>
