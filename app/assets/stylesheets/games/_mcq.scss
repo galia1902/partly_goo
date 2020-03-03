@@ -1,0 +1,59 @@
+
+.pillbox_outer{
+  background: $bg-gray;
+  width: 100%;
+  .mcq-inner {
+    background: inherit;
+    width: 40%;
+    margin: 0 auto;
+    margin-top: 4rem;
+  }
+}
+
+@media screen and (max-width : 720px) {
+  .pillbox_outer .mcq-inner {
+    width: 85%;
+    background: inherit;
+  }
+}
+
+.pillbox_outer{
+  background: $bg-gray;
+  width: 100%;
+  .mcqs-inner {
+    background: inherit;
+    width: 40%;
+    margin: 0 auto;
+    margin-top: 2rem;
+  }
+}
+
+@media screen and (max-width : 720px) {
+  .pillbox_outer .mcqs-inner {
+    width: 85%;
+    background: inherit;
+  }
+}
+
+.round-count {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  height: 6rem;
+}
+
+.smiley-backo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  text-shadow: 1px 2px rgba(0, 0, 0, 0.25);
+  font-size: 5rem;
+  height: 5rem;
+  width: 5rem;
+  color: rgb(245, 214, 74);
+  margin-bottom: 16px;
+  margin-top: 16px;
+}
+
+

@@ -1,5 +1,5 @@
 <div class="pillbox_outer bg-light">
-  <div class="game_inner bg-light">
+  <div class="mcq-inner bg-light">
     <div>
       <div class="logo-40-px" style="background-image"></div>
     </div>
@@ -17,7 +17,7 @@
 
           <!-- YANIV CHANGED BUTTON_TO => LINK_TO (MUST HANDLE ANSWER SUBMISSION) -->
           <%= button_to answer.content,
-                        '#',
+                        game_rounds_path(@game),
                         params: {'round' => {'duration' =>  30,
                                          'question_id' =>  @question.id,
                                          'answer_id' =>  answer.id }},
@@ -30,68 +30,23 @@
       <div class="pill hidden">spacer</div>
 
       <%= link_to "Back to Menu", root_path, class: 'pill mb-0 d-flex justify-content-center' %>
-      <%= button_to "Next", game_rounds_path(@game), class: 'pill last-button d-flex justify-content-center',   params: {round: {duration: 30, question_id: '', answer_id: '' }} %>
 
+      <div class="round-count">
+      <h4><%= @rounds.count + 1 %> | 5</h4>
+      </div>
     </div>
    </div>
   </div>
 
   <script>
 
-    if(typeof(handleChosenAnswer) === 'undefined'){
-      let answer = document.querySelectorAll('.mcq-answer');
+  // Script to during the make the Body element grey
+  let myBody = document.querySelector('body');
+  const changeBodyBackgroundColor = () => {
+    myBody.style.background = '#F8F9FA';
+  }
+  changeBodyBackgroundColor();
 
-
-      let changeChosenStyle = (an) => {
-        let newValue;
-        let color = an.style.backgroundColor;
-        let rgba = document.querySelector('.mcq-answer').style.backgroundColor.split(')');
-        let length = rgba.length - 1;
-        rgba[length] = '0.2)';
-        newValue = rgba.join();
-        an.style.border = `4px solid ${newValue}`
-      }
-
-      let handleChosen = (ans) => {
-        let lastButton = document.querySelector('.last-button');
-          answer.forEach((an) => {
-            if(an.id === ans.id){
-              let inputs = an.parentElement.querySelectorAll('[name*=round]');
-              inputs.forEach((input) => {
-                lastButton.parentElement.querySelector("[name=" + `"${input.name}"]`).value = input.value;
-              })
-              changeChosenStyle(an);
-
-            }else{
-              an.style.opacity = '.5';
-            }
-          })
-      }
-
-
-      let handleChosenAnswer = () => {
-        answer.forEach((ans) => {
-          ans.addEventListener('click', (event) => {
-            event.preventDefault();
-            let clicked = event.currentTarget;
-            handleChosen(clicked);
-            let session = sessionStorage.getItem('chosen');
-            let chosen = session === null ? false : true;
-            if(chosen){
-             document.querySelectorAll('.mcq-answer').forEach(elem => {
-               elem.disabled = true;
-             });
-            }else{
-              sessionStorage.setItem('chosen', true);
-            }
-          })
-        })
-      }
-
-      handleChosenAnswer();
-    }else{
-      handleChosenAnswer();
-    }
 
 
   </script>
