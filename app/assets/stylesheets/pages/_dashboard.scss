@@ -1,11 +1,26 @@
 .dash-container{
-  background: $bg-gray;
+  background: $goo-bg-light;
   width: 100%;
   .dash-inner-container {
     background: inherit;
     margin:0 auto;
     width: 40%;
   }
+}
+
+.dash-header {
+  background-color: $bg-gray;
+  display: flex;
+  height: 64px;
+  width: 100%;
+
+  p {
+    color: $goo-white;
+  }
+}
+
+.dash-header h1 {
+
 }
 
 @media screen and (max-width : 720px) {

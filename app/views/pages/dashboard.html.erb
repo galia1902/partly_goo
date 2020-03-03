@@ -1,9 +1,11 @@
 
-<div class = "dash-container">
-
-  <div class = "dash-inner-container">
+<div class="dash-container">
+  <div class="dash-header">
+    <p><% current_user.nil? ? "Not Logged In" : current_user.username.capitalize %></p>
+  </div>
+  <div class="dash-inner-container">
     <div>
-      <div class = "dash-headline-container ">
+      <div class="dash-headline-container ">
         <div class="dash-logo"></div>
         <div class="dash-headline">Dashboard</div>
       </div>
@@ -24,8 +26,7 @@
        </div>
      </div>
 
-     <div class="dash-games-headline">Your Games</div>
-
+     <!-- Games 'gallery'  -->
      <div class="dash-games-container">
       <% if @games[0].nil? %>
       <div class="container d-flex align-items-center justify-content-center h-100">
@@ -56,7 +57,8 @@
 <script>
   let my_body = document.querySelector('body')
   const changeBodyBackgroundColor = () => {
-    my_body.style.background = '#545252'
+    my_body.style.background = '#F8F9FA'
   }
   changeBodyBackgroundColor();
 </script>
+
