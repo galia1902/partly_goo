@@ -1,49 +1,53 @@
-  <div class="pillbox_outer bg-light">
-    <div class="mcqs-inner bg-light">
-      <div>
-        <div class="logo-40-px" style="background-image"></div>
-      </div>
-      <div>
-        <div class="pill hidden">spacer</div>
-        <% sum = 0 %>
-        <% @rounds.each do |round|%>
-        <% if round.answer.rank == 1 %>
+<div class="pillbox_outer bg-light">
+  <div class="mcqs-inner bg-light">
+    <div>
+      <div class="logo-40-px" style="background-image"></div>
+    </div>
+    <div>
+      <div class="pill hidden">spacer</div>
+      <% sum = 0 %>
+      <% @rounds.each do |round|%>
+      <% if round.answer.rank == 1 %>
 
-        <div class="pill pill-tryout-result d-flex align-items-center px-4 justify-content-between pill-green">
-          <i class="fas fa-check mb-0"></i>
-          <%= round.answer.content %>
-        </div>
+          <div class="pill pill-tryout-result d-flex align-items-center px-4 justify-content-between pill-green">
+            <i class="fas fa-check mb-0"></i>
+            <%= round.answer.content %>
+          </div>
 
-        <% sum += 1 %>
-        <% else %>
+          <% sum += 1 %>
+      <% else %>
 
         <div class="pill-result pill-tryout-result d-flex align-items-center px-4 justify-content-between pill-red">
           <i class="fas fa-times mb-0"></i>
           <%= round.answer.content %>
         </div>
-        <% end %>
-        <% end %>
+      <% end %>
+    <% end %>
+    <div class="d-flex justify-content-center">
+      <% if sum < 1 %>
+      <i class="fas fa-sad-tear smiley-backo"></i>
+      <% elsif sum < 2 %>
+      <i class="fas fa-frown smiley-backo"></i>
+      <% elsif sum < 3 %>
+      <i class="fas fa-meh smiley-backo"></i>
+      <% elsif sum < 4 %>
+      <i class="fas fa-smile smiley-backo"></i>
+      <% else %>
+      <i class="fas fa-laugh-wink smiley-backo"></i>
+      <% end %>
+    </div>
+      <%= link_to "Back to Menu", root_path, class: 'pill mb-0 d-flex justify-content-center' %>
+      <%= button_to "Play again", games_path, class: 'pill last-button d-flex justify-content-center' , params: {game: {game_mode: @game.game_mode}}%>
+    </div>
+  </div>
+  <div class = "user-buttons justify-content-between">
+    <% if user_signed_in? %>
+      <%= link_to "", destroy_user_session_path, method: :delete, class: 'logout-icon text-dark mb-0 d-flex justify-content-center' %>
+      <%= link_to "", dashboard_path, class: 'my-stats-icon text-dark mb-0 d-flex justify-content-center' %>
+    <% end %>
+</div>
 
-
-
-        <div class="d-flex justify-content-center">
-          <% if sum < 1 %>
-          <i class="fas fa-sad-tear smiley-backo"></i>
-          <% elsif sum < 2 %>
-          <i class="fas fa-frown smiley-backo"></i>
-          <% elsif sum < 4 %>
-          <i class="fas fa-meh smiley-backo"></i>
-          <% elsif sum < 5 %>
-          <i class="fas fa-smile smiley-backo"></i>
-          <% else %>
-          <i class="fas fa-laugh-wink smiley-backo"></i>
-          <% end %>
-        </div>
-
-        <%= link_to "Back to Menu", root_path, class: 'pill mb-0 d-flex justify-content-center' %>
-        <%= button_to "Play again", games_path, class: 'pill last-button d-flex justify-content-center' , params: {game: {game_mode: @game.game_mode}}%>
-
-        <script>
+<script>
 
   // Script to during the make the Body element grey
   let myBody = document.querySelector('body');
@@ -51,7 +55,5 @@
     myBody.style.background = '#F8F9FA';
   }
   changeBodyBackgroundColor();
-
-
 
 </script>

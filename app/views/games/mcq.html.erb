@@ -4,8 +4,8 @@
       <div class="logo-40-px" style="background-image"></div>
     </div>
     <div class="pillbox-add-top-margin ">
-    <div class="pill-question pill-align-left"><%= @question.content %></div>
-    <div class="pill hidden">spacer</div>
+      <div class="pill-question pill-align-left"><%= @question.content %></div>
+      <div class="pill hidden">spacer</div>
 
       <!-- Set color order, and position counter, for us in render loops -->
       <% color_order = ['#E8453C', '#3AA757', '#4688F1', '#FABB2D'] %>
@@ -35,8 +35,14 @@
       <h4><%= @rounds.count + 1 %> | 5</h4>
       </div>
     </div>
-   </div>
   </div>
+  <div class = "user-buttons justify-content-between">
+    <% if user_signed_in? %>
+    <%= link_to "", destroy_user_session_path, method: :delete, class: 'logout-icon text-dark mb-0 d-flex justify-content-center' %>
+    <%= link_to "", dashboard_path, class: 'my-stats-icon text-dark mb-0 d-flex justify-content-center' %>
+    <% end %>
+</div>
+
 
   <script>
 
