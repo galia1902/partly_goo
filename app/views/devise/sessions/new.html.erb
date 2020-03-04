@@ -1,3 +1,13 @@
+ <div class="dash-header">
+    <div class="dash-back-btn">
+      <%= link_to "", root_path, class: 'dash-back-btn-icon' %>
+    </div>
+    <p class = "invisible"></p>
+    <p class = "dash-title"> Log in </p>
+    <div class="dash-header-placeholder"></div>
+  </div>
+
+
 <div class = "htp-container">
   <div class = "htp-inner-container text-white">
     <div class="form-container">
@@ -6,14 +16,19 @@
 
       <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
       <div class="form-inputs">
+        <div class="query-block">
         <%= f.input :email,
         required: false,
         autofocus: true,
-        input_html: { autocomplete: "email" } %>
+        input_html: { autocomplete: "email", class: "text-input", type:"text", value:"", placeholder:"E-mail" } %>
+        </div>
+         <div class="query-block">
         <%= f.input :password,
         required: false,
-        input_html: { autocomplete: "current-password" } %>
+        input_html: { autocomplete: "current-password", class:"text-input", type: "password", value:"", placeholder:"Password" } %>
         <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
+        <div class="checkbox-password"> remember my password </div>
+       </div>
       </div>
 
       <div class="form-actions">
@@ -22,8 +37,6 @@
       <% end %>
 
       <%= render "devise/shared/links" %>
-      <%= link_to "Back to Menu", root_path, class: 'btn btn-form' %>
-
     </div>
   </div>
 </div>
@@ -33,4 +46,10 @@
     my_body.style.background = '#545252'
   }
   changeBodyBackgroundColor();
+
+  let my_body2 = document.querySelector('body')
+  const preventBodyScroll = () => {
+    my_body2.style.position = fixed
+  }
+  preventBodyScroll();
 </script>
