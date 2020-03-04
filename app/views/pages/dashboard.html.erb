@@ -45,7 +45,13 @@
           </div>
           <div class="justify-content-between">
             <!-- TO DO: Update this line to getpoints total -->
-            <div class= "dash-stats number" > 10PH </div>
+            <div class= "dash-stats number" >
+            <% score = 0 %>
+             <% current_user.games.each do |game| %>
+              <% score += game.score %>
+              <% end %>
+              <%= score %>
+           </div>
             <p class= "dash-stats title">Points</p>
           </div>
        </div>

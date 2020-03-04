@@ -11,7 +11,7 @@ class PagesController < ApplicationController
   end
 
   def dashboard
-    @games = current_user.games
+    @games = current_user.games.reverse
     all_rounds = Round.all
     @rounds = []
     all_rounds.each do |round|

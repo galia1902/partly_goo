@@ -40,11 +40,11 @@
 
 .logout-icon{
   @extend %menuBottomBTN;
-background-image: url("LogOutBTN.svg");
+background-image: asset-url("LogOutBTN.svg");
 }
 
 .my-stats-icon{
   @extend %menuBottomBTN;
-background-image: url("MyStatsBTN.svg");
+background-image: asset-url("MyStatsBTN.svg");
 background-position: 12px 11px;
 }
