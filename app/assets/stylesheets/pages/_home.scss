@@ -136,6 +136,7 @@ a:hover {
   box-shadow: 0 3px 4px rgba(0,0,0,0.3);
   margin: 0 auto;
   color: #cacaca;
+  width: 175px;
 }
 
 .pillbox-add-top-margin-main-page{
@@ -277,5 +278,16 @@ body {
   }
 }
 
+.username-container{
+  display: flex;
+  margin-right: 40px;
+  margin-left: 35px;
+}
+
+.fa-user{
+  line-height: inherit;
+  margin-right: 7px;
+  margin-left: 20px;
+}
 
 
