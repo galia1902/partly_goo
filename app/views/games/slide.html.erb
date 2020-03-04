@@ -95,7 +95,7 @@
       let i = 0
       answersOrdered.forEach((answer) => {
         let value = answer.dataset.answerNumber
-        let formInput = document.querySelector(`input[name="answer-${i + 1}"]`)
+        let formInput = document.querySelector(`input[name="answer_${i + 1}"]`)
         formInput.value = value
         i++
       })
