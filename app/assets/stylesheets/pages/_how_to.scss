@@ -37,12 +37,13 @@
   margin-left: 7px;
   line-height: 28px;
   font-size: 30px;
+  margin-bottom: 10px;
 }
 
 .htp-headline-container{
   display:flex;
   justify-content: center;
-  margin-top: 15px;
+  margin-top: 55px;
 }
 
 .htp-headline-icon {
@@ -76,4 +77,11 @@
 
 .htp-pill {
   margin-top: 60px;
+}
+
+.how-to-container{
+  background: #7c7c7c !important;
+  position: fixed;
+  height: 100%;
+  width: 100%;
 }
