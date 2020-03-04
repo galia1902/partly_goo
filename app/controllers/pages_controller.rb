@@ -12,7 +12,6 @@ class PagesController < ApplicationController
 
   def dashboard
     @games = current_user.games
-    @color = ["#4688F1","#E8453C","#FABB2D","#3AA757"].sample
     all_rounds = Round.all
     @rounds = []
     all_rounds.each do |round|

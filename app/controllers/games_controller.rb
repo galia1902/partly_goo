@@ -38,6 +38,9 @@ class GamesController < ApplicationController
       session[:round_ordered_answers] = @answers
       # if round exists (question already answered) render the page with the answered question and the answers in the right order
     else
+      if @rounds[0].answer.rank == 1
+        @game.update(score: 1)
+      end
       @question = Question.find(@rounds.last.question_id)
       @answers = []
       session[:round_ordered_answers].each do |answer_data|
@@ -62,6 +65,13 @@ class GamesController < ApplicationController
 
   def mcq_score
     @rounds = Round.where(game_id: @game.id)
+    game_score = 0;
+    @rounds.each do |round|
+      if round.answer.rank == 1
+        game_score += 1
+      end
+    end
+    @game.update(score: game_score)
   end
 
   def slide

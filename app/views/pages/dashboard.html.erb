@@ -19,7 +19,7 @@
     <div class="dash-username">
     <% display_name = "" %>
     <% if current_user.nil? %>
-      <% display_name = "<em>You arn't logged in!</em" %>
+      <% display_name = "<em>You aren't logged in!</em" %>
     <% elsif current_user.username.nil?%>
       <% display_name = current_user.email  %>
     <% else %>
@@ -27,7 +27,7 @@
     <% end %>
     <% %>
     <p><%= display_name %></p>
-  </div>
+    </div>
 
 
 
@@ -44,6 +44,7 @@
             <p class= "dash-stats title">Questions</p>
           </div>
           <div class="justify-content-between">
+            <!-- TO DO: Update this line to getpoints total -->
             <div class= "dash-stats number" > 10PH </div>
             <p class= "dash-stats title">Points</p>
           </div>
@@ -51,41 +52,56 @@
      </div>
 
 
-     <!-- Games 'gallery'  -->
-     <div class="dash-games-container">
-      <% if @games[0].nil? %>
-      <div class="container d-flex align-items-center justify-content-center h-100">
-        <p>no games played yet</p>
-
-      </div>
-      <% else %>
-      <% @games.each do |game| %>
-        <% if game.game_mode == "MCQ" %>
-          <a class="pill dash-pill d-flex" href="/games/<%= game.id %>/score">
-            <div class= "dash-date" > <%= game.created_at.day %>\<%= game.created_at.month %>\<%= game.created_at.year %> </div>
-           <!--  <div class= "dash-date" >  </div>
-            <div class= "dash-date" > </div> -->
-            <div class= "dash-game-mode" > <%= game.game_mode %> </div>
-            <div class="shevron-right"> </div>
-          </a>
-          <div class = "badge"> +2 </div>
+       <!-- Games 'gallery'  -->
+      <div class="dash-games-container">
+        <% if @games[0].nil? %>
+          <div class="container d-flex align-items-center justify-content-center h-100">
+            <p>no games played yet</p>
+          </div>
         <% else %>
-          <a class="pill dash-pill d-flex" href="/games/<%= game.id %>/game">
-            <div class= "dash-date" > <%= game.created_at.day %>\<%= game.created_at.month %>\<%= game.created_at.year %> </div>
-            <!-- <div class= "dash-date" > <%= game.created_at.day %>\ </div>
-            <div class= "dash-date" > <%= game.created_at.month %>\ </div>
-            <div class= "dash-date" > <%= game.created_at.year %> </div> -->
-            <div class= "dash-game-mode" > <%= game.game_mode %> </div>
-            <div class="shevron-right"> </div>
-          </a>
-          <div class = "badge">+<%= game.score %> </div>
-        <% end %>
-      <% end %>
-      <% end %>
+          <!-- Loop through all games -->
+          <% @games.each do |game| %>
 
+            <!-- Case: How to display MCQ -->
+            <% if game.game_mode == "MCQ" %>
+              <a class="pill dash-pill d-flex" href="/games/<%= game.id %>/score">
+                <div class= "dash-date" > <%= game.created_at.day %>\<%= game.created_at.month %>\<%= game.created_at.year %> </div>
+                <div class= "dash-game-mode" > MCQ </div>
+                <div class="shevron-right"> </div>
+              </a>
+             <!-- TO DO: Update this line to make the score appear dynamically -->
+              <% if game.score > 0 %>
+                <div class = "badge">+<%= game.score %></div>
+              <% end %>
+
+            <!-- Case: How to display Tryout -->
+            <% elsif game.game_mode == "Try Out" %>
+              <a class="pill dash-pill d-flex" href="/games/<%= game.id %>/game">
+                <div class= "dash-date" > <%= game.created_at.day %>\<%= game.created_at.month %>\<%= game.created_at.year %> </div>
+                <div class= "dash-game-mode" > Quickplay </div>
+                <div class="shevron-right"> </div>
+              </a>
+              <% if game.score > 0 %>
+                <div class = "badge">+<%= game.score %></div>
+              <% end %>
+
+            <!-- Case: How to display "Sortable" -->
+            <% else %>
+              <a class="pill dash-pill d-flex" href="/games/<%= game.id %>/game">
+                <div class= "dash-date" > <%= game.created_at.day %>\<%= game.created_at.month %>\<%= game.created_at.year %> </div>
+                <div class= "dash-game-mode" > Sortable </div>
+                <div class="shevron-right"> </div>
+              </a>
+              <% if game.score > 0 %>
+                <div class = "badge">+<%= game.score %></div>
+              <% end %>
+
+            <% end %>
+          <% end %>
+        <% end %>
+      </div>
     </div>
   </div>
-</div>
 </div>
 
 
