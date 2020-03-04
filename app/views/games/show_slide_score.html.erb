@@ -41,6 +41,9 @@
           <% end %>
       </ul>
 
+      <%= link_to "Back to Menu", root_path, class: 'pill mb-0 d-flex justify-content-center' %>
+      <%= button_to "Play again", games_path, class: 'pill last-button d-flex justify-content-center' , params: {game: {game_mode: @game.game_mode}}%>
+
       </div>
     </div>
   </div>
