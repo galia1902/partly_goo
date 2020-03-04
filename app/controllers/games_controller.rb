@@ -65,6 +65,13 @@ class GamesController < ApplicationController
 
   def mcq_score
     @rounds = Round.where(game_id: @game.id)
+    game_score = 0;
+    @rounds.each do |round|
+      if round.answer.rank == 1
+        game_score += 1
+      end
+    end
+    @game.update(score: game_score)
   end
 
   def slide
