@@ -100,7 +100,6 @@
 
             <!-- Case: How to display "Sortable" -->
             <% else %>
-<<<<<<< HEAD
               <div class="dash-pill-holder">
                 <% if game.score > 0 %>
                   <div class = "badge">+<%= game.score %></div>
@@ -113,17 +112,6 @@
                   <div class="shevron-right"> </div>
                 </a>
               </div>
-=======
-              <div class="pill dash-pill d-flex" href="/games/<%= game.id %>/game">
-                <div class= "dash-date" > <%= game.created_at.day %>\<%= game.created_at.month %>\<%= game.created_at.year %> </div>
-                <div class= "dash-game-mode" > Sortable </div>
-                <div class="shevron-right"> </div>
-              </div>
-              <% if game.score > 0 %>
-                <div class = "badge">+<%= game.score %></div>
-              <% end %>
-
->>>>>>> master
             <% end %>
           <% end %>
         <% end %>
