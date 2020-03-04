@@ -56,7 +56,7 @@
   }
 }
 
-
+// rename
 .pill-outer {
   display: flex;
   align-items: center;
@@ -84,7 +84,7 @@
     margin-bottom: 4px;
   }
 }
-
+// rename
 .pill-sortable {
   display: flex;
   align-items: center;
@@ -163,3 +163,6 @@
   opacity: 35%;
 }
 
+.sortable-wrap {
+  position: relative;
+}

@@ -24,7 +24,7 @@
         </div>
 
 
-      <ul id="quest-sort" class="container-sortable">
+      <ul class="container-sortable slide-result-list">
 
         <!-- Initialize counter to cycle through colors   -->
         <% color_order = ['red', 'green', 'blue', 'yellow'] %>
@@ -33,7 +33,7 @@
         <!-- Loop through answers, rendering each element w/ the relevant id -->
         <% @answers.each_with_index do |answer, index| %>
 
-          <% my_class =  "sort-option pill-sortable pill-align-sortable pill-blue"%>
+          <% my_class =  "pill-sortable pill-align-sortable pill-blue"%>
           <li class="<%= my_class %>" data-answer-number="<%= answer.id %>">
             <i class="<%= answer.rank == index + 1 ? "fas fa-check" : "fas fa-times" %>"></i>
             <%= answer.content %>

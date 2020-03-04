@@ -1,3 +1,4 @@
+// rename
 .pill-outer {
   display: flex;
   align-items: center;
@@ -25,7 +26,7 @@
     margin-bottom: 4px;
   }
 }
-
+// rename
 .pill-sortable {
   display: flex;
   align-items: center;
@@ -44,7 +45,7 @@
     opacity: 0.5;
   }
 }
-
+// rename
 .go_back {
   z-index: -10;
   position: absolute;
@@ -53,14 +54,9 @@
   margin-top: 5px;
 }
 
-.container-sortable {
-  flex-grow: 1;
-  position: absolute;
-  width: 40%;
-  right: -4.5%;
 
-}
 
+// rename
 #quest-sort {
   list-style-type: none;
   margin: 0;
@@ -89,10 +85,6 @@
     width: 100%;
     background: inherit;
   }
-  .container-sortable {
-    width: 100%;
-    background: inherit;
-  }
 }
 
 .sortable-ghost {
@@ -103,4 +95,13 @@
   width: 81%;
   opacity: 35%;
 }
+
+.slide-result-list {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+
+
 
