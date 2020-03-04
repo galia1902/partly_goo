@@ -70,7 +70,9 @@
                 <div class="shevron-right"> </div>
               </a>
              <!-- TO DO: Update this line to make the score appear dynamically -->
-              <div class = "badge"> +2 </div>
+              <% if game.score > 0 %>
+                <div class = "badge">+<%= game.score %></div>
+              <% end %>
 
             <!-- Case: How to display Tryout -->
             <% elsif game.game_mode == "Try Out" %>
@@ -79,7 +81,9 @@
                 <div class= "dash-game-mode" > Quickplay </div>
                 <div class="shevron-right"> </div>
               </a>
-              <div class = "badge">+<%= game.score %> </div>
+              <% if game.score > 0 %>
+                <div class = "badge">+<%= game.score %></div>
+              <% end %>
 
             <!-- Case: How to display "Sortable" -->
             <% else %>
@@ -88,7 +92,10 @@
                 <div class= "dash-game-mode" > Sortable </div>
                 <div class="shevron-right"> </div>
               </a>
-              <div class = "badge">+<%= game.score %> </div>
+              <% if game.score > 0 %>
+                <div class = "badge">+<%= game.score %></div>
+              <% end %>
+
             <% end %>
           <% end %>
         <% end %>
