@@ -153,12 +153,12 @@ a:hover {
 
 .logout-icon{
   @extend %menuBottomBTN;
-background-image: url("LogOutBTN.svg");
+background-image: asset-url("LogOutBTN.svg");
 }
 
 .my-stats-icon{
   @extend %menuBottomBTN;
-background-image: url("MyStatsBTN.svg");
+background-image: asset-url("MyStatsBTN.svg");
 background-position: 12px 11px;
 }
 
@@ -241,21 +241,21 @@ body {
     @include size(30vw, 30vh);
     @include position(50%);
     transform: translate(-50%, -50%);
-    background-image: url('Logo.png');
+    background-image: asset-url('Logo.png');
   }
   .ball1 {
     @include ani;
     @include splashElement(shadow);
     @include size(300px);
     @include position(10vh, -10vw);
-    background-image: url('Ball4.png');
+    background-image: asset-url('Ball4.png');
   }
   .ball2 {
     @include ani(45s);
     @include splashElement(shadow);
     @include size(100px);
     @include position(70vh, 80vw);
-    background-image: url('Ball2.png');
+    background-image: asset-url('Ball2.png');
   }
   .ball3 {
     @include ani(55s);
@@ -263,7 +263,7 @@ body {
     @include splashElement(shdow);
     @include size(200px);
     @include position(9vh, 80vw);
-    background-image: url('Ball1.png');
+    background-image: asset-url('Ball1.png');
   }
 }
 @keyframes revolve1 {
