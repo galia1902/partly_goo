@@ -11,37 +11,56 @@
       <% if @rounds.last.nil?  %>
 
       <div class="set-width">
-      <div class="go_back">
-        <div class="pill-outer">
-          <h2>1</h2>
-        </div>
+        <div class="go_back">
+          <div class="pill-outer">
+            <h2>1</h2>
+          </div>
 
-        <div class="pill-outer">
-          <h2>2</h2>
-        </div>
+          <div class="pill-outer">
+            <h2>2</h2>
+          </div>
 
-        <div class="pill-outer">
-          <h2>3</h2>
-        </div>
+          <div class="pill-outer">
+            <h2>3</h2>
+          </div>
 
-        <div class="pill-outer">
-          <h2>4</h2>
+          <div class="pill-outer">
+            <h2>4</h2>
+          </div>
         </div>
-      </div>
 
 
       <ul id="quest-sort" class="container-sortable">
-        <li class="sort-option pill-sortable pill-align-sortable pill-red"><i class="fas fa-bars"></i><%= @answers[0].content %></li>
-        <li class="sort-option pill-sortable pill-align-sortable pill-green"><i class="fas fa-bars"></i> <%= @answers[1].content %></li>
-        <li class="sort-option pill-sortable pill-align-sortable pill-blue"><i class="fas fa-bars"></i> <%= @answers[2].content %></li>
-        <li class="sort-option pill-sortable pill-align-sortable pill-yellow"><i class="fas fa-bars"></i> <%= @answers[3].content %></li>
+
+        <!-- Initialize counter to cycle through colors   -->
+        <% color_order = ['red', 'green', 'blue', 'yellow'] %>
+        <% position_counter = 0 %>
+
+        <!-- Loop through answers, rendering each element w/ the relevant id -->
+        <% @answers.each_with_index do |answer, index| %>
+          <% my_class =  "sort-option pill-sortable pill-align-sortable pill-#{color_order[position_counter]}"%>
+          <li class="<%= my_class %>" data-answer-number="<%= answer.id %>">
+            <i class="fas fa-bars"></i>
+            <%= answer.content %>
+          </li>
+          <% position_counter += 1 %>
+          <% end %>
       </ul>
+
       </div>
 
       <% end %>
 
     </div>
   </div>
+
+  <%= form_tag score_slide_game_path(@game) do %>
+    <% @answers.each_with_index do |answer, index| %>
+      <%= hidden_field_tag "answer_#{index + 1}", answer.id %>
+    <% end %>
+    <%= submit_tag "Next", id: 'submit-button', class: 'pill d-flex justify-content-center' %>
+  <% end %>
+
 </div>
 
 <script>
@@ -53,4 +72,30 @@
   }
   changeBodyBackgroundColor();
 
- </script>
+  // Script to get the current Sort
+  const getCurrentSort = () => {
+    let sorted = document.querySelectorAll(".sort-option")
+    return sorted;
+  }
+
+  const bindGetSortToReveal = () => {
+    let scoreButton = document.getElementById("submit-button")
+    scoreButton.addEventListener("click", (event) => {
+      // event.preventDefault()
+      let answersOrdered = getCurrentSort();
+      let i = 0
+      answersOrdered.forEach((answer) => {
+        let value = answer.dataset.answerNumber
+        let formInput = document.querySelector(`input[name="answer-${i + 1}"]`)
+        formInput.value = value
+        i++
+      })
+      // DEBUG:
+      // console.log('FORM INPUTS')
+      // document.querySelectorAll('input[name*=answer]').forEach((input) => {
+      //   console.log(input.value)
+      // })
+    })
+  }
+  bindGetSortToReveal()
+</script>

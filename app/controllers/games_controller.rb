@@ -1,7 +1,7 @@
 class GamesController < ApplicationController
   skip_before_action :authenticate_user!, if: :tryout_game?
 
-  before_action :set_game, only: [:score, :game, :mcq, :mcq_score, :slide ]
+  before_action :set_game, only: [:score, :game, :mcq, :mcq_score, :slide, :score_slide_game, :show_slide_score ]
 
   def create
      # creates a game with our tryout user and redirects to our game html
@@ -79,6 +79,32 @@ class GamesController < ApplicationController
         @answers << Answer.new(answer_data)
       end
     end
+  end
+
+  def score_slide_game
+    sorted_answers = []
+    sorted_answers << Answer.find(params[:answer_1])
+    sorted_answers << Answer.find(params[:answer_2])
+    sorted_answers << Answer.find(params[:answer_3])
+    sorted_answers << Answer.find(params[:answer_4])
+
+    session[:sorted_answers] = sorted_answers
+    game_score = 0
+    sorted_answers.each_with_index do |answer, indx|
+      if answer.rank == indx + 1
+          game_score += 1
+      end
+    end
+    @game.update(score: game_score)
+    redirect_to show_slide_score_path(@game)
+  end
+
+  def show_slide_score
+    @answers = session[:sorted_answers]
+    @answers.map! do |answer_data|
+      answer = Answer.new(answer_data)
+    end
+    @question = @answers[0].question
   end
 
   private
