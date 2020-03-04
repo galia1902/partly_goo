@@ -193,3 +193,88 @@ background-position: 12px 11px;
 }
 
 
+$darkBg: #545252;
+@mixin splashElement($shadow:false) {
+  background-color: none;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  position: absolute;
+  @if $shadow {
+    border-radius: 50%;
+    box-shadow: 0px 5px 40px rgba(0, 0, 0, .3);
+  }
+}
+@mixin size($w, $h:$w) {
+  width: $w;
+  height: $h;
+}
+@mixin position($top, $left:$top) {
+  top: $top;
+  left: $left;
+}
+@mixin ani($time:30s) {
+  animation-name: revolve1;
+  animation-duration: $time;
+  animation-fill-mode: forwards;
+  animation-direction: normal;
+  animation-iteration-count: infinite;
+  animation-play-state: running;
+  animation-timing-function: linear;
+}
+html,
+body {
+  margin: 0 auto;
+  padding: 0;
+  top: 0px;
+}
+.splash-container {
+  position: fixed;
+  background-color: $darkBg;
+  width: 100vw;
+  margin: 0 auto;
+  height: 100vh;
+  padding: 0;
+  .splash-logo {
+    z-index: 1;
+    @include splashElement;
+    @include size(30vw, 30vh);
+    @include position(50%);
+    transform: translate(-50%, -50%);
+    background-image: url('Logo.png');
+  }
+  .ball1 {
+    @include ani;
+    @include splashElement(shadow);
+    @include size(300px);
+    @include position(10vh, -10vw);
+    background-image: url('Ball4.png');
+  }
+  .ball2 {
+    @include ani(45s);
+    @include splashElement(shadow);
+    @include size(100px);
+    @include position(70vh, 80vw);
+    background-image: url('Ball2.png');
+  }
+  .ball3 {
+    @include ani(55s);
+    transform: translate(-130px);
+    @include splashElement(shdow);
+    @include size(200px);
+    @include position(9vh, 80vw);
+    background-image: url('Ball1.png');
+  }
+}
+@keyframes revolve1 {
+  $trans: 100px;
+  0% {
+    transform: rotate(0deg) translateX($trans);
+  }
+  100% {
+    transform: rotate(360deg) translate($trans);
+  }
+}
+
+
+
