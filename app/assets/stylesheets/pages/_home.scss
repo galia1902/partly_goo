@@ -256,7 +256,6 @@ body {
     @include splashElement(shadow);
     @include size(100px);
     @include position(30vh, 60vw);
-    background-image: url('Ball2.png');
     background-image: asset-url('Ball2.png');
   }
   .ball3 {
@@ -265,7 +264,6 @@ body {
     @include splashElement(shdow);
     @include size(200px);
     @include position(-15vh, -65vw);
-    background-image: url('Ball1.png');
     background-image: asset-url('Ball1.png');
   }
 }
