@@ -38,6 +38,9 @@ class GamesController < ApplicationController
       session[:round_ordered_answers] = @answers
       # if round exists (question already answered) render the page with the answered question and the answers in the right order
     else
+      if @rounds[0].answer.rank == 1
+        @game.update(score: 1)
+      end
       @question = Question.find(@rounds.last.question_id)
       @answers = []
       session[:round_ordered_answers].each do |answer_data|
