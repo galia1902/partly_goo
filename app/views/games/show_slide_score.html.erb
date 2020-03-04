@@ -14,13 +14,33 @@
         <div class="go_back">
           <% color_order = ['red', 'green', 'blue', 'yellow'] %>
 
-          <% @answers.each_with_index do |answer, index| %>
+
           <div class="pill-outer">
-            <h2 class="font-weight-bold" style="color: <%= answer.rank == index + 1 ? "#3BA758" : "#E8463C" %>;">
-              <%= answer.rank %>
+            <h2 class="font-weight-bold" style="color: <%= @answers[0].rank == 1 ? "#3BA758" : "#E8463C" %>;">
+              1
             </h2>
           </div>
-          <% end %>
+
+          <div class="pill-outer">
+            <h2 class="font-weight-bold" style="color: <%= @answers[1].rank == 2 ? "#3BA758" : "#E8463C" %>;">
+              2
+            </h2>
+          </div>
+
+          <div class="pill-outer">
+            <h2 class="font-weight-bold" style="color: <%= @answers[2].rank == 3 ? "#3BA758" : "#E8463C" %>;">
+              3
+            </h2>
+          </div>
+
+          <div class="pill-outer">
+            <h2 class="font-weight-bold" style="color: <%= @answers[3].rank == 4 ? "#3BA758" : "#E8463C" %>;">
+              4
+            </h2>
+          </div>
+
+
+
         </div>
 
 
@@ -33,10 +53,21 @@
           <!-- Loop through answers, rendering each element w/ the relevant id -->
           <% @answers.each_with_index do |answer, index| %>
           <% my_class =  "pill-slide-score pill-align-sortable"%>
-          <li class="<%= my_class %> <%= answer.rank == index + 1 ? "pill-green" : "pill-red" %>" data-answer-number="<%= answer.id %>">
-            <i class="<%= answer.rank == index + 1 ? "fas fa-check" : "fas fa-times" %>"></i>
+          <% if answer.rank == index + 1 %>
+
+          <li class="<%= my_class %> pill-green" data-answer-number="<%= answer.id %>">
+            <i class="fas fa-check"></i>
             <%= answer.content %>
           </li>
+          <% else %>
+          <li class="<%= my_class %> pill-red" data-answer-number="<%= answer.id %>">
+            <i class="fas fa-times d-flex align-items-center"><p class="real-rank">( <%= answer.rank %> )</p></i>
+
+
+            <%= answer.content %>
+          </li>
+          <% end %>
+
           <% position_counter += 1 %>
           <% end %>
         </ul>
@@ -45,11 +76,11 @@
   </div>
 </div>
 
-  <div class="slide-score-buttons">
+<div class="slide-score-buttons">
   <%= link_to "Back to Menu", root_path, class: 'pill mb-0 d-flex justify-content-center' %>
   <%= button_to "Play again", games_path, class: 'pill last-button d-flex justify-content-center' , params: {game: {game_mode: @game.game_mode}}%>
 
-  </div>
+</div>
 
 
 <div class = "user-buttons justify-content-between">
