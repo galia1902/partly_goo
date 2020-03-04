@@ -30,6 +30,7 @@
       <%= button_to "Try Out", games_path, params: {game: {game_mode: "Try Out"}}, class: 'pill mb-0 d-flex justify-content-center' %>
       <%= button_to "5 Rounds", games_path, params: {game: {game_mode: "MCQ"}}, class: 'pill mb-0 d-flex justify-content-center' %>
       <%= button_to "Sortable", games_path, params: {game: {game_mode: "Sortable"}}, class: 'pill mb-0 d-flex justify-content-center' %>
+      <div class="pill mb-0 d-flex justify-content-center">Multiplayer (Coming soon)</div>
       <% else %>
       <%= button_to "Try Out", games_path, params: {game: {game_mode: "Try Out"}}, class: 'pill mb-0 d-flex justify-content-center' %>
       <% end %>
@@ -69,13 +70,13 @@
 
   const fadeAfterDelay = (elements) => {
     elements.forEach((element) => {
-      setTimeout(() => slowfadeElement(element), 2000);
+      setTimeout(() => slowfadeElement(element), 4000);
     });
   };
 
   const removeAfterDelay = (elements) => {
     elements.forEach((element) => {
-      setTimeout(() => element.remove(), 4200);
+      setTimeout(() => element.remove(), 6000);
     });
   };
 

@@ -239,22 +239,23 @@ body {
     z-index: 1;
     @include splashElement;
     @include size(30vw, 30vh);
-    @include position(50%);
-    transform: translate(-50%, -50%);
-    background-image: asset-url('Logo.png');
+    @include position(15%);
+    transform: translate(-15%, -15%);
+    top: 30%;
+    left: 40%;
   }
   .ball1 {
     @include ani;
     @include splashElement(shadow);
-    @include size(300px);
-    @include position(10vh, -10vw);
+    @include size(280px);
+    @include position(50vh, -30vw);
     background-image: asset-url('Ball4.png');
   }
   .ball2 {
     @include ani(45s);
     @include splashElement(shadow);
     @include size(100px);
-    @include position(70vh, 80vw);
+    @include position(30vh, 60vw);
     background-image: asset-url('Ball2.png');
   }
   .ball3 {
@@ -262,7 +263,7 @@ body {
     transform: translate(-130px);
     @include splashElement(shdow);
     @include size(200px);
-    @include position(9vh, 80vw);
+    @include position(-15vh, -65vw);
     background-image: asset-url('Ball1.png');
   }
 }
