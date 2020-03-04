@@ -1,5 +1,5 @@
-<div class="pillbox_outer back-opac">
-  <div class="game_inner">
+<div class="pillbox_outer_slide back-opac">
+  <div class="game_inner_slide">
     <div>
       <a href="/">
         <div class="logo-40-px" style="background-image"></div>
@@ -58,7 +58,7 @@
     <% @answers.each_with_index do |answer, index| %>
       <%= hidden_field_tag "answer_#{index + 1}", answer.id %>
     <% end %>
-    <%= submit_tag "Next", id: 'submit-button', class: 'pill d-flex justify-content-center' %>
+    <%= submit_tag "Next", id: 'submit-button', class: 'submit-button-style d-flex justify-content-center' %>
   <% end %>
 
 </div>
