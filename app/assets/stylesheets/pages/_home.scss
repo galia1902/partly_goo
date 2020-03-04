@@ -122,11 +122,13 @@ a:hover {
   position: fixed;
   bottom: 20px;
   display: flex;
+  justify-content: space-between;
   width: 100%;
   left: 0;
 }
 
 .username-displayed{
+  display: flex;
   width: 55%;
   height: 50px;
   border-radius: 25px;
@@ -280,8 +282,7 @@ body {
 
 .username-container{
   display: flex;
-  margin-right: 40px;
-  margin-left: 35px;
+
 }
 
 .fa-user{
