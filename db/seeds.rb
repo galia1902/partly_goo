@@ -158,7 +158,7 @@ puts "We're up to 10 now."
 
 quest = Question.new(content: 'what\'s a boyfriend')
 quest.save!
-answers[0] = ['jean', 1]
+answers[0] = ['jeans', 1]
 answers[1] = ['and where can i download', 2]
 answers[2] = ['supposed to do', 3]
 answers[3] = ['shirt', 4]
@@ -510,35 +510,37 @@ puts 'Done with Users!'
 ####################
 
 puts 'Creating empty games for users...'
+puts '...'
+puts '(... psttt... skipping games... go play yourself!! :D! ...)'
+puts '...'
+# # Config options...
+# allowed_game_types = ['Try Out']
+# number_of_games = 15
 
-# Config options...
-allowed_game_types = ['Try Out']
-number_of_games = 15
+# # Prep...
+# all_users = User.all
+# questions = Question.all.sample(number_of_games)
+# seed_games = []
 
-# Prep...
-all_users = User.all
-questions = Question.all.sample(number_of_games)
-seed_games = []
+# p 'Creating empty games... '
+# number_of_games.times do
+#   seed_games << Game.create!(game_mode: allowed_game_types.sample,
+#                              user_id: all_users.sample.id)
+# end
+# puts '... done!'
+# p 'Creating rounds for games, getting answers, and scoring them...'
 
-p 'Creating empty games... '
-number_of_games.times do
-  seed_games << Game.create!(game_mode: allowed_game_types.sample,
-                             user_id: all_users.sample.id)
-end
-puts '... done!'
-p 'Creating rounds for games, getting answers, and scoring them...'
-
-seed_games.each do |game|
-  question = questions.pop
-  answer = question.answers.sample
-  duration = rand(95000) + 500 # ==> Random time from  .5 to 10 seconds,in ms
-  user = all_users.sample
-  Round.create!( game_id: game.id,
-                 question_id: question.id,
-                 answer_id: answer.id,
-                 duration: duration)
-  game.score = answer.rank == 1 ? 1 : 0
-end
+# seed_games.each do |game|
+#   question = questions.pop
+#   answer = question.answers.sample
+#   duration = rand(95000) + 500 # ==> Random time from  .5 to 10 seconds,in ms
+#   user = all_users.sample
+#   Round.create!( game_id: game.id,
+#                  question_id: question.id,
+#                  answer_id: answer.id,
+#                  duration: duration)
+#   game.score = answer.rank == 1 ? 1 : 0
+# end
 puts '... done! Happy testing!'
 
 
