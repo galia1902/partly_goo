@@ -70,7 +70,7 @@
 
             <!-- Case: How to display MCQ -->
             <% if game.game_mode == "MCQ" %>
-              <a class="pill dash-pill d-flex" href="/games/<%= game.id %>/score">
+              <a class="pill dash-pill d-flex" href="/games/<%= game.id %>/mcq_score">
                 <div class= "dash-date" > <%= game.created_at.day %>\<%= game.created_at.month %>\<%= game.created_at.year %> </div>
                 <div class= "dash-game-mode" > MCQ </div>
                 <div class="shevron-right"> </div>
