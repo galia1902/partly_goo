@@ -1,7 +1,7 @@
 .submit-button-style {
   position: relative;
   bottom: 80px;
-  width: 90%;
+  width: 200px;
   $height: 50px;
   height: $height;
   border-radius: 25px;
@@ -28,7 +28,7 @@
   text-decoration: none;
 }
 
-  &:active{
+&:active{
     //transform: scale(.98);
     width: 88%;
     box-shadow: 0px 1px 0px rgba(0, 0, 0, 0.25);
@@ -122,8 +122,7 @@
 
 #quest-sort {
   list-style-type: none;
-  margin: 0;
-  padding: 0;
+
   li {
     cursor: grab;
   }
@@ -166,3 +165,15 @@
 .sortable-wrap {
   position: relative;
 }
+
+.next-slide-score {
+  width: 200px;
+  margin-bottom: 0px;
+  position: absolute;
+  bottom: 20px;
+  display: flex;
+  width: 100%;
+
+}
+
+

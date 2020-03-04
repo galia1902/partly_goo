@@ -10,7 +10,7 @@
       <div class="pill hidden">spacer</div>
 
       <% if @rounds.last.nil?  %>
-      <div class="sortable-wrap">
+
         <div class="set-width">
 
           <div class="go_back">
@@ -32,13 +32,13 @@
           </div>
 
 
-          <ul id="quest-sort" class="container-sortable">
+          <ul id="quest-sort" class="container-slide-score slide-result-list">
             <!-- Initialize counter to cycle through colors   -->
             <% color_order = ['red', 'green', 'blue', 'yellow'] %>
             <% position_counter = 0 %>
             <!-- Loop through answers, rendering each element w/ the relevant id -->
             <% @answers.each_with_index do |answer, index| %>
-            <% my_class =  "sort-option pill-sortable pill-align-sortable pill-#{color_order[position_counter]}"%>
+            <% my_class =  "sort-option pill-slide-score pill-align-sortable pill-#{color_order[position_counter]}"%>
             <li class="<%= my_class %>" data-answer-number="<%= answer.id %>">
               <i class="fas fa-bars"></i>
               <%= answer.content %>
@@ -48,19 +48,28 @@
           </ul>
 
         </div>
-      </div>
+
       <% end %>
 
     </div>
   </div>
 
+<div class = "next-slide-score justify-content-center">
   <%= form_tag score_slide_game_path(@game) do %>
   <% @answers.each_with_index do |answer, index| %>
   <%= hidden_field_tag "answer_#{index + 1}", answer.id %>
   <% end %>
-  <%= submit_tag "Next", id: 'submit-button', class: 'submit-button-style d-flex justify-content-center' %>
+  <%= submit_tag "Reveal", id: 'submit-button', class: 'submit-button-style d-flex justify-content-center' %>
   <% end %>
+</div>
 
+
+</div>
+<div class = "user-buttons justify-content-between">
+  <% if user_signed_in? %>
+  <%= link_to "", destroy_user_session_path, method: :delete, class: 'logout-icon text-dark mb-0 d-flex justify-content-center' %>
+  <%= link_to "", dashboard_path, class: 'my-stats-icon text-dark mb-0 d-flex justify-content-center' %>
+  <% end %>
 </div>
 
 <script>

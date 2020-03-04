@@ -24,7 +24,7 @@
         </div>
 
 
-      <ul class="container-sortable slide-result-list">
+      <ul class="container-slide-score slide-result-list">
 
         <!-- Initialize counter to cycle through colors   -->
         <% color_order = ['red', 'green', 'blue', 'yellow'] %>
@@ -32,7 +32,7 @@
 
         <!-- Loop through answers, rendering each element w/ the relevant id -->
         <% @answers.each_with_index do |answer, index| %>
-          <% my_class =  "pill-sortable pill-align-sortable"%>
+          <% my_class =  "pill-slide-score pill-align-sortable"%>
           <li class="<%= my_class %> <%= answer.rank == index + 1 ? "pill-green" : "pill-red" %>" data-answer-number="<%= answer.id %>">
             <i class="<%= answer.rank == index + 1 ? "fas fa-check" : "fas fa-times" %>"></i>
             <%= answer.content %>
@@ -42,10 +42,12 @@
       </ul>
 
       </div>
-
-
-
     </div>
   </div>
-
+</div>
+<div class = "user-buttons justify-content-between">
+    <% if user_signed_in? %>
+    <%= link_to "", destroy_user_session_path, method: :delete, class: 'logout-icon text-dark mb-0 d-flex justify-content-center' %>
+    <%= link_to "", dashboard_path, class: 'my-stats-icon text-dark mb-0 d-flex justify-content-center' %>
+    <% end %>
 </div>
