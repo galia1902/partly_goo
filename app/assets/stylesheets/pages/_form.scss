@@ -30,6 +30,7 @@
 
 .htp-container {
     background: #E9E9E9;
+    position: fixed;
 }
 
 .simple_form label {
@@ -49,6 +50,9 @@ div.boolean, .simple_form input[type='submit'] {
   box-sizing: border-box;
   border-radius: 45px;
   color: #D7D7D7;
+  margin-top: 170px;
+  margin-left: 25px;
+  margin-bottom: 0px;
 }
 
 .devise-sign-up{
@@ -60,18 +64,21 @@ color: #D7D7D7;
 font-size: 16px;
 line-height: 19px;
 color: #424242;
+margin-left: 25px;
+margin-top: 5px;
 }
 
 .devise-forgot-password{
-width: 171px;
-height: 56px;
-border: 1px solid rgba(196, 196, 196, 0.5);
-box-sizing: border-box;
-border-radius: 50%;
-color:red;
-width: 22px;
-height: 22px;
-background: #C4C4C4;
+  width: 171px;
+  height: 56px;
+  border: 0px solid rgba(196, 196, 196, 0.5);
+  box-sizing: border-box;
+  border-radius: 50%;
+  color: rgba(0, 0, 0, 0.87);
+  width: 22px;
+  -webkit-transform: translate(200px, -400px);
+  transform: translate(210px, -390px);
+  font-weight: bold;
 }
 
 
@@ -124,6 +131,15 @@ background: #C4C4C4;
   display: none;
 }
 
+.form-check-input{
+  margin-left: -1rem;
+}
+
+.checkbox-password{
+  margin-left: 20px;
+  transform: translate(6px, -14px);
+  font-size: 12px;
+}
 
 
 

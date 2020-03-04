@@ -27,6 +27,7 @@
         required: false,
         input_html: { autocomplete: "current-password", class:"text-input", type: "password", value:"", placeholder:"Password" } %>
         <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
+        <div class="checkbox-password"> remember my password </div>
        </div>
       </div>
 
@@ -45,4 +46,10 @@
     my_body.style.background = '#545252'
   }
   changeBodyBackgroundColor();
+
+  let my_body2 = document.querySelector('body')
+  const preventBodyScroll = () => {
+    my_body2.style.position = fixed
+  }
+  preventBodyScroll();
 </script>
