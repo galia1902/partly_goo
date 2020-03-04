@@ -15,23 +15,23 @@
           <% color_order = ['red', 'green', 'blue', 'yellow'] %>
 
           <% @answers.each_with_index do |answer, index| %>
-            <div class="pill-outer">
-              <h2 class="font-weight-bold" style="color: <%= answer.rank == index + 1 ? "#3BA758" : "#E8463C" %>;">
-                  <%= answer.rank %>
-              </h2>
-            </div>
+          <div class="pill-outer">
+            <h2 class="font-weight-bold" style="color: <%= answer.rank == index + 1 ? "#3BA758" : "#E8463C" %>;">
+              <%= answer.rank %>
+            </h2>
+          </div>
           <% end %>
         </div>
 
 
-      <ul class="container-slide-score slide-result-list">
+        <ul class="container-slide-score slide-result-list">
 
-        <!-- Initialize counter to cycle through colors   -->
-        <% color_order = ['red', 'green', 'blue', 'yellow'] %>
-        <% position_counter = 0 %>
+          <!-- Initialize counter to cycle through colors   -->
+          <% color_order = ['red', 'green', 'blue', 'yellow'] %>
+          <% position_counter = 0 %>
 
-        <!-- Loop through answers, rendering each element w/ the relevant id -->
-        <% @answers.each_with_index do |answer, index| %>
+          <!-- Loop through answers, rendering each element w/ the relevant id -->
+          <% @answers.each_with_index do |answer, index| %>
           <% my_class =  "pill-slide-score pill-align-sortable"%>
           <li class="<%= my_class %> <%= answer.rank == index + 1 ? "pill-green" : "pill-red" %>" data-answer-number="<%= answer.id %>">
             <i class="<%= answer.rank == index + 1 ? "fas fa-check" : "fas fa-times" %>"></i>
@@ -39,18 +39,22 @@
           </li>
           <% position_counter += 1 %>
           <% end %>
-      </ul>
-
-      <%= link_to "Back to Menu", root_path, class: 'pill mb-0 d-flex justify-content-center' %>
-      <%= button_to "Play again", games_path, class: 'pill last-button d-flex justify-content-center' , params: {game: {game_mode: @game.game_mode}}%>
-
+        </ul>
       </div>
     </div>
   </div>
 </div>
+
+  <div class="slide-score-buttons">
+  <%= link_to "Back to Menu", root_path, class: 'pill mb-0 d-flex justify-content-center' %>
+  <%= button_to "Play again", games_path, class: 'pill last-button d-flex justify-content-center' , params: {game: {game_mode: @game.game_mode}}%>
+
+  </div>
+
+
 <div class = "user-buttons justify-content-between">
-    <% if user_signed_in? %>
-    <%= link_to "", destroy_user_session_path, method: :delete, class: 'logout-icon text-dark mb-0 d-flex justify-content-center' %>
-    <%= link_to "", dashboard_path, class: 'my-stats-icon text-dark mb-0 d-flex justify-content-center' %>
-    <% end %>
+  <% if user_signed_in? %>
+  <%= link_to "", destroy_user_session_path, method: :delete, class: 'logout-icon text-dark mb-0 d-flex justify-content-center' %>
+  <%= link_to "", dashboard_path, class: 'my-stats-icon text-dark mb-0 d-flex justify-content-center' %>
+  <% end %>
 </div>

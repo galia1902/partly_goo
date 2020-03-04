@@ -54,7 +54,7 @@
     </div>
   </div>
 
-<div class = "next-slide-score justify-content-center">
+<div class = "slide-reveal-button justify-content-center">
   <%= form_tag score_slide_game_path(@game) do %>
   <% @answers.each_with_index do |answer, index| %>
   <%= hidden_field_tag "answer_#{index + 1}", answer.id %>
